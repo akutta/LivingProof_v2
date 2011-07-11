@@ -105,10 +105,11 @@
 {
     //NSString *filepath   =   [[NSBundle mainBundle] pathForResource:@"big-buck-bunny-clip" ofType:@"m4v"];
     //NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-    NSURL *fileURL = [curVideo url];
+  
+    NSString *fileURL = [NSString stringWithFormat:@"%@",curVideo.url];
     NSLog(@"fileURL:\r%@",fileURL);
     
-    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
+    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:fileURL]];
     //[self.view addSubview:moviePlayerController.view];
     
     
