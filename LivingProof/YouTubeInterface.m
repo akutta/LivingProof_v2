@@ -278,6 +278,7 @@
             youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
             
             if ( youtubeVideo.parsedKeys.age == nil ) {
+                NSLog(@"Error with video named:  %@",youtubeVideo.title);
                 youtubeVideo.parsedKeys.age = @"";
             }
                 
