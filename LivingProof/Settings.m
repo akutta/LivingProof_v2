@@ -80,6 +80,7 @@
     if ( settingsPath == nil ) {
         return nil;
     } else {
+        NSLog(@"AgeSettings:\r%@",settingsPath);
         // Path to settings file
         NSString* ageData = [NSString stringWithContentsOfFile:settingsPath 
                                                            encoding:NSUTF8StringEncoding 
@@ -91,7 +92,7 @@
             tmp.ageName = [age copy];
             
             if ( curImage >= [images count] )
-                tmp.imageData = [UIImage imageNamed:@"placeholder.png"];
+                tmp.imageData = nil;//[UIImage imageNamed:@"placeholder.png"];
             else
                 tmp.imageData = [UIImage imageWithContentsOfFile:[agesDirectory stringByAppendingPathComponent:[images objectAtIndex:curImage]]];
             [retValue addObject:tmp];
@@ -126,6 +127,7 @@
     if ( settingsPath == nil ) {
         return nil;
     } else {
+        NSLog(@"CategorySettings:\r%@",settingsPath);
         // Path to settings file
         NSString* categoryData = [NSString stringWithContentsOfFile:settingsPath 
                                                            encoding:NSUTF8StringEncoding 
@@ -138,7 +140,7 @@
             tmp.categoryName = [category copy];
             
             if ( curImage >= [images count] )
-                tmp.imageData = [UIImage imageNamed:@"placeholder.png"];
+                tmp.imageData = nil;//[UIImage imageNamed:@"placeholder.png"];
             else
                 tmp.imageData = [UIImage imageWithContentsOfFile:[categoryDirectory stringByAppendingPathComponent:[images objectAtIndex:curImage]]];
             [retValue addObject:tmp];

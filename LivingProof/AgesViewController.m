@@ -39,7 +39,7 @@
 
 -(void)reloadCurrentGrid
 {
- //   if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
+    if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
     {
         // Find new images
         NSInteger errorCount = 0;
@@ -76,6 +76,8 @@
         NSInteger index = 0;
         for ( NSString* name in _ageNames ) {
             AgeImage *tmp = [[AgeImage alloc] init];
+            tmp.imageData = nil;
+            tmp.imageView = nil;
             for ( index = 0; index < [survivors count]; index ++ ) {
                 Survivor *surv = [survivors objectAtIndex:index];
                 
@@ -92,7 +94,7 @@
         
         [[[self delegate] settings] saveAgeImages:_ageImages];
         
-//        NSLog(@"There are %d uncategorized ages", errorCount);
+        NSLog(@"There are %d uncategorized ages", errorCount);
     }
     
     [_gridView reloadData];
@@ -129,17 +131,11 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
-    
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-    // NSLog(@"viewDidLoad - getting categories");
-  
-    
-    // Convert to using ages
     _ages = [[[self delegate] settings] getAgeImages];
     if ( [_ages count] == 0 ) {
-        NSLog(@"No Local Categories Found");
+        NSLog(@"No Local Ages Found");
+        bUsedPlaceholder = YES;
         [_ages release];
     }
     
@@ -170,7 +166,6 @@
     if ( [[[self delegate] iYouTube] getFinished] == NO )
         return [_ages count];
     
-    // CONVERT HERE
     _ageNames = [[[[self delegate] iYouTube] getAges] copy];
     return [_ageNames count];
 }
@@ -187,9 +182,10 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    if ( index >= [_ages count] )
+    if ( index >= [_ages count]  ) {
+        bUsedPlaceholder = YES;
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
-    else {
+    } else {
         AgeImage *tmp = [_ages objectAtIndex:index];
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil ) {

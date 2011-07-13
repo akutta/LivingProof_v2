@@ -38,7 +38,7 @@
 
 -(void)reloadCurrentGrid
 {
-    if ( [_gridView numberOfItems] > [_categories count] )
+    if ( [_gridView numberOfItems] != [_categories count] )
     {
         // Find new images
         NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
@@ -120,12 +120,7 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
-
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
-   // NSLog(@"viewDidLoad - getting categories");
-    
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {
         NSLog(@"No Local Categories Found");

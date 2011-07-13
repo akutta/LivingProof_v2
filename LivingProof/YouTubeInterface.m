@@ -273,9 +273,15 @@
             
             [self addToCategories:youtubeVideo.category];
             
+            
             youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
             youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
             
+            if ( youtubeVideo.parsedKeys.age == nil ) {
+                youtubeVideo.parsedKeys.age = @"";
+            }
+                
+                
             [self addToAges:youtubeVideo.parsedKeys.age];
             
 			[YouTubeArray addObject:youtubeVideo];
