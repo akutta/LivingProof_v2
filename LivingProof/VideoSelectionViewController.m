@@ -8,17 +8,15 @@
 
 #import "LivingProofAppDelegate.h"
 #import "CategoriesViewController.h"
+#import "AgeViewController.h"
 #import "VideoSelectionViewController.h"
 #import "VideoPlayerViewController.h"
-
 #import "VideoGridCell.h"
 #import "Video.h"
-
 #import "UIImageView+WebCache.h"
 
 
 @implementation VideoSelectionViewController
-
 
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
@@ -79,8 +77,6 @@
         if ( ([video.category rangeOfString:searchText]).location == NSNotFound ) {
             for ( NSString* keyword in video.keysArray ) {
                 NSRange range = [keyword rangeOfString:searchText];
-               // NSLog(@"Comparing:  '%@'  '%@'",keyword,searchText);
-                //NSLog(@"Location:  %d  %d", range.location,NSNotFound);
                 if ( range.location != NSNotFound ) {
                     [_filteredResults addObject:video];
                 }
@@ -94,20 +90,30 @@
 
 -(IBAction)swapViewToCategories:(id)sender
 {
-    CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
-    [[self delegate] reloadCurrentGrid];
+    if ( ![[sender title] compare:@"Categories"] ) {
+        // Switch to Categories since that was the last view
+        CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
+        [[self delegate] reloadCurrentGrid];
+    } else {
+        AgeViewController *nextView = [[AgeViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
+        [[self delegate] reloadCurrentGrid];
+    }
 }
 
 //
 // Customized so we can keep track of the type of category we are filtering for
 //
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText buttonText:(NSString*)title
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
          NSLog(@"Selected Category:  %@",catText);
+        
+        //display.title = title;
+        _curButtonText = [[NSString alloc] initWithString:title];
         _curCategory = [catText copy];
         [self YouTubeArray:YES];
     }
@@ -138,6 +144,8 @@
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     [super viewDidLoad];
+    
+    display.title = _curButtonText;
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;

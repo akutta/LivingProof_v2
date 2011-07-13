@@ -7,6 +7,7 @@
 //
 
 #import "LivingProofAppDelegate.h"
+#import "MainScreenViewController.h"
 #import "CategoriesViewController.h"
 #import "YouTubeInterface.h"
 #import "Settings.h"
@@ -39,7 +40,12 @@
 
 -(void)reloadCurrentGrid
 {
-    [curView reloadCurrentGrid];
+    if ( curView != nil ) {
+        if ( [curView respondsToSelector:@selector(reloadCurrentGrid)] ) {
+            [curView reloadCurrentGrid];
+        } else {
+        }
+    }
 }
 
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller
@@ -58,15 +64,25 @@
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     
-    CategoriesViewController *firstView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+    
+    // Switched to a new welcome screen
+    
+//    CategoriesViewController *firstView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+//    [self setCurView:firstView];
+//    self.categories = firstView;
+//    [_window addSubview:categories.view];
+//    [firstView release];
+     
+    MainScreenViewController *firstView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
     [self setCurView:firstView];
-    self.categories = firstView;
-    [_window addSubview:categories.view];
+    main = firstView;
+    [_window addSubview:main.view];
     [firstView release];
     
     //
     // Start downloading videos from youtube
     //
+    
     [[self iYouTube] loadVideoFeed];
     
     return YES;

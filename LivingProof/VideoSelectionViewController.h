@@ -12,15 +12,18 @@
 
 @interface VideoSelectionViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource> {
     
+    IBOutlet UIBarButtonItem* display;
+    
     AQGridView *_gridView;
     NSString *_curCategory;
+    NSString *_curButtonText;
     NSMutableArray *_filteredResults;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 @property (nonatomic, retain) NSString* curCategory;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText buttonText:(NSString*)title;
 -(IBAction)swapViewToCategories:(id)sender;
 -(void)reloadCurrentGrid;
 @end

@@ -10,22 +10,20 @@
 #import "YouTubeInterface.h"
 #import "Settings.h"
 
+@class MainScreenViewController;
 @class CategoriesViewController;
 @class GDataFeedYouTubeVideo;
 @class GDataServiceTicket;
 
 @interface LivingProofAppDelegate : NSObject <UIApplicationDelegate> {
-    CategoriesViewController *categories;
-    NSInteger killThread;
+//    CategoriesViewController *categories;
+    MainScreenViewController *main;
     id curView;
-    YouTubeInterface *iYouTube;
     
+    YouTubeInterface *iYouTube;
     NSArray* categoryArray;
 }
-
 // Essentially global Variables
-//@property (nonatomic, retain) GDataFeedYouTubeVideo *mEntriesFeed;
-//@property (nonatomic, retain) GDataServiceTicket    *mEntriesFetchTicket;
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) CategoriesViewController *categories;
 @property (nonatomic, retain) id curView;

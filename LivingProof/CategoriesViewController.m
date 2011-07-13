@@ -8,6 +8,7 @@
 
 #import "CategoriesViewController.h"
 #import "VideoSelectionViewController.h"
+#import "MainScreenViewController.h"
 #import "LivingProofAppDelegate.h"
 #import "VideoGridCell.h"
 #import "CategoryImage.h"
@@ -20,7 +21,6 @@
 
 @synthesize gridView = _gridView;
 
-
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
@@ -30,11 +30,15 @@
     return del;
 }
 
+-(IBAction)back {
+    
+    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView];
+}
 
 -(void)reloadCurrentGrid
 {
-    //NSLog(@"CategoryViewController:reloadCurrentGrid");
-    if ( [_gridView numberOfItems] >= [_categories count] )
+    if ( [_gridView numberOfItems] > [_categories count] )
     {
         // Find new images
         NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
@@ -50,7 +54,6 @@
             }
             
             if ( !bFound ) {
-               // NSLog(@"Adding Survivor:  %@", curVideo.parsedKeys.name);
                 Survivor *tmp = [[Survivor alloc] init];
                 tmp.name = curVideo.parsedKeys.name;
                 tmp.url = curVideo.thumbnailURL;
@@ -73,7 +76,6 @@
                 Survivor *surv = [survivors objectAtIndex:index];
                 tmp.imageData = nil;
                 tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
-               //[tmp.imageView setImageWithURL:surv.url placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
             }
             tmp.categoryName = name;
             [_categoryImages addObject:tmp];
@@ -122,6 +124,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+   // NSLog(@"viewDidLoad - getting categories");
+    
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {
         NSLog(@"No Local Categories Found");
@@ -152,10 +156,9 @@
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
 {
     // When a new category is added check that we have an image for it
-    
     if ( [[[self delegate] iYouTube] getFinished] == NO )
         return [_categories count];
-    
+        
     _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
    return [_categoryNames count];
 }
@@ -207,7 +210,8 @@
     VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
-                                                                                          category:cell.title];    // Change to Title of the selected
+                                                                                          category:cell.title
+                                                                                        buttonText:@"Ages"];    // Change to Title of the selected
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView];
     [[self delegate] reloadCurrentGrid];
 }

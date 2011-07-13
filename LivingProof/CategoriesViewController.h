@@ -12,14 +12,13 @@
 @interface CategoriesViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>  {
     NSArray *_imageNames;
     NSArray *_categoryNames;
-    
     NSArray *_categories;
-    //NSMutableArray *_categoryImages; // NSArray* of CategoryImage*
     
     AQGridView *_gridView;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 
+-(IBAction)back;
 -(void)reloadCurrentGrid;
 @end
