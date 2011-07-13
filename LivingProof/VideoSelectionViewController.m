@@ -8,7 +8,7 @@
 
 #import "LivingProofAppDelegate.h"
 #import "CategoriesViewController.h"
-#import "AgeViewController.h"
+#import "AgesViewController.h"
 #import "VideoSelectionViewController.h"
 #import "VideoPlayerViewController.h"
 #import "VideoGridCell.h"
@@ -96,7 +96,7 @@
         [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
         [[self delegate] reloadCurrentGrid];
     } else {
-        AgeViewController *nextView = [[AgeViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
         [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
         [[self delegate] reloadCurrentGrid];
     }
