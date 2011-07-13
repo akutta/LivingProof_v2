@@ -16,7 +16,8 @@
 {
     LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
-                                                                                            bundle:nil ];
+                                                                                            bundle:nil 
+                                                                                        buttonText:previousButtonTitle];
     [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
     [delegate reloadCurrentGrid];
 }
@@ -25,8 +26,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        NSLog(@"initWithNibName %@",video);
-        
         previousButtonTitle = [[NSString alloc] initWithString:curTitle];
         
         // Custom initialization

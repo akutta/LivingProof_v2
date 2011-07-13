@@ -15,6 +15,8 @@
     NSArray *_ages;
     
     AQGridView *_gridView;
+    
+    BOOL bUsedPlaceholder;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;

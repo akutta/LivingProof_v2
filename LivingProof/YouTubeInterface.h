@@ -17,6 +17,7 @@
     @private NSString *mEntryImageURLString;
     @private NSMutableArray *YouTubeArray;  
     @private NSMutableArray *categories;
+    @private NSMutableArray *ages;
     
     NSNumber *finished;
 }
@@ -24,6 +25,7 @@
 -(NSArray*)getYouTubeArray:(NSString*)filter;
 
 -(NSArray*)getCategories;
+-(NSArray*)getAges;
 
 -(void)setFinished:(BOOL)value;
 -(BOOL)getFinished;

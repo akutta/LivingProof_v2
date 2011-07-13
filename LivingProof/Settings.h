@@ -15,8 +15,10 @@
 
 @property (retain) NSString* settingsPath;
 
--(void)saveCategoryImages:(NSArray *)data;
-//-(void)saveCategoryImages:(NSArray*)data images:(NSArray*)images;
+
+-(NSArray*)getAgeImages;
 -(NSArray*)getCategoryImages;
+-(void)saveAgeImages:(NSArray *)data;
+-(void)saveCategoryImages:(NSArray *)data;
 
 @end

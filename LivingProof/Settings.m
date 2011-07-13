@@ -8,6 +8,7 @@
 
 #import "Settings.h"
 #import "Image.h"
+#import "AgeImage.h"
 #import "CategoryImage.h"
 
 @implementation Settings
@@ -39,6 +40,70 @@
     return documentsDirectory;
 }
 
+
+- (NSMutableArray *) getImages:(NSString *)directory files:(NSArray *)files settingsName:(NSString*)settings  {
+    // Get Image Names
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    for ( NSString *file in files ) {
+        if ( [self check:file forSubstring:@".jpg"] == YES) {
+            [images addObject:file];
+        } else if ( [self check:file forSubstring:settings] == YES ) {
+            settingsPath = [directory stringByAppendingPathComponent:file];
+        }
+    }
+    return images;
+}
+
+
+- (NSArray *) getFilesInDirectory: (NSString *) categoryDirectory  {
+    // Get the file names
+    NSError *error;
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:categoryDirectory error:&error];
+    if ( files == nil ) {
+        NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
+        return nil;
+    }
+    return files;
+}
+
+-(NSArray*)getAgeImages
+{
+    NSMutableArray *retValue = [[NSMutableArray alloc] init];
+    
+    NSString *agesDirectory = [self getDirPath:@"Age Images"];
+    NSArray *files  = [self getFilesInDirectory:agesDirectory];
+    NSMutableArray *images = [self getImages:agesDirectory
+                                       files:files 
+                                settingsName:@"ages"];
+    
+    // check if anything has been saved
+    if ( settingsPath == nil ) {
+        return nil;
+    } else {
+        // Path to settings file
+        NSString* ageData = [NSString stringWithContentsOfFile:settingsPath 
+                                                           encoding:NSUTF8StringEncoding 
+                                                              error:nil];
+        NSArray* allLinedStrings = [ageData componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        NSInteger curImage = 0;
+        for ( NSString* age in allLinedStrings ) {
+            AgeImage *tmp = [[AgeImage alloc] init];
+            tmp.ageName = [age copy];
+            
+            if ( curImage >= [images count] )
+                tmp.imageData = [UIImage imageNamed:@"placeholder.png"];
+            else
+                tmp.imageData = [UIImage imageWithContentsOfFile:[agesDirectory stringByAppendingPathComponent:[images objectAtIndex:curImage]]];
+            [retValue addObject:tmp];
+            [tmp release];
+            curImage++;
+        }
+    }
+
+    return [retValue copy];
+}
+
+
 -(NSArray*)getCategoryImages
 {
     NSMutableArray *retValue = [[NSMutableArray alloc] init];
@@ -47,26 +112,15 @@
     NSLog(@"Identifier:  %@",id);*/
     
     
+    NSMutableArray *images;
+    NSArray *files;
     NSString *categoryDirectory = [self getDirPath:@"Category Images"];
     
-    // Get the file names
-    NSError *error;
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:categoryDirectory error:&error];
-    if ( files == nil ) {
-        NSLog(@"Error reading contents of documents directory: %@", [error localizedDescription]);
-        return nil;
-    }
-    
-    
-    // Get Image Names
-    NSMutableArray *images = [[NSMutableArray alloc] init];
-    for ( NSString *file in files ) {
-        if ( [self check:file forSubstring:@".jpg"] == YES) {
-            [images addObject:file];
-        } else if ( [self check:file forSubstring:@"categories"] == YES ) {
-            settingsPath = [categoryDirectory stringByAppendingPathComponent:file];
-        }
-    }
+    files = [self getFilesInDirectory: categoryDirectory];
+    images = [self getImages:categoryDirectory 
+                       files:files
+                settingsName:@"categories"];
+
     
     // check if anything has been saved
     if ( settingsPath == nil ) {
@@ -129,6 +183,31 @@
     return [output copy];
 }
 
+-(void)saveAgeImages:(NSArray *)data {
+    NSInteger curImage = 0;
+    NSString *ageDirectory = [self getDirPath:@"Age Images"];
+    NSMutableArray *ageData = [[NSMutableArray alloc] init];
+    
+    for ( id item in data ) {
+        if ( [item isKindOfClass:[AgeImage class]] )
+        {
+            NSString *path = [ageDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image%d.jpg",curImage]];
+            AgeImage *entry = item;
+            if ( entry.imageData != nil ) {
+                NSData *imageData = [NSData dataWithData:UIImageJPEGRepresentation(entry.imageData, 1.0)];
+                [imageData writeToFile:path atomically:YES];
+                curImage++;
+            }
+            [ageData addObject:[NSString stringWithFormat:@"%@", entry.ageName]];
+        } else {
+            NSLog(@"Error Settings:saveAgeImages");
+        }
+    }
+    
+    NSString *toFile = [self stripParenthesis:[NSString stringWithFormat:@"%@", ageData]];
+    [toFile writeToFile:[ageDirectory stringByAppendingPathComponent:@"ages"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
 -(void)saveCategoryImages:(NSArray *)data {
     NSInteger curImage = 0;
     NSString *categoryDirectory = [self getDirPath:@"Category Images"];
@@ -149,7 +228,6 @@
         }
     }
     
-   // NSLog(@"categories: %@",categoryData);
     NSString *toFile = [self stripParenthesis:[NSString stringWithFormat:@"%@", categoryData]];
     [toFile writeToFile:[categoryDirectory stringByAppendingPathComponent:@"categories"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }

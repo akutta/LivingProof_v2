@@ -60,6 +60,10 @@
     return del;
 }
 
+-(NSArray*)getAges {
+    NSArray *ret = [[ages copy] autorelease];
+    return ret;
+}
 
 -(NSArray*)getCategories {
     NSArray *ret = [[categories copy] autorelease];
@@ -134,6 +138,25 @@
     [service setYouTubeDeveloperKey:YouTube_devKey];
 	
     return service;
+}
+
+-(void)addToAges:(NSString*)newAge {
+
+    if ( newAge == nil ) {
+        newAge = @""; // There is an error in the ages
+    }
+    
+    BOOL bFound = NO;
+    for ( id objects in ages ) {
+        if ( [objects isKindOfClass:[NSString class]] ) {
+            NSString* curObject = objects;
+            if ( ![curObject compare:newAge] ) 
+                bFound = YES;
+        }
+    }
+    if ( !bFound ) {
+        [ages addObject:newAge];
+    }
 }
 
 - (void) addToCategories:(NSString*)newCategory {
@@ -234,6 +257,9 @@
         if ( categories == nil )
             categories = [[NSMutableArray alloc] init];
         
+        if ( ages == nil ) 
+            ages = [[NSMutableArray alloc] init];
+        
 		NSArray *entries = [mEntriesFeed entries];
 		for ( GDataEntryYouTubeVideo *entry in entries )
 		{
@@ -249,7 +275,9 @@
             
             youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
             youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
-                    
+            
+            [self addToAges:youtubeVideo.parsedKeys.age];
+            
 			[YouTubeArray addObject:youtubeVideo];
 			[youtubeVideo release];
 		}
@@ -318,7 +346,11 @@
         for ( NSString* value in video.keysArray ) {
             if ( [value caseInsensitiveCompare:filter] == NSOrderedSame )
                 [tmpValue addObject:video];
+            else if ( [[self replaceSymbols:value] caseInsensitiveCompare:filter] == NSOrderedSame ) {
+                [tmpValue addObject:video];
+            }
         }
+        
     }
     
    // NSArray* retValue = [YouTubeArray copy];

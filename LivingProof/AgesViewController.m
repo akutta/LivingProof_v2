@@ -11,7 +11,7 @@
 #import "MainScreenViewController.h"
 #import "LivingProofAppDelegate.h"
 #import "VideoGridCell.h"
-#import "CategoryImage.h"
+#import "AgeImage.h"
 #import "Settings.h"
 #import "Video.h"
 #import "Survivor.h"
@@ -38,7 +38,63 @@
 }
 
 -(void)reloadCurrentGrid
-{   
+{
+ //   if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
+    {
+        // Find new images
+        NSInteger errorCount = 0;
+        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
+        NSMutableArray* survivors = [[NSMutableArray alloc] init];
+        for ( Video* curVideo in videos )
+        {
+            if ( !curVideo.parsedKeys.age ) {
+                curVideo.parsedKeys.age = @"";
+                errorCount++;
+            }
+            BOOL bFound = NO;
+            for ( Survivor* survivor in survivors )
+            {
+                if ( ![survivor.name compare:curVideo.parsedKeys.age] ) {
+                    bFound = YES;
+                }
+            }
+            
+            if ( !bFound ) {
+                Survivor *tmp = [[Survivor alloc] init];
+                tmp.name = curVideo.parsedKeys.age;
+                tmp.url = curVideo.thumbnailURL;
+                [survivors addObject:tmp];
+                //[tmp release];
+            }
+            bUsedPlaceholder = NO;
+        }
+        
+        [_ages release];
+        NSMutableArray* _ageImages = [[NSMutableArray alloc] init];
+        
+        _ageNames = [[[[self delegate] iYouTube] getAges] copy];
+        NSInteger index = 0;
+        for ( NSString* name in _ageNames ) {
+            AgeImage *tmp = [[AgeImage alloc] init];
+            for ( index = 0; index < [survivors count]; index ++ ) {
+                Survivor *surv = [survivors objectAtIndex:index];
+                
+                if ( ![surv.name compare:name] ) {
+//                    NSLog(@"Using %@ for %@",surv.url, surv.name);
+                    tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
+                }   
+            }
+            tmp.ageName = name;
+            [_ageImages addObject:tmp];
+            index++;
+        }
+        _ages = [_ageImages copy];
+        
+        [[[self delegate] settings] saveAgeImages:_ageImages];
+        
+//        NSLog(@"There are %d uncategorized ages", errorCount);
+    }
+    
     [_gridView reloadData];
 }
 
@@ -81,11 +137,11 @@
   
     
     // Convert to using ages
-//    _ages = [[[self delegate] settings] getCategoryImages];
-//    if ( [_ages count] == 0 ) {
-//        NSLog(@"No Local Categories Found");
-//        [_ages release];
-//    }
+    _ages = [[[self delegate] settings] getAgeImages];
+    if ( [_ages count] == 0 ) {
+        NSLog(@"No Local Categories Found");
+        [_ages release];
+    }
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -115,42 +171,41 @@
         return [_ages count];
     
     // CONVERT HERE
-    //_ageNames = [[[[self delegate] iYouTube] getCategories] copy];
+    _ageNames = [[[[self delegate] iYouTube] getAges] copy];
     return [_ageNames count];
 }
 
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
 {   
-    static NSString *CategoryGridCellIdentifier = @"CategoryGridCellIdentifier";
+    static NSString *AgeGridCellIdentifier = @"AgeGridCellIdentifier";
     
-    VideoGridCell *cell = (VideoGridCell *)[aGridView dequeueReusableCellWithIdentifier:CategoryGridCellIdentifier];
+    VideoGridCell *cell = (VideoGridCell *)[aGridView dequeueReusableCellWithIdentifier:AgeGridCellIdentifier];
     
-//    if ( cell == nil )
-//    {
-//        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 220.0, 235.0) reuseIdentifier:CategoryGridCellIdentifier] autorelease];
-//        cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
-//    }
-//    
-//    if ( index >= [_ages count] )
-//        [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
-//    else {
-//        CategoryImage *tmp = [_ages objectAtIndex:index];
-//        if ( tmp.imageData == nil ) {
-//            if ( tmp.imageView == nil )
-//                [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
-//            else
-//                cell.imageView = tmp.imageView;
-//        } else {
-//            [cell.imageView setImage:tmp.imageData];
-//        }
-//        cell.title = tmp.categoryName;
-//    }
-//    
-//    if ( [_ageNames count] > 0 )
-//        cell.title = [_ageNames objectAtIndex:index];
+    if ( cell == nil )
+    {
+        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 220.0, 235.0) reuseIdentifier:AgeGridCellIdentifier] autorelease];
+        cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+    }
     
-    cell.imageView = nil;
-    cell.title = @"Unfinished";
+    if ( index >= [_ages count] )
+        [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+    else {
+        AgeImage *tmp = [_ages objectAtIndex:index];
+        if ( tmp.imageData == nil ) {
+            if ( tmp.imageView == nil ) {
+                [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
+                bUsedPlaceholder = YES;
+            } else
+                cell.imageView = tmp.imageView;
+        } else {
+            [cell.imageView setImage:tmp.imageData];
+        }
+        cell.title = tmp.ageName;
+    }
+    
+    if ( [_ageNames count] > 0 )
+        cell.title = [_ageNames objectAtIndex:index];
+    
     
     return cell;
 }

@@ -42,7 +42,8 @@
 -(NSArray*)YouTubeArray:(BOOL)shouldClear
 {
     static NSArray* retArray;
-    if ( retArray == nil && shouldClear == NO) {
+    if ( retArray == nil || shouldClear == YES) {
+//        NSLog(@"curCategory: %@",_curCategory);
         retArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
         
         if ( [retArray count] == 0 )
@@ -110,12 +111,23 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-         NSLog(@"Selected Category:  %@",catText);
+//         NSLog(@"Selected Category:  %@",catText);
         
         //display.title = title;
         _curButtonText = [[NSString alloc] initWithString:title];
         _curCategory = [catText copy];
         [self YouTubeArray:YES];
+        
+        [self reloadCurrentGrid];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil buttonText:(NSString*)title
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if ( self ) {
+        _curButtonText = title;
     }
     return self;
 }
@@ -145,6 +157,7 @@
     
     [super viewDidLoad];
     
+ //   NSLog(@"curButtonText: %@",_curButtonText);
     if ( _curButtonText )
         display.title = _curButtonText;
     
