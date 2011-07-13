@@ -15,16 +15,19 @@
 -(IBAction)swapViews:(id)sender
 {
     LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" bundle:nil];
+    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
+                                                                                            bundle:nil ];
     [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
     [delegate reloadCurrentGrid];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video buttonTitle:(NSString*)curTitle
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         NSLog(@"initWithNibName %@",video);
+        
+        previousButtonTitle = [[NSString alloc] initWithString:curTitle];
         
         // Custom initialization
         curVideo = video;

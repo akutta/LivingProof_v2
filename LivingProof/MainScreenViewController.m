@@ -8,6 +8,7 @@
 
 #import "MainScreenViewController.h"
 #import "CategoriesViewController.h"
+#import "AgesViewController.h"
 #import "LivingProofAppDelegate.h"
 
 @implementation MainScreenViewController
@@ -23,7 +24,6 @@
 }
 
 
-
 -(IBAction)sortByCategories
 {
     CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
@@ -33,7 +33,8 @@
 
 -(IBAction)sortByAge
 {
-    
+    AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView]; 
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,7 +42,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        //[self viewBackground];
         self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     }
     return self;

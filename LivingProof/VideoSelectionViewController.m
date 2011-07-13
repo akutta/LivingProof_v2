@@ -145,7 +145,8 @@
     
     [super viewDidLoad];
     
-    display.title = _curButtonText;
+    if ( _curButtonText )
+        display.title = _curButtonText;
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -208,7 +209,9 @@
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {   
     Video *video = [[self YouTubeArray:NO] objectAtIndex:index];
-    VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" bundle:nil video:video];
+    VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
+                                                                                      bundle:nil video:video 
+                                                                                 buttonTitle:_curButtonText];
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionNone newController:nextView]; 
 }
 

@@ -12,7 +12,7 @@
 
 @interface VideoPlayerViewController : UIViewController {
     Video *curVideo;
-    
+    NSString *previousButtonTitle;
     
     IBOutlet UILabel *age;
     IBOutlet UILabel *name;
@@ -25,7 +25,7 @@
 
 
 -(IBAction)swapViews:(id)sender;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video buttonTitle:(NSString*)curTitle;
 
 
 // MediaPlayer Framework Controls

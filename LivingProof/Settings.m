@@ -114,6 +114,10 @@
                             withString:@"" 
                                options:NSCaseInsensitiveSearch 
                                  range:NSMakeRange(0, [output length])];
+    [output replaceOccurrencesOfString:@"(" 
+                            withString:@"" 
+                               options:NSCaseInsensitiveSearch 
+                                 range:NSMakeRange(0, [output length])];
     [output replaceOccurrencesOfString:@"  " 
                             withString:@"" 
                                options:NSCaseInsensitiveSearch 
