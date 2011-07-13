@@ -18,6 +18,7 @@
 		A9469E8613B0567A009D28DC /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E8213B0567A009D28DC /* UIImageView+WebCache.m */; };
 		A9469E9713B11A0D009D28DC /* YouTubeInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E9613B11A0D009D28DC /* YouTubeInterface.m */; };
 		A9469EA213B11F61009D28DC /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469EA113B11F61009D28DC /* Video.m */; };
+		A978225313CE30FC00EA39AC /* AgeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A978225213CE30FC00EA39AC /* AgeImage.m */; };
 		A98D524813CD4CBE00399792 /* AgesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D524613CD4CBE00399792 /* AgesViewController.m */; };
 		A98D524913CD4CBE00399792 /* AgesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A98D524713CD4CBE00399792 /* AgesViewController.xib */; };
 		A9ACD2DC13B1479700979ECA /* GDataACLKeyedRole.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCFBE13B1479600979ECA /* GDataACLKeyedRole.m */; };
@@ -208,6 +209,8 @@
 		A9469E9613B11A0D009D28DC /* YouTubeInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouTubeInterface.m; sourceTree = "<group>"; };
 		A9469EA013B11F61009D28DC /* Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Video.h; sourceTree = "<group>"; };
 		A9469EA113B11F61009D28DC /* Video.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Video.m; sourceTree = "<group>"; };
+		A978225113CE30FC00EA39AC /* AgeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgeImage.h; sourceTree = "<group>"; };
+		A978225213CE30FC00EA39AC /* AgeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgeImage.m; sourceTree = "<group>"; };
 		A98D524513CD4CBE00399792 /* AgesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgesViewController.h; sourceTree = "<group>"; };
 		A98D524613CD4CBE00399792 /* AgesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgesViewController.m; sourceTree = "<group>"; };
 		A98D524713CD4CBE00399792 /* AgesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgesViewController.xib; sourceTree = "<group>"; };
@@ -952,6 +955,8 @@
 				A9ACD71613B993A800979ECA /* Keys.m */,
 				A90B437913BD06000055A556 /* Survivor.h */,
 				A90B437A13BD06000055A556 /* Survivor.m */,
+				A978225113CE30FC00EA39AC /* AgeImage.h */,
+				A978225213CE30FC00EA39AC /* AgeImage.m */,
 			);
 			name = "Supporting Classes";
 			sourceTree = "<group>";
@@ -1318,6 +1323,7 @@
 				A90B437B13BD06000055A556 /* Survivor.m in Sources */,
 				A98D524813CD4CBE00399792 /* AgesViewController.m in Sources */,
 				A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */,
+				A978225313CE30FC00EA39AC /* AgeImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
