@@ -43,7 +43,6 @@
 {
     static NSArray* retArray;
     if ( retArray == nil || shouldClear == YES) {
-//        NSLog(@"curCategory: %@",_curCategory);
         retArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
         
         if ( [retArray count] == 0 )
@@ -56,10 +55,11 @@
 }
 
 -(NSArray*)getFilteredArray {
-    if ( _filteredResults == nil )
-        return [self YouTubeArray:NO];
     
-    return [_filteredResults copy];
+    if ( _filteredResults != nil )
+        return [_filteredResults copy];
+    
+    return [self YouTubeArray:NO];
 }
 
 -(void)filteredArray:(NSString*)searchText {
@@ -77,7 +77,8 @@
     for ( Video* video in [self YouTubeArray:NO] ) {
         if ( ([video.category rangeOfString:searchText]).location == NSNotFound ) {
             for ( NSString* keyword in video.keysArray ) {
-                NSRange range = [keyword rangeOfString:searchText];
+                
+                NSRange range = [[keyword lowercaseString] rangeOfString:searchText]; 
                 if ( range.location != NSNotFound ) {
                     [_filteredResults addObject:video];
                 }
@@ -221,7 +222,8 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {   
-    Video *video = [[self YouTubeArray:NO] objectAtIndex:index];
+    //Video *video = [[self YouTubeArray:NO] objectAtIndex:index];
+    Video *video = [[self getFilteredArray] objectAtIndex:index];
     VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
                                                                                       bundle:nil video:video 
                                                                                  buttonTitle:_curButtonText];
@@ -233,7 +235,6 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
- //   NSLog(@"curSearchText %@",searchText);
     [self filteredArray:searchText];
     [self reloadCurrentGrid];
 }

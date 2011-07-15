@@ -276,12 +276,6 @@
             
             youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
             youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
-            
-            if ( youtubeVideo.parsedKeys.age == nil ) {
-                NSLog(@"Error with video named:  %@",youtubeVideo.title);
-                youtubeVideo.parsedKeys.age = @"";
-            }
-                
                 
             [self addToAges:youtubeVideo.parsedKeys.age];
             
@@ -349,18 +343,25 @@
     for ( Video* video in YouTubeArray ) {
         if ( [video.category caseInsensitiveCompare:filter] == NSOrderedSame )
             [tmpValue addObject:video];
-        
-        for ( NSString* value in video.keysArray ) {
-            if ( [value caseInsensitiveCompare:filter] == NSOrderedSame )
-                [tmpValue addObject:video];
-            else if ( [[self replaceSymbols:value] caseInsensitiveCompare:filter] == NSOrderedSame ) {
-                [tmpValue addObject:video];
-            }
-        }
+        else if ( [video.parsedKeys.age caseInsensitiveCompare:filter] == NSOrderedSame) 
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.childrenStatus caseInsensitiveCompare:filter] == NSOrderedSame ) 
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.employmentStatus caseInsensitiveCompare:filter] == NSOrderedSame )
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.name caseInsensitiveCompare:filter] == NSOrderedSame )
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.treatment caseInsensitiveCompare:filter] == NSOrderedSame ) 
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.survivorshipLength caseInsensitiveCompare:filter] == NSOrderedSame )
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.maritalStatus caseInsensitiveCompare:filter] == NSOrderedSame )
+            [tmpValue addObject:video];
+        else if ( [video.parsedKeys.insurance caseInsensitiveCompare:filter] == NSOrderedSame )
+            [tmpValue addObject:video];
         
     }
     
-   // NSArray* retValue = [YouTubeArray copy];
     NSArray* retValue = [tmpValue copy];
     [retValue autorelease];
     [tmpValue release];

@@ -19,6 +19,7 @@
   NSString *_title;
   NSString *_category;
 
+  NSArray *_parsedKeysArray;
   NSArray *_keysArray;
   Keys *_parsedKeys;
 }
