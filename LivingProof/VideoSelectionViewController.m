@@ -56,10 +56,11 @@
 
 -(NSArray*)getFilteredArray {
     
-    if ( _filteredResults != nil )
+    if ( _filteredResults != nil ) {
         return [_filteredResults copy];
+    }
     
-    return [self YouTubeArray:NO];
+    return [self YouTubeArray:YES];
 }
 
 -(void)filteredArray:(NSString*)searchText {
@@ -87,6 +88,8 @@
             [_filteredResults addObject:video];
         }
     }
+    
+    _searchText = [searchText copy];
 }
 
 
@@ -107,31 +110,27 @@
 //
 // Customized so we can keep track of the type of category we are filtering for
 //
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText buttonText:(NSString*)title
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText filter:(NSString *)filterText buttonText:(NSString*)title
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-//         NSLog(@"Selected Category:  %@",catText);
+         NSLog(@"Selected Category:  %@",catText);
         
         //display.title = title;
         _curButtonText = [[NSString alloc] initWithString:title];
         _curCategory = [catText copy];
         [self YouTubeArray:YES];
         
+        if ( filterText != nil || [filterText length] > 0 ) {
+            [self filteredArray:filterText];
+        }
+        
         [self reloadCurrentGrid];
     }
     return self;
 }
 
-- (id)initWithNibName:(NSString*)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil buttonText:(NSString*)title
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if ( self ) {
-        _curButtonText = title;
-    }
-    return self;
-}
 
 - (void)dealloc
 {
@@ -222,10 +221,17 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {   
+    NSArray* videoArray = [self getFilteredArray];
+    if ( [videoArray count] < index )
+        return;
+    
     //Video *video = [[self YouTubeArray:NO] objectAtIndex:index];
-    Video *video = [[self getFilteredArray] objectAtIndex:index];
+    Video *video = [videoArray objectAtIndex:index];  //[[self getFilteredArray] objectAtIndex:index];
     VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
-                                                                                      bundle:nil video:video 
+                                                                                      bundle:nil 
+                                                                                       video:video 
+                                                                                 curCategory:_curCategory 
+                                                                                      filter:_searchText
                                                                                  buttonTitle:_curButtonText];
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionNone newController:nextView]; 
 }

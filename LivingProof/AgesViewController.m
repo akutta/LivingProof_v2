@@ -220,7 +220,8 @@
     VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
-                                                                                          category:cell.title
+                                                                                          category:cell.title 
+                                                                                            filter:nil
                                                                                         buttonText:@"Ages"];    // Change to Title of the selected
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView];
     [[self delegate] reloadCurrentGrid];

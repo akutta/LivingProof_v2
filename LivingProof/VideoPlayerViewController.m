@@ -16,17 +16,26 @@
 {
     LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
-                                                                                            bundle:nil 
+                                                                                            bundle:nil category:_curCategory 
+                                                                                            filter:_curFilter 
                                                                                         buttonText:previousButtonTitle];
     [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
     [delegate reloadCurrentGrid];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video buttonTitle:(NSString*)curTitle
+- (id)initWithNibName:(NSString *)nibNameOrNil 
+               bundle:(NSBundle *)nibBundleOrNil 
+                video:(Video *)video
+          curCategory:curCategory 
+               filter:_searchText
+          buttonTitle:(NSString*)curTitle
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         previousButtonTitle = [[NSString alloc] initWithString:curTitle];
+        
+        _curCategory = curCategory;
+        _curFilter = _searchText;
         
         // Custom initialization
         curVideo = video;

@@ -110,6 +110,7 @@
                               delegate:self
                      didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:error:)];
     */
+    
     [self setEntriesFetchTicket:ticket];
 }
 
@@ -248,7 +249,7 @@
 	[self setEntriesFetchTicket:nil];
  	
 	if ( error != nil ) {
-        
+        NSLog(@"Error: %@",[error localizedDescription]);
 	}
 	else {
 		if ( YouTubeArray == nil )
@@ -339,26 +340,16 @@
     }
     
     NSMutableArray *tmpValue = [[NSMutableArray alloc] init];
-
+    
+    
+    // Only Sorting by Category and Age here
     for ( Video* video in YouTubeArray ) {
         if ( [video.category caseInsensitiveCompare:filter] == NSOrderedSame )
             [tmpValue addObject:video];
-        else if ( [video.parsedKeys.age caseInsensitiveCompare:filter] == NSOrderedSame) 
+        else if ( [video.parsedKeys.age caseInsensitiveCompare:filter] == NSOrderedSame) {
+            //NSLog(@"%@ is the same as %@",filter,video.parsedKeys.age);
             [tmpValue addObject:video];
-        else if ( [video.parsedKeys.childrenStatus caseInsensitiveCompare:filter] == NSOrderedSame ) 
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.employmentStatus caseInsensitiveCompare:filter] == NSOrderedSame )
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.name caseInsensitiveCompare:filter] == NSOrderedSame )
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.treatment caseInsensitiveCompare:filter] == NSOrderedSame ) 
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.survivorshipLength caseInsensitiveCompare:filter] == NSOrderedSame )
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.maritalStatus caseInsensitiveCompare:filter] == NSOrderedSame )
-            [tmpValue addObject:video];
-        else if ( [video.parsedKeys.insurance caseInsensitiveCompare:filter] == NSOrderedSame )
-            [tmpValue addObject:video];
+        }
         
     }
     

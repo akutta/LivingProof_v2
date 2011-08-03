@@ -32,7 +32,7 @@
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
+      displayScaleIsEnabled = "YES"
       displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"

@@ -21,11 +21,20 @@
     IBOutlet UILabel *maritalStatus;
     IBOutlet UILabel *employmentStatus;
     IBOutlet UILabel *childrenStatus;
+    
+    
+    NSString* _curCategory;
+    NSString* _curFilter;
 }
 
 
 -(IBAction)swapViews:(id)sender;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil video:(Video *)video buttonTitle:(NSString*)curTitle;
+- (id)initWithNibName:(NSString *)nibNameOrNil 
+               bundle:(NSBundle *)nibBundleOrNil 
+                video:(Video *)video
+          curCategory:curCategory 
+               filter:_searchText
+          buttonTitle:(NSString*)curTitle;
 
 
 // MediaPlayer Framework Controls
