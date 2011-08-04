@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MainScreenViewController : UIViewController {
+    IBOutlet UIButton *sortAge;
+    IBOutlet UIButton *sortCategory;
     
 }
 -(IBAction)sortByCategories;

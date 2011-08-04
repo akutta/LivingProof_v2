@@ -42,7 +42,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+       // self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     }
     return self;
 }
@@ -60,6 +60,43 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+
+
+- (void)setBackgroundBasedOnOrientation {
+    
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if ( orientation == UIDeviceOrientationPortrait || orientation == UIDeviceOrientationPortraitUpsideDown )
+    {
+        CGRect sortAgeFrame = sortAge.frame;
+        sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
+        sortAge.frame = sortAgeFrame;
+        
+        
+        CGRect sortCategoryFrame = sortCategory.frame;
+        sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
+        sortCategory.frame = sortCategoryFrame;
+        
+        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    } else if ( orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight ) {
+        
+        CGRect sortAgeFrame = sortAge.frame;
+        sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
+        sortAge.frame = sortAgeFrame;
+        
+        
+        CGRect sortCategoryFrame = sortCategory.frame;
+        sortCategoryFrame.origin = CGPointMake(516.0f, 573.0f);
+        sortCategory.frame = sortCategoryFrame;
+        
+        
+        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
+    }
+}
+
+-(void) didRotate:(NSNotification *)notification {
+    [self setBackgroundBasedOnOrientation];
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -67,9 +104,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:)name:UIDeviceOrientationDidChangeNotification object:nil];
     
    // NSLog(@"%@",self.view.window.bounds);
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    [self setBackgroundBasedOnOrientation];
 }
 
 - (void)viewDidUnload
