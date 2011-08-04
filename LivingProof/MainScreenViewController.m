@@ -64,9 +64,12 @@
 
 - (void)setBackgroundBasedOnOrientation {
     
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIApplication *application = [UIApplication sharedApplication];
+    UIInterfaceOrientation orientation1 = application.statusBarOrientation;
+    UIDeviceOrientation orientation2 = [[UIDevice currentDevice] orientation];
     
-    if ( orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight ) {
+    if ( orientation1 == UIInterfaceOrientationLandscapeLeft || orientation1 == UIInterfaceOrientationLandscapeRight ||
+        UIDeviceOrientationIsLandscape(orientation2) ) {
         
         CGRect sortAgeFrame = sortAge.frame;
         sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
@@ -79,7 +82,8 @@
         
         
         self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
-    } else {
+    } else if ( orientation1 == UIInterfaceOrientationPortrait || orientation1 == UIInterfaceOrientationPortraitUpsideDown ||
+               UIDeviceOrientationIsPortrait(orientation2) )  {
         CGRect sortAgeFrame = sortAge.frame;
         sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
         sortAge.frame = sortAgeFrame;
@@ -90,6 +94,8 @@
         sortCategory.frame = sortCategoryFrame;
         
         self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    } else {
+        NSLog(@"Unknown Orientation");
     }
 }
 

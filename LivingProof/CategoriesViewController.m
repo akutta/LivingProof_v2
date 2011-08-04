@@ -117,8 +117,8 @@
 - (void)viewDidLoad
 {
     // Ensure we are in portrait mode
-    UIApplication *application = [UIApplication sharedApplication];
-    application.statusBarOrientation = UIInterfaceOrientationPortrait;
+    //UIApplication *application = [UIApplication sharedApplication];
+    //application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     
