@@ -155,6 +155,8 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    
     [super viewDidLoad];
     
  //   NSLog(@"curButtonText: %@",_curButtonText);

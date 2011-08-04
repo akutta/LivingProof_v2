@@ -66,6 +66,7 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationLandscapeRight;
     
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
     if ( curVideo ) {
         
         name.text = curVideo.parsedKeys.name;

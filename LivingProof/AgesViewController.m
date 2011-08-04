@@ -131,6 +131,8 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    
     [super viewDidLoad];
     _ages = [[[self delegate] settings] getAgeImages];
     if ( [_ages count] == 0 ) {

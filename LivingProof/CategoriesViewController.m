@@ -120,6 +120,8 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    
     [super viewDidLoad];
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {

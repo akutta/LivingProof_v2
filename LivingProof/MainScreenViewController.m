@@ -80,9 +80,6 @@
         
         self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
     } else {
-        
-        NSLog(@"Portrait Orientation");
-        
         CGRect sortAgeFrame = sortAge.frame;
         sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
         sortAge.frame = sortAgeFrame;
@@ -103,12 +100,12 @@
 
 - (void)viewDidLoad
 {
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:)name:UIDeviceOrientationDidChangeNotification object:nil];
     
-    NSLog(@"viewDidLoad");
     [self setBackgroundBasedOnOrientation];
 }
 
