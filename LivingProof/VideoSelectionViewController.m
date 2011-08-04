@@ -21,6 +21,10 @@
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
 
+// Fixes Issue with White Bar at bottom of screen
+-(void)viewWillAppear:(BOOL)animated{
+    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+} 
 
 -(void)reloadCurrentGrid
 {

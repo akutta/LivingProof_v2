@@ -12,6 +12,12 @@
 
 @implementation VideoPlayerViewController
 
+// Fixes Issue with White Bar at bottom of screen
+-(void)viewWillAppear:(BOOL)animated{
+    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+} 
+
+
 -(IBAction)swapViews:(id)sender
 {
     LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -92,7 +98,8 @@
 {
     // Return YES for supported orientations
 
-	return YES;
+    // Only allow to be viewed in landscape view
+	return NO;
 }
 
 //

@@ -13,6 +13,10 @@
 
 @implementation MainScreenViewController
 
+// Fixes Issue with White Bar at bottom of screen
+-(void)viewWillAppear:(BOOL)animated{
+    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+} 
 
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
@@ -72,7 +76,6 @@
         sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
         sortAge.frame = sortAgeFrame;
         
-        
         CGRect sortCategoryFrame = sortCategory.frame;
         sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
         sortCategory.frame = sortCategoryFrame;
@@ -105,6 +108,7 @@
     // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:)name:UIDeviceOrientationDidChangeNotification object:nil];
+    
     
    // NSLog(@"%@",self.view.window.bounds);
     [self setBackgroundBasedOnOrientation];
