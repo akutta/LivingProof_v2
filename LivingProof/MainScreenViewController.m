@@ -66,19 +66,7 @@
     
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
-    if ( orientation == UIDeviceOrientationPortrait || orientation == UIDeviceOrientationPortraitUpsideDown )
-    {
-        CGRect sortAgeFrame = sortAge.frame;
-        sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
-        sortAge.frame = sortAgeFrame;
-        
-        
-        CGRect sortCategoryFrame = sortCategory.frame;
-        sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
-        sortCategory.frame = sortCategoryFrame;
-        
-        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
-    } else if ( orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight ) {
+    if ( orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight ) {
         
         CGRect sortAgeFrame = sortAge.frame;
         sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
@@ -91,6 +79,20 @@
         
         
         self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
+    } else {
+        
+        NSLog(@"Portrait Orientation");
+        
+        CGRect sortAgeFrame = sortAge.frame;
+        sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
+        sortAge.frame = sortAgeFrame;
+        
+        
+        CGRect sortCategoryFrame = sortCategory.frame;
+        sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
+        sortCategory.frame = sortCategoryFrame;
+        
+        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     }
 }
 
@@ -106,7 +108,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:)name:UIDeviceOrientationDidChangeNotification object:nil];
     
-   // NSLog(@"%@",self.view.window.bounds);
+    NSLog(@"viewDidLoad");
     [self setBackgroundBasedOnOrientation];
 }
 
