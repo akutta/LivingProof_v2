@@ -12,12 +12,6 @@
 
 @implementation VideoPlayerViewController
 
-// Fixes Issue with White Bar at bottom of screen
--(void)viewWillAppear:(BOOL)animated{
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
-} 
-
-
 -(IBAction)swapViews:(id)sender
 {
     LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -82,6 +76,9 @@
         employmentStatus.text = curVideo.parsedKeys.employmentStatus;
         childrenStatus.text = curVideo.parsedKeys.childrenStatus;
     }
+    
+    
+    self.view.frame = [[UIScreen mainScreen]applicationFrame];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

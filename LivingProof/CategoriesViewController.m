@@ -21,12 +21,6 @@
 
 @synthesize gridView = _gridView;
 
-
-// Fixes Issue with White Bar at bottom of screen
--(void)viewWillAppear:(BOOL)animated{
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
-} 
-
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
@@ -127,6 +121,10 @@
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     [super viewDidLoad];
+    
+    
+    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+    
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {
         NSLog(@"No Local Categories Found");

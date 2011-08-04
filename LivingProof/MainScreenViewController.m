@@ -15,7 +15,7 @@
 
 // Fixes Issue with White Bar at bottom of screen
 -(void)viewWillAppear:(BOOL)animated{
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+//    self.view.frame = [[UIScreen mainScreen]applicationFrame];
 } 
 
 -(LivingProofAppDelegate*)delegate {
