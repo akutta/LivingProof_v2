@@ -78,7 +78,7 @@
     }
     
     
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+    //self.view.frame = [[UIScreen mainScreen]applicationFrame];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

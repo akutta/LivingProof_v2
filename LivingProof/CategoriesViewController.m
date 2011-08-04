@@ -123,7 +123,7 @@
     [super viewDidLoad];
     
     
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+    //self.view.frame = [[UIScreen mainScreen]applicationFrame];
     
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {

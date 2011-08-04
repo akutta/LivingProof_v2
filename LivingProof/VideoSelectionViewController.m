@@ -21,7 +21,6 @@
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
 
-
 -(void)reloadCurrentGrid
 {
     //NSLog(@"VideoSelectionViewController:reloadCurrentGrid");
@@ -159,7 +158,7 @@
     
     
     
-    self.view.frame = [[UIScreen mainScreen]applicationFrame];
+   // self.view.frame = [[UIScreen mainScreen]applicationFrame];
     
  //   NSLog(@"curButtonText: %@",_curButtonText);
     if ( _curButtonText )
