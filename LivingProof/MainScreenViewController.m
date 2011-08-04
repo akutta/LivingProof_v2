@@ -13,6 +13,7 @@
 
 @implementation MainScreenViewController
 
+
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
@@ -62,6 +63,7 @@
 
 
 - (void)setBackgroundBasedOnOrientation {
+    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
     if ( orientation == UIDeviceOrientationPortrait || orientation == UIDeviceOrientationPortraitUpsideDown )
@@ -69,6 +71,7 @@
         CGRect sortAgeFrame = sortAge.frame;
         sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
         sortAge.frame = sortAgeFrame;
+        
         
         CGRect sortCategoryFrame = sortCategory.frame;
         sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
@@ -102,7 +105,6 @@
     // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotate:)name:UIDeviceOrientationDidChangeNotification object:nil];
-    
     
    // NSLog(@"%@",self.view.window.bounds);
     [self setBackgroundBasedOnOrientation];

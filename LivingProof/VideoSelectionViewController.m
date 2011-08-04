@@ -21,6 +21,7 @@
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
 
+
 -(void)reloadCurrentGrid
 {
     //NSLog(@"VideoSelectionViewController:reloadCurrentGrid");
@@ -155,10 +156,6 @@
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     [super viewDidLoad];
-    
-    
-    
-   // self.view.frame = [[UIScreen mainScreen]applicationFrame];
     
  //   NSLog(@"curButtonText: %@",_curButtonText);
     if ( _curButtonText )

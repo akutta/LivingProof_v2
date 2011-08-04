@@ -121,10 +121,6 @@
     application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     [super viewDidLoad];
-    
-    
-    //self.view.frame = [[UIScreen mainScreen]applicationFrame];
-    
     _categories = [[[self delegate] settings] getCategoryImages];
     if ( [_categories count] == 0 ) {
         NSLog(@"No Local Categories Found");

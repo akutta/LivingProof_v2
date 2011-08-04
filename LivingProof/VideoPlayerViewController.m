@@ -77,9 +77,6 @@
         childrenStatus.text = curVideo.parsedKeys.childrenStatus;
     }
     
-    
-    //self.view.frame = [[UIScreen mainScreen]applicationFrame];
-    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -95,8 +92,7 @@
 {
     // Return YES for supported orientations
 
-    // Only allow to be viewed in landscape view
-	return NO;
+	return YES;
 }
 
 //

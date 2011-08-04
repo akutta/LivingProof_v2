@@ -50,7 +50,6 @@
 
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller
 {
-    
     [self setCurView:controller];
     [UIView beginAnimations:@"Animation" context:nil];
     [UIView setAnimationDuration:0.75];
