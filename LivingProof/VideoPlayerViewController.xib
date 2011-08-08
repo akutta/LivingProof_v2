@@ -49,18 +49,18 @@
 						<string key="NSFrame">{{59, 28}, {72, 37}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="178577189"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="451755316">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="341027431">
+						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -68,30 +68,10 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor" id="1029712196">
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-					</object>
-					<object class="IBUIButton" id="178577189">
-						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{79, 130}, {451, 443}}</string>
-						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="843142125"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="451755316"/>
-						<int key="IBUIButtonType">1</int>
-						<reference key="IBUIHighlightedTitleColor" ref="341027431"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="1029712196"/>
 					</object>
 					<object class="IBUILabel" id="843142125">
 						<reference key="NSNextResponder" ref="766721923"/>
@@ -365,7 +345,6 @@
 						<string key="NSFrame">{{759, 411}, {245, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -423,15 +402,6 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">5</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">playMovie:</string>
-						<reference key="source" ref="178577189"/>
-						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">7</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -515,7 +485,6 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="178577189"/>
 							<reference ref="843142125"/>
 							<reference ref="850836206"/>
 							<reference ref="894493484"/>
@@ -537,11 +506,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="356020274"/>
-						<reference key="parent" ref="766721923"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="178577189"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -637,7 +601,6 @@
 					<string>29.IBPluginDependency</string>
 					<string>30.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
-					<string>6.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -654,7 +617,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{353, 156}, {1024, 768}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -686,35 +648,14 @@
 					<string key="className">VideoPlayerViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>playMovie:</string>
-							<string>swapViews:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
+						<string key="NS.key.0">swapViews:</string>
+						<string key="NS.object.0">id</string>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>playMovie:</string>
-							<string>swapViews:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">playMovie:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">swapViews:</string>
-								<string key="candidateClassName">id</string>
-							</object>
+						<string key="NS.key.0">swapViews:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">swapViews:</string>
+							<string key="candidateClassName">id</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">

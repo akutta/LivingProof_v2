@@ -14,6 +14,8 @@
     Video *curVideo;
     NSString *previousButtonTitle;
     
+    UIWebView *videoView;
+    
     IBOutlet UILabel *age;
     IBOutlet UILabel *name;
     IBOutlet UILabel *survivorshipLength;
@@ -35,8 +37,4 @@
           curCategory:curCategory 
                filter:_searchText
           buttonTitle:(NSString*)curTitle;
-
-
-// MediaPlayer Framework Controls
--(IBAction)playMovie:(id)sender;
 @end

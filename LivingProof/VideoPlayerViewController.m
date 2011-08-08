@@ -23,6 +23,19 @@
     [delegate reloadCurrentGrid];
 }
 
+
+- (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
+    NSString* embedHTML = @"<html><head> <style type=\"text/css\"> body { background-color: transparent; color: white; } </style> </head><body style=\"margin:0\"> <embed src=\"%@\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed> </body></html>";
+    
+    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+    if(videoView == nil) {
+        videoView = [[UIWebView alloc] initWithFrame:frame];
+        [self.view addSubview:videoView];
+    }
+    [videoView loadHTMLString:html baseURL:nil];
+}
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil 
                bundle:(NSBundle *)nibBundleOrNil 
                 video:(Video *)video
@@ -76,6 +89,10 @@
         maritalStatus.text = curVideo.parsedKeys.maritalStatus;
         employmentStatus.text = curVideo.parsedKeys.employmentStatus;
         childrenStatus.text = curVideo.parsedKeys.childrenStatus;
+        
+        //NSLog(@"%@",curVideo.url);
+        
+        [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];
     }
     
     [super viewDidLoad];
@@ -110,28 +127,6 @@
     [moviePlayerController release];
 }
 
-//
-// Play Moview
-//
--(IBAction)playMovie:(id)sender
-{
-    //NSString *filepath   =   [[NSBundle mainBundle] pathForResource:@"big-buck-bunny-clip" ofType:@"m4v"];
-    //NSURL    *fileURL    =   [NSURL fileURLWithPath:filepath];
-    NSURL *fileURL = [curVideo url];
-    NSLog(@"fileURL:\r%@",fileURL);
-    
-    MPMoviePlayerController *moviePlayerController = [[MPMoviePlayerController alloc] initWithContentURL:fileURL];
-    //[self.view addSubview:moviePlayerController.view];
-    
-    
-    /*[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(moviePlaybackComplete:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:moviePlayerController];
-    */
-    moviePlayerController.fullscreen = NO;
-    [moviePlayerController play];
- 
-}
+
 
 @end
