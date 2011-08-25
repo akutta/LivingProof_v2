@@ -22,6 +22,8 @@
     NSNumber *finished;
 }
 
+-(BOOL)isInternetConnected;
+
 -(NSArray*)getYouTubeArray:(NSString*)filter;
 
 -(NSArray*)getCategories;

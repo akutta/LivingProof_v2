@@ -78,6 +78,10 @@
     return [finished boolValue];
 }
 
+-(BOOL)isInternetConnected {
+    return NO;
+}
+
 - (void)loadVideoFeed
 {
     // Ensure we initialize this
@@ -271,6 +275,12 @@
 			youtubeVideo.time          = [[entry mediaGroup] duration];
 			youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
 			youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
+           
+            if ( [[entry rating] numberOfLikes] != nil )
+                NSLog(@"Likes:     %@", [[entry rating] numberOfLikes]);
+            
+            if ( [[entry rating] numberOfDislikes] != nil ) 
+                NSLog(@"Dislikes:  %@", [[entry rating] numberOfDislikes]);
             
             [self addToCategories:youtubeVideo.category];
             
@@ -283,10 +293,12 @@
 			[YouTubeArray addObject:youtubeVideo];
 			[youtubeVideo release];
 		}
+        
+        
+        [self setFinished:YES];
+        [[self delegate] reloadCurrentGrid];
 	}
     
-    [self setFinished:YES];
-    [[self delegate] reloadCurrentGrid];
 }
 
 

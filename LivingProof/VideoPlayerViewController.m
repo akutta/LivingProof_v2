@@ -128,5 +128,31 @@
 }
 
 
+#pragma mark -
+#pragma mark Grid View Data Source
+
+- (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
+{
+    return 0;
+}
+
+- (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
+{
+    return nil;
+}
+
+- (CGSize) portraitGridCellSizeForGridView:(AQGridView *)aGridView
+{
+    //   return CGSizeMake(220.0, 260.0);
+    return CGSizeMake(150.0, 200.0);
+}
+
+#pragma mark -
+#pragma mark Grid View Delegate
+
+- (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
+{   
+}
+
 
 @end
