@@ -11,7 +11,7 @@
 #import "MainScreenViewController.h"
 #import "LivingProofAppDelegate.h"
 #import "VideoGridCell.h"
-#import "CategoryImage.h"
+#import "Image.h"
 #import "Settings.h"
 #import "Video.h"
 #import "Survivor.h"
@@ -68,7 +68,7 @@
         _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
         NSInteger index = 0;
         for ( NSString* name in _categoryNames ) {
-            CategoryImage *tmp = [[CategoryImage alloc] init];
+            Image *tmp = [[Image alloc] init];
             if ( index >= [survivors count] ) {
                 tmp.imageData = nil;
                 tmp.imageView = nil;
@@ -77,7 +77,7 @@
                 tmp.imageData = nil;
                 tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
             }
-            tmp.categoryName = name;
+            tmp.name = name;
             [_categoryImages addObject:tmp];
             index++;
         }
@@ -175,7 +175,7 @@
     if ( index >= [_categories count] )
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     else {
-        CategoryImage *tmp = [_categories objectAtIndex:index];
+        Image *tmp = [_categories objectAtIndex:index];
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil )
                 [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
@@ -184,7 +184,7 @@
         } else {
             [cell.imageView setImage:tmp.imageData];
         }
-        cell.title = tmp.categoryName;
+        cell.title = tmp.name;
     }
     
     if ( [_categoryNames count] > 0 )

@@ -1,22 +1,22 @@
 //
-//  Image.h
+//  CategoryImage.h
 //  LivingProof
 //
-//  Created by Andrew Kutta on 6/23/11.
+//  Created by Andrew Kutta on 6/27/11.
 //  Copyright 2011 Student. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 
-@interface Image : NSObject {
-    NSString *_filepath;
-    NSString *_title;
-    UIImage  *_image;
+@interface CategoryImage : NSObject {
+    NSString *_categoryName;
+    UIImage *_imageData;
+    UIImageView *_imageView;
 }
 
-@property (retain) NSString* filepath;
-@property (retain) NSString* title;
-@property (retain) UIImage* image;
+@property (retain) UIImage* imageData;
+@property (retain) NSString* categoryName;
+@property (retain) UIImageView* imageView;
 
 @end

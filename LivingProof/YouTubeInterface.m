@@ -10,7 +10,6 @@
 
 #import "Video.h"
 #import "Keys.h"
-#import "Settings.h"
 
 
 #import "GDataYouTube.h"
@@ -242,7 +241,7 @@
  * to the passed value, the items are then traversed in a for loop as a
  * GDataEntryYouTubevideo item, and assigned associated values to a YouTubeVideo model.
  * The object is then added to the YouTubeArray.
- *
+ * 
  */
 - (void)entryListFetchTicket:(GDataServiceTicket *)ticket
             finishedWithFeed:(GDataFeedBase *)feed

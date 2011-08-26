@@ -11,7 +11,7 @@
 #import "MainScreenViewController.h"
 #import "LivingProofAppDelegate.h"
 #import "VideoGridCell.h"
-#import "AgeImage.h"
+#import "Image.h"
 #import "Settings.h"
 #import "Video.h"
 #import "Survivor.h"
@@ -75,7 +75,7 @@
         _ageNames = [[[[self delegate] iYouTube] getAges] copy];
         NSInteger index = 0;
         for ( NSString* name in _ageNames ) {
-            AgeImage *tmp = [[AgeImage alloc] init];
+            Image *tmp = [[Image alloc] init];
             tmp.imageData = nil;
             tmp.imageView = nil;
             for ( index = 0; index < [survivors count]; index ++ ) {
@@ -86,7 +86,7 @@
                     tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
                 }   
             }
-            tmp.ageName = name;
+            tmp.name = name;
             [_ageImages addObject:tmp];
             index++;
         }
@@ -188,7 +188,7 @@
         bUsedPlaceholder = YES;
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     } else {
-        AgeImage *tmp = [_ages objectAtIndex:index];
+        Image *tmp = [_ages objectAtIndex:index];
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil ) {
                 [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
@@ -198,7 +198,7 @@
         } else {
             [cell.imageView setImage:tmp.imageData];
         }
-        cell.title = tmp.ageName;
+        cell.title = tmp.name;
     }
     
     if ( [_ageNames count] > 0 )

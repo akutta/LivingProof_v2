@@ -1,8 +1,8 @@
 //
-//  Image.m
+//  CategoryImage.m
 //  LivingProof
 //
-//  Created by Andrew Kutta on 6/23/11.
+//  Created by Andrew Kutta on 6/27/11.
 //  Copyright 2011 Student. All rights reserved.
 //
 
@@ -11,6 +11,6 @@
 
 @implementation Image
 
-@synthesize filepath = _filepath, title = _title, image = _image;
+@synthesize name = _name, imageData = _imageData, imageView = _imageView;
 
 @end

@@ -113,21 +113,6 @@
 	return YES;
 }
 
-//
-// Clean up memory here
-//
-- (void)moviePlaybackComplete:(NSNotification *)notification
-{
-    MPMoviePlayerController *moviePlayerController = [notification object];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayerController];
-    
-    [moviePlayerController.view removeFromSuperview];
-    [moviePlayerController release];
-}
-
-
 #pragma mark -
 #pragma mark Grid View Data Source
 

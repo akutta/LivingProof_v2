@@ -7,9 +7,8 @@
 //
 
 #import "Settings.h"
+//#import "Image.h"
 #import "Image.h"
-#import "AgeImage.h"
-#import "CategoryImage.h"
 
 @implementation Settings
 
@@ -88,8 +87,8 @@
         NSArray* allLinedStrings = [ageData componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         NSInteger curImage = 0;
         for ( NSString* age in allLinedStrings ) {
-            AgeImage *tmp = [[AgeImage alloc] init];
-            tmp.ageName = [age copy];
+            Image *tmp = [[Image alloc] init];
+            tmp.name = [age copy];
             
             if ( curImage >= [images count] )
                 tmp.imageData = nil;//[UIImage imageNamed:@"placeholder.png"];
@@ -136,8 +135,8 @@
         NSInteger curImage = 0;
         for ( NSString* category in allLinedStrings ) {
           //  NSLog(@"%@",category);
-            CategoryImage *tmp = [[CategoryImage alloc] init];
-            tmp.categoryName = [category copy];
+            Image *tmp = [[Image alloc] init];
+            tmp.name = [category copy];
             
             if ( curImage >= [images count] )
                 tmp.imageData = nil;//[UIImage imageNamed:@"placeholder.png"];
@@ -191,16 +190,16 @@
     NSMutableArray *ageData = [[NSMutableArray alloc] init];
     
     for ( id item in data ) {
-        if ( [item isKindOfClass:[AgeImage class]] )
+        if ( [item isKindOfClass:[Image class]] )
         {
             NSString *path = [ageDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image%d.jpg",curImage]];
-            AgeImage *entry = item;
+            Image *entry = item;
             if ( entry.imageData != nil ) {
                 NSData *imageData = [NSData dataWithData:UIImageJPEGRepresentation(entry.imageData, 1.0)];
                 [imageData writeToFile:path atomically:YES];
                 curImage++;
             }
-            [ageData addObject:[NSString stringWithFormat:@"%@", entry.ageName]];
+            [ageData addObject:[NSString stringWithFormat:@"%@", entry.name]];
         } else {
             NSLog(@"Error Settings:saveAgeImages");
         }
@@ -216,15 +215,15 @@
     NSMutableArray *categoryData = [[NSMutableArray alloc] init];
     
     for ( id item in data ) {
-        if ( [item isKindOfClass:[CategoryImage class]] ) {
+        if ( [item isKindOfClass:[Image class]] ) {
             NSString* path = [categoryDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"image%d.jpg",curImage]];
-            CategoryImage *entry = item;
+            Image *entry = item;
             if ( entry.imageData != nil ) {
                 NSData *imageData = [NSData dataWithData:UIImageJPEGRepresentation(entry.imageData, 1.0)];
                 [imageData writeToFile:path atomically:YES];
                 curImage++;
             }
-            [categoryData addObject:[NSString stringWithFormat:@"%@", entry.categoryName]];
+            [categoryData addObject:[NSString stringWithFormat:@"%@", entry.name]];
         } else {
             NSLog(@"Error Settings:saveCategoryImages");
         }
