@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 
-@interface CategoryImage : NSObject {
-    NSString *_categoryName;
+@interface Image : NSObject {
+    NSString *_name;
     UIImage *_imageData;
     UIImageView *_imageView;
 }
 
 @property (retain) UIImage* imageData;
-@property (retain) NSString* categoryName;
+@property (retain) NSString* name;
 @property (retain) UIImageView* imageView;
 
 @end
