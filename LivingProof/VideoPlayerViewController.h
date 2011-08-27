@@ -26,6 +26,14 @@
     IBOutlet UILabel *childrenStatus;
     IBOutlet UILabel *videoTitle;
     
+    IBOutlet UILabel *ageLabel;
+    IBOutlet UILabel *nameLabel;
+    IBOutlet UILabel *survivorshipLabel;
+    IBOutlet UILabel *treatmentLabel;
+    IBOutlet UILabel *maritalStatusLabel;
+    IBOutlet UILabel *employentLabel;
+    IBOutlet UILabel *childrenLabel;
+    
     
     NSString* _curCategory;
     NSString* _curFilter;

@@ -45,6 +45,8 @@
         videoView = [[UIWebView alloc] initWithFrame:frame];
         [self.view addSubview:videoView];
     }
+    
+    videoView.frame = frame;
     [videoView loadHTMLString:html baseURL:nil];
 }
 
@@ -99,16 +101,83 @@
     videoTitle.text = curVideo.title;
 }
 
+-(void) setTextPositions:(CGFloat)x y:(CGFloat)y{
+    CGRect frame = name.frame;
+    
+    // name
+    frame.origin = CGPointMake(x,y);
+    name.frame = frame;
+    nameLabel.frame = CGRectMake(frame.origin.x - 95, frame.origin.y, nameLabel.frame.size.width, nameLabel.frame.size.height); // -95
+    
+    // age
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    age.frame = frame;
+    ageLabel.frame = CGRectMake(frame.origin.x - 82, frame.origin.y, ageLabel.frame.size.width, ageLabel.frame.size.height);    // -82
+    
+    // treatment
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    treatment.frame = frame;
+    treatmentLabel.frame = CGRectMake(frame.origin.x - 127, frame.origin.y, treatmentLabel.frame.size.width, treatmentLabel.frame.size.height); // -127
+    
+    // etc...
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    maritalStatus.frame = frame;
+    maritalStatusLabel.frame = CGRectMake(frame.origin.x - 154, frame.origin.y, maritalStatusLabel.frame.size.width, maritalStatusLabel.frame.size.height); // -154
+    
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    childrenStatus.frame = frame;
+    childrenLabel.frame = CGRectMake(frame.origin.x - 112, frame.origin.y, childrenLabel.frame.size.width, childrenLabel.frame.size.height); // -112
+    
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    employmentStatus.frame = frame;
+    employentLabel.frame = CGRectMake(frame.origin.x - 197, frame.origin.y, employentLabel.frame.size.width, employentLabel.frame.size.height); // -197
+    
+    frame.origin = CGPointMake(frame.origin.x, frame.origin.y + 30);
+    survivorshipLength.frame = frame;
+    survivorshipLabel.frame = CGRectMake(frame.origin.x - 222, frame.origin.y, survivorshipLabel.frame.size.width, survivorshipLabel.frame.size.height); // -222
+    
+}
+
+-(void) updateYoutubeVideo:(UIInterfaceOrientation)orientation {
+    if ( UIInterfaceOrientationIsPortrait(orientation) ) {
+        [self embedYouTube:curVideo.url frame:CGRectMake(159, 104, 451, 443)];
+    } else {
+        [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];    
+    }
+}
+
+-(void) updateLayout:(UIInterfaceOrientation)orientation {
+    if ( UIInterfaceOrientationIsPortrait(orientation) ) {
+        
+        CGRect frame = videoTitle.frame;
+        frame.origin = CGPointMake(243, frame.origin.y);
+        videoTitle.frame = frame;
+        
+        [self setTextPositions:408 y:613];
+        
+        // setup new frame
+        _gridView.frame = CGRectMake(76,835,617,149);
+    } else {
+        CGRect frame = videoTitle.frame;
+        frame.origin = CGPointMake(371, frame.origin.y);
+        videoTitle.frame = frame;
+        
+        [self setTextPositions:759 y:236];
+        
+        // setup gridview
+        _gridView.frame = CGRectMake(204, 590, 617, 149);
+    }
+    [self updateYoutubeVideo:orientation];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration  {
+    [self updateLayout:toInterfaceOrientation];
+}
+
 - (void)viewDidLoad
 {
     
-    // Force the application into Landscape view
-    UIApplication *application = [UIApplication sharedApplication];
-    
-    if ( UIInterfaceOrientationIsPortrait(application.statusBarOrientation) ) {
-        application.statusBarOrientation = UIInterfaceOrientationLandscapeRight;
-    }
-    
+    // Force the application into Landscape view    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     
     [super viewDidLoad];
@@ -116,13 +185,14 @@
     
     
     // Enable GridView
-    self.gridView.usesPagedHorizontalScrolling = YES;
     self.gridView.autoresizingMask = UIViewAutoresizingNone;
     self.gridView.autoresizesSubviews = YES;
     self.gridView.delegate = self;
     self.gridView.dataSource = self;
     
     // Remove the ability to scroll up and down in related videos
+    // Use horizontal scrolling
+    self.gridView.usesPagedHorizontalScrolling = YES;
     [self.gridView setShowsVerticalScrollIndicator:NO];
     self.gridView.scrollsToTop = NO;
     self.gridView.bounces = NO;
@@ -135,7 +205,8 @@
     
     if ( curVideo ) {
         [self updateLabels];
-        [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];
+        UIApplication *application = [UIApplication sharedApplication];
+        [self updateLayout:application.statusBarOrientation];
     }
 }
 
@@ -199,8 +270,8 @@
     curVideo = ytv;
     [self updateLabels];
     
-    [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];
-    
+    UIApplication *application = [UIApplication sharedApplication];
+    [self updateYoutubeVideo:application.statusBarOrientation];
 }
 
 
