@@ -95,6 +95,8 @@
     maritalStatus.text = curVideo.parsedKeys.maritalStatus;
     employmentStatus.text = curVideo.parsedKeys.employmentStatus;
     childrenStatus.text = curVideo.parsedKeys.childrenStatus;
+    
+    videoTitle.text = curVideo.title;
 }
 
 - (void)viewDidLoad
@@ -102,7 +104,10 @@
     
     // Force the application into Landscape view
     UIApplication *application = [UIApplication sharedApplication];
-    application.statusBarOrientation = UIInterfaceOrientationLandscapeRight;
+    
+    if ( UIInterfaceOrientationIsPortrait(application.statusBarOrientation) ) {
+        application.statusBarOrientation = UIInterfaceOrientationLandscapeRight;
+    }
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     

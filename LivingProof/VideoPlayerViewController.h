@@ -24,6 +24,7 @@
     IBOutlet UILabel *maritalStatus;
     IBOutlet UILabel *employmentStatus;
     IBOutlet UILabel *childrenStatus;
+    IBOutlet UILabel *videoTitle;
     
     
     NSString* _curCategory;
