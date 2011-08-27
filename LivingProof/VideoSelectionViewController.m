@@ -24,8 +24,6 @@
 
 -(void)reloadCurrentGrid
 {
-    //NSLog(@"VideoSelectionViewController:reloadCurrentGrid");
-    //[_gridView reloadData];
     [_gridView reloadData];
 }
 
@@ -126,6 +124,7 @@
             [self filteredArray:filterText];
         }
         
+        [self reloadCurrentGrid];
         [self reloadCurrentGrid];
     }
     return self;
@@ -233,7 +232,8 @@
                                                                                       bundle:nil 
                                                                                        video:video 
                                                                                  curCategory:_curCategory 
-                                                                                      filter:_searchText
+                                                                                      filter:_searchText 
+                                                                               relatedVideos:videoArray
                                                                                  buttonTitle:_curButtonText];
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionNone newController:nextView]; 
 }

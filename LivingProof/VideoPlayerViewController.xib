@@ -361,10 +361,10 @@
 						<int key="IBUINumberOfLines">2</int>
 						<int key="IBUILineBreakMode">0</int>
 					</object>
-					<object class="IBUIView" id="908377750">
+					<object class="IBUIView" id="760807479">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{198, 597}, {629, 141}}</string>
+						<string key="NSFrame">{{204, 590}, {617, 149}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:195</string>
@@ -474,6 +474,14 @@
 					</object>
 					<int key="connectionID">31</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gridView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="760807479"/>
+					</object>
+					<int key="connectionID">33</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -515,7 +523,7 @@
 							<reference ref="959804793"/>
 							<reference ref="915972643"/>
 							<reference ref="356020274"/>
-							<reference ref="908377750"/>
+							<reference ref="760807479"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -596,7 +604,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
-						<reference key="object" ref="908377750"/>
+						<reference key="object" ref="760807479"/>
 						<reference key="parent" ref="766721923"/>
 					</object>
 				</object>
@@ -666,7 +674,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">33</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -732,6 +740,7 @@
 							<string>age</string>
 							<string>childrenStatus</string>
 							<string>employmentStatus</string>
+							<string>gridView</string>
 							<string>maritalStatus</string>
 							<string>name</string>
 							<string>survivorshipLength</string>
@@ -742,6 +751,7 @@
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
+							<string>AQGridView</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
@@ -755,6 +765,7 @@
 							<string>age</string>
 							<string>childrenStatus</string>
 							<string>employmentStatus</string>
+							<string>gridView</string>
 							<string>maritalStatus</string>
 							<string>name</string>
 							<string>survivorshipLength</string>
@@ -773,6 +784,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">employmentStatus</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">gridView</string>
+								<string key="candidateClassName">AQGridView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">maritalStatus</string>

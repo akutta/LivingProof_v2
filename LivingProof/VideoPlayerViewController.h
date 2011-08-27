@@ -28,14 +28,20 @@
     
     NSString* _curCategory;
     NSString* _curFilter;
+    NSArray* _relatedVideos;
+    
+    AQGridView *_gridView;
 }
 
+@property (nonatomic, retain) IBOutlet AQGridView *gridView;
 
+-(void)reloadCurrentGrid;
 -(IBAction)swapViews:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil 
                bundle:(NSBundle *)nibBundleOrNil 
                 video:(Video *)video
-          curCategory:curCategory 
-               filter:_searchText
+          curCategory:(NSString*)curCategory 
+               filter:(NSString*)_searchText 
+        relatedVideos:(NSArray*)relatedVideos
           buttonTitle:(NSString*)curTitle;
 @end
