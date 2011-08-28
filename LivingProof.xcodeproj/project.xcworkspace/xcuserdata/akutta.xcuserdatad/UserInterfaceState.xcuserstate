@@ -13822,9 +13822,9 @@
     s = 0;
 }</string>
 		</dict>
-		<real>336197990.67534298</real>
-		<string>{381, 2174}</string>
-		<string>{1236, 0}</string>
+		<real>336200808.22752899</real>
+		<string>{477, 1531}</string>
+		<string>{1422, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -20248,7 +20248,7 @@
 				<integer>1473</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>336197988.54119998</real>
+			<real>336200746.46438497</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -20259,7 +20259,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 11:19 PM</string>
+		<string>Today at 12:05 AM</string>
 		<integer>234</integer>
 		<string>LivingProof</string>
 		<dict>
@@ -20944,7 +20944,7 @@
 		<string>IDEActiveWorkspaceTabController</string>
 		<string>IDEWindowToolbarIsVisible</string>
 		<string>IDEWindowTabBarIsVisible</string>
-		<string>{{1, 8}, {1680, 1020}}</string>
+		<string>{{204, 8}, {1680, 1020}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -21692,10 +21692,10 @@
 				</dict>
 			</array>
 		</dict>
-		<real>336197990.67583901</real>
-		<string>{381, 2174}</string>
-		<string>{1236, 0}</string>
-		<string>-swapViews:</string>
+		<real>336200808.22789502</real>
+		<string>{477, 1531}</string>
+		<string>{1422, 0}</string>
+		<string>-embedYouTube:frame:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -22301,7 +22301,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1657</integer>
+					<integer>1659</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -22651,7 +22651,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>206</integer>
+					<integer>1241</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>

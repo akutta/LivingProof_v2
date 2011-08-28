@@ -24,13 +24,46 @@
     [_gridView reloadData];
 }
 
+- (UIButton *)findButtonInView:(UIView *)view {
+	UIButton *button = nil;
+	
+	if ([view isMemberOfClass:[UIButton class]]) {
+		return (UIButton *)view;
+	}
+	
+	if (view.subviews && [view.subviews count] > 0) {
+		for (UIView *subview in view.subviews) {
+			button = [self findButtonInView:subview];
+			if (button) return button;
+		}
+	}
+	
+	return button;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)_webView {
+	UIButton *b = [self findButtonInView:_webView];
+	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
 
 - (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
-    NSString* embedHTML = @"<html><head> <style type=\"text/css\"> body { background-color: transparent; color: white; } </style> </head><body style=\"margin:0\"> <embed src=\"%@\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed> </body></html>";
-    
+    NSString* embedHTML = @""
+    "<html><head>"
+    "<style type=\"text/css\">"
+    "body {" 
+    "background-color: transparent;"
+    "color: white;"
+    "}" 
+    "</style>"
+    "</head><body style=\"margin:0\">" 
+    "</param><embed src=\"%@&autoplay=1\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed></object>"
+    "</body></html>"; 
     NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+    
+    //NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
     if(videoView == nil) {
         videoView = [[UIWebView alloc] initWithFrame:frame];
+        videoView.mediaPlaybackRequiresUserAction = NO;
         [self.view addSubview:videoView];
     }
     
