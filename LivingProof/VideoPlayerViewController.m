@@ -25,18 +25,6 @@
 }
 
 
--(IBAction)swapViews:(id)sender
-{
-    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
-                                                                                            bundle:nil category:_curCategory 
-                                                                                            filter:_curFilter 
-                                                                                        buttonText:previousButtonTitle];
-    [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
-    [delegate reloadCurrentGrid];
-}
-
-
 - (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
     NSString* embedHTML = @"<html><head> <style type=\"text/css\"> body { background-color: transparent; color: white; } </style> </head><body style=\"margin:0\"> <embed src=\"%@\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed> </body></html>";
     
@@ -50,6 +38,19 @@
     [videoView loadHTMLString:html baseURL:nil];
 }
 
+-(IBAction)swapViews:(id)sender
+{
+    // Used to stop video playing when back button is pushed.
+    [self embedYouTube:nil frame:CGRectMake(0,0,0,0)];
+    
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
+                                                                                            bundle:nil category:_curCategory 
+                                                                                            filter:_curFilter 
+                                                                                        buttonText:previousButtonTitle];
+    [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
+    [delegate reloadCurrentGrid];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
                bundle:(NSBundle *)nibBundleOrNil 
@@ -143,7 +144,20 @@
         [self embedYouTube:curVideo.url frame:CGRectMake(159, 104, 451, 443)];
     } else {
         [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];    
+        
     }
+}
+
+-(void) updateYoutubePosition:(UIInterfaceOrientation)orientation {
+    if ( videoView == nil ) {
+        [self updateYoutubeVideo:orientation];
+        return;
+    }
+    
+    if ( UIInterfaceOrientationIsPortrait(orientation) )
+        videoView.frame = CGRectMake(159,104,451,443);
+    else
+        videoView.frame = CGRectMake(79, 130, 451, 443);
 }
 
 -(void) updateLayout:(UIInterfaceOrientation)orientation {
@@ -167,7 +181,10 @@
         // setup gridview
         _gridView.frame = CGRectMake(204, 590, 617, 149);
     }
-    [self updateYoutubeVideo:orientation];
+    //[self updateYoutubeVideo:orientation];
+    // just changes the position of the video.  allows to continue playing the video \
+    // with updateYoutubeVideo it replaces the video when you change views starting the video over.
+    [self updateYoutubePosition:orientation];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration  {
@@ -271,6 +288,8 @@
     [self updateLabels];
     
     UIApplication *application = [UIApplication sharedApplication];
+    
+    // Call this since we are replacing what video is being displayed
     [self updateYoutubeVideo:application.statusBarOrientation];
 }
 
