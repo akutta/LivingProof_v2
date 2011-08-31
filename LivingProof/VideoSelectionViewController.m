@@ -13,8 +13,9 @@
 #import "VideoPlayerViewController.h"
 #import "VideoGridCell.h"
 #import "Video.h"
-#import "UIImageView+WebCache.h"
 
+#import "SDWebImageManager.h"
+#import "UIImageView+WebCache.h"
 
 @implementation VideoSelectionViewController
 
@@ -194,8 +195,7 @@
 
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
 {
-    static NSString *VideoGridCellIdentifier = @"VideoGridCellIdentifier";
-    
+    static NSString *VideoGridCellIdentifier = @"VideoGridCellIdentifier";    
     Video *ytv = [[self getFilteredArray] objectAtIndex:index];
     VideoGridCell *cell = (VideoGridCell *)[aGridView dequeueReusableCellWithIdentifier:VideoGridCellIdentifier];
     
@@ -205,7 +205,16 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+//    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *cachedImage = [manager imageWithURL:ytv.thumbnailURL];
+    if ( cachedImage ) {
+        [cell.imageView setImage:cachedImage];
+    } else
+        [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:nil];
+    
+    
     cell.title = ytv.title;
     
     return cell;
@@ -226,8 +235,7 @@
     if ( [videoArray count] < index )
         return;
     
-    //Video *video = [[self YouTubeArray:NO] objectAtIndex:index];
-    Video *video = [videoArray objectAtIndex:index];  //[[self getFilteredArray] objectAtIndex:index];
+    Video *video = [videoArray objectAtIndex:index];
     VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
                                                                                       bundle:nil 
                                                                                        video:video 

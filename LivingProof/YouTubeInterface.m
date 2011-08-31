@@ -49,7 +49,6 @@
 
 @implementation YouTubeInterface
 
-
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
@@ -103,6 +102,8 @@
     
     // Replaces api call below 
     // to increase number of queries per request
+    //
+    //  Increases effeciency
     ticket = [service fetchFeedWithQuery:query
                                 delegate:self 
                        didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:error:)];
@@ -144,8 +145,8 @@
     return service;
 }
 
+// Check if the age exists, if not add to mutable array
 -(void)addToAges:(NSString*)newAge {
-
     if ( newAge == nil ) {
         newAge = @""; // There is an error in the ages
     }
@@ -163,8 +164,9 @@
     }
 }
 
-- (void) addToCategories:(NSString*)newCategory {
-    
+
+// Check if the category exists, if not add to mutable array
+- (void) addToCategories:(NSString*)newCategory {    
     BOOL bFound = NO;
     for ( id objects in categories ) {
         if ( [objects isKindOfClass:[NSString class]] )
@@ -189,9 +191,6 @@
 }
 
 -(NSString*) safeGetValue:(NSArray*)input index:(NSInteger)index {
-    
-   // NSLog(@"%d  %d",index,[input count]);
-    
     if ( index >= [input count] - 1 )
         return @"Unavailable";
     
@@ -206,25 +205,18 @@
     {
         if ( ![key caseInsensitiveCompare:@"name"] ) {
             tmp.name = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Name:  %@",tmp.name);
         } else if ( ![key caseInsensitiveCompare:@"age"] ) {
             tmp.age = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Age:   %@",tmp.age);
         } else if ( ![key caseInsensitiveCompare:@"survivor"] ) {
             tmp.survivorshipLength = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Length of Survival:  %@",tmp.survivorshipLength);
         } else if ( ![key caseInsensitiveCompare:@"treatment"]) {
             tmp.treatment = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Treatment:  %@", tmp.treatment);
         } else if ( ![key caseInsensitiveCompare:@"relationship"]) {
             tmp.maritalStatus = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Relationship: %@", tmp.maritalStatus);
         } else if ( ![key caseInsensitiveCompare:@"jobstatus"]) {
             tmp.employmentStatus = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Employment at Time of Diagnosis:   %@", tmp.employmentStatus);
         } else if ( ![key caseInsensitiveCompare:@"kids"]) {
             tmp.childrenStatus = [self safeGetValue:unparsed index:index];
-            //NSLog(@"Children:  %@", tmp.childrenStatus);
         }
         index++;
     }
@@ -255,41 +247,51 @@
         NSLog(@"Error: %@",[error localizedDescription]);
 	}
 	else {
+        
+        // Create Mutable Arrays
 		if ( YouTubeArray == nil )
 			YouTubeArray = [[NSMutableArray alloc] init];
         
         if ( categories == nil )
             categories = [[NSMutableArray alloc] init];
-        
+    
         if ( ages == nil ) 
             ages = [[NSMutableArray alloc] init];
         
+        // Explore all entries downloaded from YouTube
 		NSArray *entries = [mEntriesFeed entries];
 		for ( GDataEntryYouTubeVideo *entry in entries )
 		{
 			Video *youtubeVideo = [[Video alloc] init];
             
+            // Fill out Video Data Struct
 			youtubeVideo.title         = [[entry title] stringValue];
 			youtubeVideo.url           = [[[entry links] objectAtIndex:0] valueForKey:@"href"]; 
 			youtubeVideo.time          = [[entry mediaGroup] duration];
 			youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
 			youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
            
-            if ( [[entry rating] numberOfLikes] != nil )
+ /*           if ( [[entry rating] numberOfLikes] != nil )
                 NSLog(@"Likes:     %@", [[entry rating] numberOfLikes]);
             
             if ( [[entry rating] numberOfDislikes] != nil ) 
                 NSLog(@"Dislikes:  %@", [[entry rating] numberOfDislikes]);
-            
+   */         
+            // Dynamically update the categories that can be selected from
             [self addToCategories:youtubeVideo.category];
             
-            
+            // Store keywords pulled from Youtube
             youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
+            // Parse keys into own data struct
             youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
-                
+            
+            // Dynamically update ages that can be selected from
             [self addToAges:youtubeVideo.parsedKeys.age];
             
+            // Append to Mutable Array
 			[YouTubeArray addObject:youtubeVideo];
+            
+            // Memory Management
 			[youtubeVideo release];
 		}
         
@@ -339,34 +341,39 @@
 
 
 -(NSArray*)getYouTubeArray:(NSString*)filter {
-    
+
+    // Only retrieve if we have finished downloading list from youtube
     if ( [self getFinished] == NO ) {
         return 0;
     }
     
+    // if there isn't a filter send back full array
     if ( filter == nil ) {
         NSArray* retValue = [YouTubeArray copy];
         [retValue autorelease];
         return retValue;
     }
     
+    // Create Mutable Array
     NSMutableArray *tmpValue = [[NSMutableArray alloc] init];
-    
     
     // Only Sorting by Category and Age here
     for ( Video* video in YouTubeArray ) {
         if ( [video.category caseInsensitiveCompare:filter] == NSOrderedSame )
             [tmpValue addObject:video];
         else if ( [video.parsedKeys.age caseInsensitiveCompare:filter] == NSOrderedSame) {
-            //NSLog(@"%@ is the same as %@",filter,video.parsedKeys.age);
             [tmpValue addObject:video];
         }
         
     }
     
+    // Turn Mutable Array to non Mutable Array
     NSArray* retValue = [tmpValue copy];
+    
+    // Memory Management
     [retValue autorelease];
     [tmpValue release];
+    
     return retValue;
 }
 

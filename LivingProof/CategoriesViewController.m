@@ -179,8 +179,9 @@
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil )
                 [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
-            else
+            else {
                 cell.imageView = tmp.imageView;
+            }
         } else {
             [cell.imageView setImage:tmp.imageData];
         }

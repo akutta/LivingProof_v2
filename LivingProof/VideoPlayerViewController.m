@@ -11,6 +11,7 @@
 #import "VideoSelectionViewController.h"
 #import "VideoGridCell.h"
 #import "Video.h"
+#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 
 @implementation VideoPlayerViewController
@@ -60,7 +61,6 @@
     "</body></html>"; 
     NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
     
-    //NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
     if(videoView == nil) {
         videoView = [[UIWebView alloc] initWithFrame:frame];
         videoView.mediaPlaybackRequiresUserAction = NO;
@@ -298,15 +298,19 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    cell.title = ytv.title;
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *cachedImage = [manager imageWithURL:ytv.thumbnailURL];
+    if ( cachedImage ) {
+        [cell.imageView setImage:cachedImage];
+    } else
+        [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:nil];
+    
     
     return cell;
 }
 
 - (CGSize) portraitGridCellSizeForGridView:(AQGridView *)aGridView
 {
-    //   return CGSizeMake(220.0, 260.0);
     return CGSizeMake(120.0, 160.0);
 }
 

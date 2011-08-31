@@ -83,6 +83,9 @@
     [super layoutSubviews];
     
     CGSize imageSize = _imageView.image.size;
+    
+//    NSLog(@"%f",imageSize.width / imageSize.height);
+    
     CGRect bounds = CGRectInset(self.contentView.bounds, 10.0, 10.0);
     CGFloat ratio = MIN(bounds.size.width / imageSize.width , ((bounds.size.height) / imageSize.height));;
     //CGFloat aspectRatio = imageSize.width / imageSize.height;
@@ -93,16 +96,21 @@
     {
         ratio = 1;
     }
-    [_imageView sizeToFit];
+    
+    // get current frame
     frame = _imageView.frame;
-    frame.size.width = floorf(imageSize.width * ratio);// * aspectRatio;
-    frame.size.height = floorf(imageSize.height * ratio);///aspectRatio;
+    
+    // update frame variable based on image
+    frame.size.width = floorf(imageSize.width * ratio);
+    frame.size.height = floorf(imageSize.height * ratio);
         
     if ( frame.size.height == bounds.size.height )
         frame.size.height -= titleHeight;
     
     frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);
     frame.origin.y = floorf((bounds.size.height - frame.size.height) * 0.5);
+    
+    // update frame
     _imageView.frame = frame;
     
     imageSize = _imageView.image.size;
