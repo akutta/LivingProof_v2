@@ -14,7 +14,7 @@
 #import "VideoGridCell.h"
 #import "Video.h"
 
-//#import "SDWebImageManager.h"
+#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 
 @implementation VideoSelectionViewController
@@ -205,7 +205,13 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    //[cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    UIImage *cachedImage = [manager imageWithURL:ytv.thumbnailURL];
+    if ( cachedImage ) {
+        [cell.imageView setImage:cachedImage];
+    } else
+        [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 
     cell.title = ytv.title;
     

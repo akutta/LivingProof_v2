@@ -47,11 +47,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "LivingProof/VideoSelectionViewController.m"
-         timestampString = "336520425.615887"
+         timestampString = "336520570.087825"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "227"
-         endingLineNumber = "227"
+         startingLineNumber = "233"
+         endingLineNumber = "233"
          landmarkName = "-gridView:didSelectItemAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
