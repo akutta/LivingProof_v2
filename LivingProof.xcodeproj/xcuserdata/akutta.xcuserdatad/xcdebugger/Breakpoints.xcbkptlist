@@ -47,7 +47,7 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "LivingProof/VideoSelectionViewController.m"
-         timestampString = "336517412.218672"
+         timestampString = "336519997.987419"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "235"
@@ -138,6 +138,44 @@
          endingLineNumber = "197"
          landmarkName = "-safeGetValue:index:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "LivingProof/VideoPlayerViewController.m"
+         timestampString = "336520098.049327"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1"
+         endingLineNumber = "1">
+         <Locations>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[VideoPlayerViewController gridView]"
+               urlString = "file://localhost/VideoPlayerViewController.m"
+               timestampString = "336520098.067988"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "20"
+               endingLineNumber = "20">
+            </Location>
+            <Location
+               shouldBeEnabled = "No"
+               ignoreCount = "0"
+               continueAfterRunningActions = "No"
+               symbolName = "-[VideoPlayerViewController setGridView:]"
+               urlString = "file://localhost/VideoPlayerViewController.m"
+               timestampString = "336520098.068191"
+               startingColumnNumber = "9223372036854775807"
+               endingColumnNumber = "9223372036854775807"
+               startingLineNumber = "20"
+               endingLineNumber = "20">
+            </Location>
+         </Locations>
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
