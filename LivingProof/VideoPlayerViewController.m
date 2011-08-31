@@ -305,7 +305,9 @@
         [cell.imageView setImage:cachedImage];
     } else*/
     
-    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:nil];
+    //[cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:nil];
+    [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+
     cell.title = ytv.title;
     
     return cell;
