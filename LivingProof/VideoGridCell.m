@@ -11,6 +11,8 @@
 @implementation VideoGridCell
 
 @synthesize imageView = _imageView;
+@synthesize title = _title;
+@synthesize image;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)aReuseIdentifier
 {

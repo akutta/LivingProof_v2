@@ -17,7 +17,7 @@
 
 @property (nonatomic, retain) UIImage *image;
 @property (nonatomic, retain) UIImageView *imageView;
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, retain) UILabel *title;
 
 
 @end
