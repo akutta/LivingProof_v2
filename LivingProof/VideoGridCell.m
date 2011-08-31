@@ -84,8 +84,6 @@
     
     CGSize imageSize = _imageView.image.size;
     
-//    NSLog(@"%f",imageSize.width / imageSize.height);
-    
     CGRect bounds = CGRectInset(self.contentView.bounds, 10.0, 10.0);
     CGFloat ratio = MIN(bounds.size.width / imageSize.width , ((bounds.size.height) / imageSize.height));;
     //CGFloat aspectRatio = imageSize.width / imageSize.height;
@@ -96,7 +94,7 @@
     {
         ratio = 1;
     }
-    
+    [_imageView sizeToFit];
     // get current frame
     frame = _imageView.frame;
     
