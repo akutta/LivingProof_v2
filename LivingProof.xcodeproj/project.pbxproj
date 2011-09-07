@@ -10,6 +10,7 @@
 		4D126F591417D656004F18AB /* libFlurryAppCircle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F551417D656004F18AB /* libFlurryAppCircle.a */; };
 		4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F581417D656004F18AB /* libFlurryAnalytics.a */; };
 		4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */; };
+		4D126F601417FE01004F18AB /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F5E1417FE01004F18AB /* libGoogleAnalytics.a */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -194,6 +195,8 @@
 		4D126F571417D656004F18AB /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		4D126F581417D656004F18AB /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
+		4D126F5E1417FE01004F18AB /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Library/libGoogleAnalytics.a; sourceTree = "<group>"; };
+		4D126F5F1417FE01004F18AB /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = Library/GANTracker.h; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -558,6 +561,7 @@
 				A9BCE00813AFEAB100811831 /* libxml2.dylib in Frameworks */,
 				4D126F591417D656004F18AB /* libFlurryAppCircle.a in Frameworks */,
 				4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */,
+				4D126F601417FE01004F18AB /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +586,15 @@
 				4D126F581417D656004F18AB /* libFlurryAnalytics.a */,
 			);
 			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+		4D126F611417FE05004F18AB /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				4D126F5E1417FE01004F18AB /* libGoogleAnalytics.a */,
+				4D126F5F1417FE01004F18AB /* GANTracker.h */,
+			);
+			name = "Google Analytics";
 			sourceTree = "<group>";
 		};
 		A9469E7613B0567A009D28DC /* SDWebImage */ = {
@@ -1016,6 +1029,7 @@
 		A9BCDDDF13AAE45500811831 /* LivingProof */ = {
 			isa = PBXGroup;
 			children = (
+				4D126F611417FE05004F18AB /* Google Analytics */,
 				4D126F511417D656004F18AB /* FlurryAppCircle */,
 				4D126F561417D656004F18AB /* FlurryAnalytics */,
 				A9ACD70B13B2A49300979ECA /* Supporting Classes */,
@@ -1422,6 +1436,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
 					"\"$(SRCROOT)/LivingProof/FlurryAnalytics\"",
+					"\"$(SRCROOT)/LivingProof/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1442,6 +1457,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
 					"\"$(SRCROOT)/LivingProof/FlurryAnalytics\"",
+					"\"$(SRCROOT)/LivingProof/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
