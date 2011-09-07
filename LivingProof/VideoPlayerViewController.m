@@ -13,6 +13,8 @@
 #import "Video.h"
 //#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+
+#import "GANTracker.h"
 #import "FlurryAnalytics.h"
 
 @implementation VideoPlayerViewController
@@ -108,6 +110,15 @@
 
         // log current video
         [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",video]];
+
+        NSError *error;
+        if (![[GANTracker sharedTracker] trackEvent:@"Video Player"
+                                             action:@"Video Watched"
+                                              label:[NSString stringWithFormat:@"%@",video]
+                                              value:-1
+                                          withError:&error]) {
+          // Handle error here
+        }
 
         // log current view
         [FlurryAnalytics logPageView];
@@ -341,6 +352,15 @@
     // log new video
     [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",ytv]];
     
+    NSError *error;
+    if (![[GANTracker sharedTracker] trackEvent:@"Video Player"
+                                         action:@"Video Watched"
+                                          label:[NSString stringWithFormat:@"%@",ytv]
+                                          value:-1
+                                      withError:&error]) {
+      // Handle error here
+    }
+
     curVideo = ytv;
     [self updateLabels];
     
