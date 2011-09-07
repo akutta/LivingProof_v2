@@ -106,6 +106,9 @@
         curVideo = video;
         [curVideo retain];
 
+        // log current video
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",video] timed:NO];
+
         // log current view
         [FlurryAnalytics logPageView];
     }
@@ -334,6 +337,9 @@
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {  
     Video *ytv = [_relatedVideos objectAtIndex:index];
+  
+    // log new video
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",ytv] timed:NO];
     
     curVideo = ytv;
     [self updateLabels];
