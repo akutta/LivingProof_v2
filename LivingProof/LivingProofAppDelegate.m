@@ -11,9 +11,15 @@
 #import "CategoriesViewController.h"
 #import "YouTubeInterface.h"
 #import "Settings.h"
-#import "FlurryAnalytics.h"
 
+#import "FlurryAnalytics.h"
+#import "GANTracker.h"
+
+#define kGoogleKey @"UA-25587680-1"
 #define kFlurryKey @"4JNASXVGUMNS3WPLG8BZ"
+
+// Dispatch period in seconds
+static const NSInteger kGANDispatchPeriodSec = 10;
 
 
 @interface LivingProofAppDelegate (Private)
@@ -75,6 +81,33 @@ void uncaughtExceptionHandler(NSException *exception)
   
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  // Set up Google Analytics
+  [[GANTracker sharedTracker] startTrackerWithAccountID:kGoogleKey
+                                         dispatchPeriod:kGANDispatchPeriodSec
+                                               delegate:nil];
+  
+  NSError *error;
+  if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
+                                                       name:@"iPhone1"
+                                                      value:@"iv1"
+                                                  withError:&error]) {
+    // Handle error here
+  }
+  
+  if (![[GANTracker sharedTracker] trackEvent:@"my_category"
+                                       action:@"my_action"
+                                        label:@"my_label"
+                                        value:-1
+                                    withError:&error]) {
+    // Handle error here
+  }
+
+  if (![[GANTracker sharedTracker] trackPageview:@"/app_entry_point"
+                                       withError:&error]) {
+    // Handle error here
+  }
+
+
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
 
@@ -151,6 +184,9 @@ void uncaughtExceptionHandler(NSException *exception)
     [_window release];
     [categories release];
     [iYouTube release];
+
+    [[GANTracker sharedTracker] stopTracker];
+
     [super dealloc];
 }
 
