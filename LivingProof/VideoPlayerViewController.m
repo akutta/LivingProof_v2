@@ -13,6 +13,7 @@
 #import "Video.h"
 //#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+#import "FlurryAnalytics.h"
 
 @implementation VideoPlayerViewController
 
@@ -22,7 +23,7 @@
 
 -(void)reloadCurrentGrid
 {
-    [_gridView reloadData];
+  [_gridView reloadData];
 }
 
 - (UIButton *)findButtonInView:(UIView *)view {
@@ -104,6 +105,9 @@
         // Custom initialization
         curVideo = video;
         [curVideo retain];
+
+        // log current view
+        [FlurryAnalytics logPageView];
     }
     return self;
 }

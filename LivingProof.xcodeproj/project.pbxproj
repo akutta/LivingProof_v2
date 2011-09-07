@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D126F591417D656004F18AB /* libFlurryAppCircle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F551417D656004F18AB /* libFlurryAppCircle.a */; };
+		4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F581417D656004F18AB /* libFlurryAnalytics.a */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -185,6 +187,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D126F521417D656004F18AB /* FlurryAdDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAdDelegate.h; sourceTree = "<group>"; };
+		4D126F531417D656004F18AB /* FlurryAppCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAppCircle.h; sourceTree = "<group>"; };
+		4D126F541417D656004F18AB /* FlurryOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryOffer.h; sourceTree = "<group>"; };
+		4D126F551417D656004F18AB /* libFlurryAppCircle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAppCircle.a; sourceTree = "<group>"; };
+		4D126F571417D656004F18AB /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		4D126F581417D656004F18AB /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -548,12 +556,34 @@
 				A9BCDDDC13AAE45500811831 /* Foundation.framework in Frameworks */,
 				A9BCDDDE13AAE45500811831 /* CoreGraphics.framework in Frameworks */,
 				A9BCE00813AFEAB100811831 /* libxml2.dylib in Frameworks */,
+				4D126F591417D656004F18AB /* libFlurryAppCircle.a in Frameworks */,
+				4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D126F511417D656004F18AB /* FlurryAppCircle */ = {
+			isa = PBXGroup;
+			children = (
+				4D126F521417D656004F18AB /* FlurryAdDelegate.h */,
+				4D126F531417D656004F18AB /* FlurryAppCircle.h */,
+				4D126F541417D656004F18AB /* FlurryOffer.h */,
+				4D126F551417D656004F18AB /* libFlurryAppCircle.a */,
+			);
+			path = FlurryAppCircle;
+			sourceTree = "<group>";
+		};
+		4D126F561417D656004F18AB /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4D126F571417D656004F18AB /* FlurryAnalytics.h */,
+				4D126F581417D656004F18AB /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		A9469E7613B0567A009D28DC /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +1016,8 @@
 		A9BCDDDF13AAE45500811831 /* LivingProof */ = {
 			isa = PBXGroup;
 			children = (
+				4D126F511417D656004F18AB /* FlurryAppCircle */,
+				4D126F561417D656004F18AB /* FlurryAnalytics */,
 				A9ACD70B13B2A49300979ECA /* Supporting Classes */,
 				A98D524513CD4CBE00399792 /* AgesViewController.h */,
 				A98D524613CD4CBE00399792 /* AgesViewController.m */,
@@ -1112,6 +1144,7 @@
 		A9BCDDCC13AAE45500811831 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = Student;
 			};
 			buildConfigurationList = A9BCDDCF13AAE45500811831 /* Build configuration list for PBXProject "LivingProof" */;
@@ -1354,7 +1387,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1370,7 +1403,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1385,6 +1418,11 @@
 				GCC_PREFIX_HEADER = "LivingProof/LivingProof-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "LivingProof/LivingProof-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
+					"\"$(SRCROOT)/LivingProof/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -1400,6 +1438,11 @@
 				GCC_PREFIX_HEADER = "LivingProof/LivingProof-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "LivingProof/LivingProof-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
+					"\"$(SRCROOT)/LivingProof/FlurryAnalytics\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

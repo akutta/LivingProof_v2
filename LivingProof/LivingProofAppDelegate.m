@@ -11,6 +11,7 @@
 #import "CategoriesViewController.h"
 #import "YouTubeInterface.h"
 #import "Settings.h"
+#import "FlurryAnalytics.h"
 
 @interface LivingProofAppDelegate (Private)
 
@@ -63,7 +64,9 @@
 {
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
-    
+
+    // load Flurry
+    [FlurryAnalytics startSession:@"4JNASXVGUMNS3WPLG8BZ"];
     
     // Switched to a new welcome screen
     
