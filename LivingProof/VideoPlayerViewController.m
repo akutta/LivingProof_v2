@@ -350,5 +350,4 @@
     [self updateYoutubeVideo:application.statusBarOrientation];
 }
 
-
 @end

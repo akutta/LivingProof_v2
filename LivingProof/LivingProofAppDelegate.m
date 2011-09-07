@@ -13,6 +13,9 @@
 #import "Settings.h"
 #import "FlurryAnalytics.h"
 
+#define kFlurryKey @"4JNASXVGUMNS3WPLG8BZ"
+
+
 @interface LivingProofAppDelegate (Private)
 
 @end
@@ -65,6 +68,11 @@ void uncaughtExceptionHandler(NSException *exception)
   [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
 }
 
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+  [FlurryAnalytics startSession:kFlurryKey]; //your code
+}
+  
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -72,7 +80,7 @@ void uncaughtExceptionHandler(NSException *exception)
 
     // load Flurry
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
-    [FlurryAnalytics startSession:@"4JNASXVGUMNS3WPLG8BZ"];
+    [FlurryAnalytics startSession:kFlurryKey];
     
     // Switched to a new welcome screen
     
