@@ -85,15 +85,7 @@ void uncaughtExceptionHandler(NSException *exception)
   [[GANTracker sharedTracker] startTrackerWithAccountID:kGoogleKey
                                          dispatchPeriod:kGANDispatchPeriodSec
                                                delegate:nil];
-  
   NSError *error;
-  if (![[GANTracker sharedTracker] setCustomVariableAtIndex:1
-                                                       name:@"iPhone1"
-                                                      value:@"iv1"
-                                                  withError:&error]) {
-    // Handle error here
-  }
-  
   if (![[GANTracker sharedTracker] trackEvent:@"my_category"
                                        action:@"my_action"
                                         label:@"my_label"
@@ -102,7 +94,7 @@ void uncaughtExceptionHandler(NSException *exception)
     // Handle error here
   }
 
-  if (![[GANTracker sharedTracker] trackPageview:@"/app_entry_point"
+  if (![[GANTracker sharedTracker] trackPageview:@"/SplashPage"
                                        withError:&error]) {
     // Handle error here
   }

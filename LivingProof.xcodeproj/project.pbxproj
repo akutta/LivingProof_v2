@@ -1005,8 +1005,6 @@
 		A9BCDDCA13AAE45500811831 = {
 			isa = PBXGroup;
 			children = (
-				4D126F641418004A004F18AB /* CFNetwork.framework */,
-				4D126F6214180037004F18AB /* libsqlite3.0.dylib */,
 				A9BCDDDF13AAE45500811831 /* LivingProof */,
 				A9BCDDD813AAE45500811831 /* Frameworks */,
 				A9BCDDD613AAE45500811831 /* Products */,
@@ -1024,6 +1022,8 @@
 		A9BCDDD813AAE45500811831 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D126F641418004A004F18AB /* CFNetwork.framework */,
+				4D126F6214180037004F18AB /* libsqlite3.0.dylib */,
 				A9ACD70913B1816A00979ECA /* MediaPlayer.framework */,
 				A9BCE00713AFEAB100811831 /* libxml2.dylib */,
 				A9BCE00513AFEA9800811831 /* QuartzCore.framework */,
