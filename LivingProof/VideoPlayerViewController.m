@@ -107,7 +107,7 @@
         [curVideo retain];
 
         // log current video
-        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",video] timed:NO];
+        [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",video]];
 
         // log current view
         [FlurryAnalytics logPageView];
@@ -339,7 +339,7 @@
     Video *ytv = [_relatedVideos objectAtIndex:index];
   
     // log new video
-    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",ytv] timed:NO];
+    [FlurryAnalytics logEvent:[NSString stringWithFormat:@"video watched: %@",ytv]];
     
     curVideo = ytv;
     [self updateLabels];
