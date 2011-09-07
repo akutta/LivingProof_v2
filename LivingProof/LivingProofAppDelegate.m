@@ -60,12 +60,18 @@
     [UIView commitAnimations];
 }
 
+void uncaughtExceptionHandler(NSException *exception)
+{
+  [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
 
     // load Flurry
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [FlurryAnalytics startSession:@"4JNASXVGUMNS3WPLG8BZ"];
     
     // Switched to a new welcome screen
