@@ -26,6 +26,7 @@
 -(void)reloadCurrentGrid
 {
     [_gridView reloadData];
+    [_gridView reloadData];
 }
 
 
@@ -205,7 +206,6 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    //[cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     SDWebImageManager *manager = [SDWebImageManager sharedManager];
     UIImage *cachedImage = [manager imageWithURL:ytv.thumbnailURL];
     if ( cachedImage ) {

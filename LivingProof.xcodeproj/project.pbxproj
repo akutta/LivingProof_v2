@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D126F591417D656004F18AB /* libFlurryAppCircle.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F551417D656004F18AB /* libFlurryAppCircle.a */; };
 		4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F581417D656004F18AB /* libFlurryAnalytics.a */; };
+		4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -170,7 +171,6 @@
 		A9BCDDFD13AAE7FE00811831 /* VideoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDDFB13AAE7FE00811831 /* VideoSelectionViewController.m */; };
 		A9BCDDFE13AAE7FE00811831 /* VideoSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9BCDDFC13AAE7FE00811831 /* VideoSelectionViewController.xib */; };
 		A9BCDE0213AAE83400811831 /* VideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDE0013AAE83400811831 /* VideoPlayerViewController.m */; };
-		A9BCDE0313AAE83400811831 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9BCDE0113AAE83400811831 /* VideoPlayerViewController.xib */; };
 		A9BCDE0E13AFE51D00811831 /* VideoGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDE0D13AFE51D00811831 /* VideoGridCell.m */; };
 		A9BCDFFB13AFE96800811831 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDFE713AFE96800811831 /* AQGridView.m */; };
 		A9BCDFFC13AFE96800811831 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDFE913AFE96800811831 /* AQGridViewAnimatorItem.m */; };
@@ -193,6 +193,7 @@
 		4D126F551417D656004F18AB /* libFlurryAppCircle.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAppCircle.a; sourceTree = "<group>"; };
 		4D126F571417D656004F18AB /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
 		4D126F581417D656004F18AB /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+		4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -515,7 +516,6 @@
 		A9BCDDFC13AAE7FE00811831 /* VideoSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoSelectionViewController.xib; sourceTree = "<group>"; };
 		A9BCDDFF13AAE83400811831 /* VideoPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerViewController.h; sourceTree = "<group>"; };
 		A9BCDE0013AAE83400811831 /* VideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerViewController.m; sourceTree = "<group>"; };
-		A9BCDE0113AAE83400811831 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		A9BCDE0C13AFE51C00811831 /* VideoGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoGridCell.h; sourceTree = "<group>"; };
 		A9BCDE0D13AFE51D00811831 /* VideoGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoGridCell.m; sourceTree = "<group>"; };
 		A9BCDFE413AFE96800811831 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
@@ -1057,9 +1057,9 @@
 		A9BCDDF813AAE4EA00811831 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */,
 				A98D524713CD4CBE00399792 /* AgesViewController.xib */,
 				A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */,
-				A9BCDE0113AAE83400811831 /* VideoPlayerViewController.xib */,
 				A9BCDDFC13AAE7FE00811831 /* VideoSelectionViewController.xib */,
 				A9BCDDEB13AAE45500811831 /* MainWindow.xib */,
 				A9BCDDF513AAE49100811831 /* CategoriesViewController.xib */,
@@ -1174,7 +1174,6 @@
 				A9BCDDED13AAE45500811831 /* MainWindow.xib in Resources */,
 				A9BCDDF713AAE49100811831 /* CategoriesViewController.xib in Resources */,
 				A9BCDDFE13AAE7FE00811831 /* VideoSelectionViewController.xib in Resources */,
-				A9BCDE0313AAE83400811831 /* VideoPlayerViewController.xib in Resources */,
 				A9ACD42613B1479700979ECA /* ReleaseNotes.txt in Resources */,
 				A9ACD70813B1709900979ECA /* placeholder.png in Resources */,
 				A98D524913CD4CBE00399792 /* AgesViewController.xib in Resources */,
@@ -1182,6 +1181,7 @@
 				A90BEFFC13CDE18A0051EEB5 /* Background.png in Resources */,
 				A90BEFFD13CDE18A0051EEB5 /* WelcomeScreen.png in Resources */,
 				A9B2C0B813EA228C0024B570 /* WelcomeScreenRotated.png in Resources */,
+				4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
