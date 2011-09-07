@@ -226,8 +226,8 @@
 
 /*
  * entryListFetchTicket:finishedWithFeed:error
- * Last Modified: 20June2010
- * - Mark
+ * Last Modified: Summer2011
+ * - Drew
  * 
  * When gData is finished downloading the youtube data, the mEntriesFeed is set
  * to the passed value, the items are then traversed in a for loop as a
@@ -245,61 +245,66 @@
  	
 	if ( error != nil ) {
         NSLog(@"Error: %@",[error localizedDescription]);
-	}
-	else {
-        
-        // Create Mutable Arrays
-		if ( YouTubeArray == nil )
-			YouTubeArray = [[NSMutableArray alloc] init];
-        
-        if ( categories == nil )
-            categories = [[NSMutableArray alloc] init];
-    
-        if ( ages == nil ) 
-            ages = [[NSMutableArray alloc] init];
-        
-        // Explore all entries downloaded from YouTube
-		NSArray *entries = [mEntriesFeed entries];
-		for ( GDataEntryYouTubeVideo *entry in entries )
-		{
-			Video *youtubeVideo = [[Video alloc] init];
-            
-            // Fill out Video Data Struct
-			youtubeVideo.title         = [[entry title] stringValue];
-			youtubeVideo.url           = [[[entry links] objectAtIndex:0] valueForKey:@"href"]; 
-			youtubeVideo.time          = [[entry mediaGroup] duration];
-			youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
-			youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
-           
- /*           if ( [[entry rating] numberOfLikes] != nil )
-                NSLog(@"Likes:     %@", [[entry rating] numberOfLikes]);
-            
-            if ( [[entry rating] numberOfDislikes] != nil ) 
-                NSLog(@"Dislikes:  %@", [[entry rating] numberOfDislikes]);
-   */         
-            // Dynamically update the categories that can be selected from
-            [self addToCategories:youtubeVideo.category];
-            
-            // Store keywords pulled from Youtube
-            youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
-            // Parse keys into own data struct
-            youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
-            
-            // Dynamically update ages that can be selected from
-            [self addToAges:youtubeVideo.parsedKeys.age];
-            
-            // Append to Mutable Array
-			[YouTubeArray addObject:youtubeVideo];
-            
-            // Memory Management
-			[youtubeVideo release];
-		}
-        
-        
-        [self setFinished:YES];
-        [[self delegate] reloadCurrentGrid];
+
+        // Add ability to re-connect to youtube here.
+        return;
 	}
     
+        
+    // Create Mutable Arrays
+    if ( YouTubeArray == nil )
+        YouTubeArray = [[NSMutableArray alloc] init];
+    
+    if ( categories == nil )
+        categories = [[NSMutableArray alloc] init];
+ 
+    if ( ages == nil ) 
+        ages = [[NSMutableArray alloc] init];
+        
+    // Explore all entries downloaded from YouTube
+    NSArray *entries = [mEntriesFeed entries];
+    for ( GDataEntryYouTubeVideo *entry in entries )
+    {
+        Video *youtubeVideo = [[Video alloc] init];
+            
+        // Fill out Video Data Struct
+        youtubeVideo.title         = [[entry title] stringValue];
+        youtubeVideo.url           = [[[entry links] objectAtIndex:0] valueForKey:@"href"]; 
+        youtubeVideo.time          = [[entry mediaGroup] duration];
+        youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
+        youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
+        
+        /*
+        if ( [[entry rating] numberOfLikes] != nil )
+            NSLog(@"Likes:     %@", [[entry rating] numberOfLikes]);
+            
+        if ( [[entry rating] numberOfDislikes] != nil ) 
+            NSLog(@"Dislikes:  %@", [[entry rating] numberOfDislikes]);
+        */         
+        
+        // Dynamically update the categories that can be selected from
+        [self addToCategories:youtubeVideo.category];
+            
+        // Store keywords pulled from Youtube
+        youtubeVideo.keysArray = [[[entry mediaGroup] mediaKeywords] keywords];                 // For filter matching
+        // Parse keys into own data struct
+        youtubeVideo.parsedKeys = [self parseKeys:youtubeVideo.keysArray];
+            
+        // Dynamically update ages that can be selected from
+        [self addToAges:youtubeVideo.parsedKeys.age];
+            
+        // Append to Mutable Array
+        [YouTubeArray addObject:youtubeVideo];
+            
+        // Memory Management
+        [youtubeVideo release];
+    }
+        
+    // if asked tell them we are finished
+    [self setFinished:YES];
+    
+    // reload the current grid (UI) to update pictures
+    [[self delegate] reloadCurrentGrid];
 }
 
 

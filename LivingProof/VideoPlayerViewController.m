@@ -174,9 +174,9 @@
 
 -(void) updateYoutubeVideo:(UIInterfaceOrientation)orientation {
     if ( UIInterfaceOrientationIsPortrait(orientation) ) {
-        [self embedYouTube:curVideo.url frame:CGRectMake(159, 104, 451, 443)];
+        [self embedYouTube:curVideo.url frame:CGRectMake(106, 199, 556, 364)];
     } else {
-        [self embedYouTube:curVideo.url frame:CGRectMake(79, 130, 451, 443)];    
+        [self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 451)];    
         
     }
 }
@@ -188,7 +188,7 @@
     }
     
     if ( UIInterfaceOrientationIsPortrait(orientation) )
-        videoView.frame = CGRectMake(159,104,451,443);
+        videoView.frame = CGRectMake(117,191,534,394);
     else
         videoView.frame = CGRectMake(79, 130, 451, 443);
 }
