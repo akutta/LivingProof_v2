@@ -11,6 +11,8 @@
 		4D126F5A1417D656004F18AB /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F581417D656004F18AB /* libFlurryAnalytics.a */; };
 		4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */; };
 		4D126F601417FE01004F18AB /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F5E1417FE01004F18AB /* libGoogleAnalytics.a */; };
+		4D126F6314180037004F18AB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F6214180037004F18AB /* libsqlite3.0.dylib */; };
+		4D126F651418004A004F18AB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F641418004A004F18AB /* CFNetwork.framework */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -197,6 +199,8 @@
 		4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		4D126F5E1417FE01004F18AB /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Library/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		4D126F5F1417FE01004F18AB /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = Library/GANTracker.h; sourceTree = "<group>"; };
+		4D126F6214180037004F18AB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		4D126F641418004A004F18AB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -553,6 +557,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D126F651418004A004F18AB /* CFNetwork.framework in Frameworks */,
+				4D126F6314180037004F18AB /* libsqlite3.0.dylib in Frameworks */,
 				A9ACD70A13B1816A00979ECA /* MediaPlayer.framework in Frameworks */,
 				A9BCE00613AFEA9800811831 /* QuartzCore.framework in Frameworks */,
 				A9BCDDDA13AAE45500811831 /* UIKit.framework in Frameworks */,
@@ -999,6 +1005,8 @@
 		A9BCDDCA13AAE45500811831 = {
 			isa = PBXGroup;
 			children = (
+				4D126F641418004A004F18AB /* CFNetwork.framework */,
+				4D126F6214180037004F18AB /* libsqlite3.0.dylib */,
 				A9BCDDDF13AAE45500811831 /* LivingProof */,
 				A9BCDDD813AAE45500811831 /* Frameworks */,
 				A9BCDDD613AAE45500811831 /* Products */,
