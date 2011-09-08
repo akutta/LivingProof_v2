@@ -109,7 +109,7 @@
         [curVideo retain];
 
         // log current video
-        NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:@"title", video.title, @"url", video.url, nil];
+        NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
         [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
 
         NSError *error;
@@ -351,9 +351,9 @@
     Video *ytv = [_relatedVideos objectAtIndex:index];
   
     // log new video
-    NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:@"title", ytv.title, @"url", ytv.url, nil];
+    NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:ytv.title, @"title", ytv.url, @"url", nil];
     [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
-    
+
     NSError *error;
     if (![[GANTracker sharedTracker] trackEvent:@"Video Player"
                                          action:@"Video Watched"
