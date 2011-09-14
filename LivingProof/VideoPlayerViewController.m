@@ -106,7 +106,6 @@
       _curCategory = curCategory;
       _curFilter = _searchText;
       _relatedVideos =  [[relatedVideos copy] retain];
-    
 
       // add dictionary popup button over treatment label
       UIButton *popupButton = [[UIButton alloc] initWithFrame:treatment.frame];
@@ -116,6 +115,8 @@
       // Custom initialization
       curVideo = video;
       [curVideo retain];
+
+      [self updateLabels];
 
       // log current video
       NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
@@ -161,9 +162,18 @@
   [UIView commitAnimations];
 }
 
+- (void)hideNotificationView:(id)sender
+{
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.5];
+  notificationView.alpha = 0.0;
+  [UIView commitAnimations];
+}
+
 #pragma mark - View lifecycle
 
-- (void)updateLabels {
+- (void)updateLabels
+{
     name.text = curVideo.parsedKeys.name;
     age.text = curVideo.parsedKeys.age;
     survivorshipLength.text = curVideo.parsedKeys.survivorshipLength;
@@ -173,14 +183,6 @@
     childrenStatus.text = curVideo.parsedKeys.childrenStatus;
     
     videoTitle.text = curVideo.title;
-}
-
-- (IBAction)hideNotificationView:(id)sender
-{
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.5];
-  notificationView.alpha = 0.0;
-  [UIView commitAnimations];
 }
 
 -(void) setTextPositions:(CGFloat)x y:(CGFloat)y{

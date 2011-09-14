@@ -47,6 +47,7 @@
 
 @property (nonatomic, retain) IBOutlet UIView *notificationView;
 
+-(void)updateLabels;
 -(void)reloadCurrentGrid;
 -(IBAction)swapViews:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil 
