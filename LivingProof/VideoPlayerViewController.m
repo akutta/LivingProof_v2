@@ -106,11 +106,9 @@
       _curCategory = curCategory;
       _curFilter = _searchText;
       _relatedVideos =  [[relatedVideos copy] retain];
-
-      // add dictionary popup button over treatment label
-      UIButton *popupButton = [[UIButton alloc] initWithFrame:treatment.frame];
-      [popupButton addTarget:self action:@selector(showDefinition:) forControlEvents:UIControlEventTouchUpInside];
-      [self.view addSubview:popupButton];
+    
+      // hide popup on startup
+      self.notificationView.alpha = 0.0;
 
       // Custom initialization
       curVideo = video;
@@ -144,11 +142,10 @@
 #pragma mark -
 #pragma mark - Definition Popup
 
-- (void)showDefinition:(id)sender
+- (void)showDefinition:(UITapGestureRecognizer*)recognizer
 {
-  // To get the vertical location we start at the top of the tab bar (0), go up by the height of the notification view, then go up another 2 pixels so our view is slightly above the tab bar
-  CGFloat verticalLocation = - notificationView.frame.size.height - 2.0;
-  notificationView.frame = CGRectMake(notificationView.frame.origin.x, verticalLocation, 
+  CGFloat verticalLocation = CGRectGetMinY(treatment.frame) - notificationView.frame.size.height - 2.0;
+  notificationView.frame = CGRectMake(CGRectGetMinX(treatment.frame), verticalLocation, 
                                       notificationView.frame.size.width, notificationView.frame.size.height);
 
   if (!notificationView.superview)
@@ -287,7 +284,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    // add popup "button" to the treatment label
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(showDefinition:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [treatment addGestureRecognizer:tapGestureRecognizer];
+    treatment.userInteractionEnabled = YES;
+    [tapGestureRecognizer release];
+
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingNone;
     self.gridView.autoresizesSubviews = YES;

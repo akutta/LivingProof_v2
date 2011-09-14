@@ -355,37 +355,6 @@
 						<reference key="IBUIFontDescription" ref="903571299"/>
 						<reference key="IBUIFont" ref="206150919"/>
 					</object>
-					<object class="IBUIView" id="617146686">
-						<reference key="NSNextResponder" ref="766721923"/>
-						<int key="NSvFlags">292</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="121758024">
-								<reference key="NSNextResponder" ref="617146686"/>
-								<int key="NSvFlags">274</int>
-								<string key="NSFrameSize">{140, 47}</string>
-								<reference key="NSSuperview" ref="617146686"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">notificationToast.png</string>
-								</object>
-							</object>
-						</object>
-						<string key="NSFrame">{{314, 479}, {140, 47}}</string>
-						<reference key="NSSuperview" ref="766721923"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="121758024"/>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-					</object>
 					<object class="IBUIView" id="716913812">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
@@ -469,6 +438,37 @@
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
 					<int key="IBUIStatusBarStyle">2</int>
 				</object>
+				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+			</object>
+			<object class="IBUIView" id="35333473">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<object class="NSMutableArray" key="NSSubviews">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="412452332">
+						<reference key="NSNextResponder" ref="35333473"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{140, 47}</string>
+						<reference key="NSSuperview" ref="35333473"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">notificationToast.png</string>
+						</object>
+					</object>
+				</object>
+				<string key="NSFrameSize">{140, 47}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="412452332"/>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">3</int>
+					<bytes key="NSWhite">MCAwAA</bytes>
+				</object>
+				<bool key="IBUIOpaque">NO</bool>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
 		</object>
@@ -612,6 +612,14 @@
 					<int key="connectionID">45</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">notificationView</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="35333473"/>
+					</object>
+					<int key="connectionID">65</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">swapViews:</string>
 						<reference key="source" ref="862750162"/>
@@ -664,7 +672,6 @@
 							<reference ref="915972643"/>
 							<reference ref="959804793"/>
 							<reference ref="923158414"/>
-							<reference ref="617146686"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -773,17 +780,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">55</int>
-						<reference key="object" ref="617146686"/>
+						<reference key="object" ref="35333473"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="121758024"/>
+							<reference ref="412452332"/>
 						</object>
-						<reference key="parent" ref="766721923"/>
+						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">62</int>
-						<reference key="object" ref="121758024"/>
-						<reference key="parent" ref="617146686"/>
+						<reference key="object" ref="412452332"/>
+						<reference key="parent" ref="35333473"/>
 					</object>
 				</object>
 			</object>
@@ -862,7 +869,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">64</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
