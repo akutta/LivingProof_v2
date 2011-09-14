@@ -14,7 +14,6 @@
 //#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 
-#import "GANTracker.h"
 #import "FlurryAnalytics.h"
 
 @implementation VideoPlayerViewController
@@ -99,11 +98,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         previousButtonTitle = [[NSString alloc] initWithString:curTitle];
-        
+
         _curCategory = curCategory;
         _curFilter = _searchText;
         _relatedVideos =  [[relatedVideos copy] retain];
-        
+
         // Custom initialization
         curVideo = video;
         [curVideo retain];
@@ -111,15 +110,6 @@
         // log current video
         NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
         [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
-
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:@"Video Player"
-                                             action:@"Video Watched"
-                                              label:[NSString stringWithFormat:@"%@",video]
-                                              value:-1
-                                          withError:&error]) {
-          // Handle error here
-        }
 
         // log current view
         [FlurryAnalytics logPageView];
@@ -353,15 +343,6 @@
     // log new video
     NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:ytv.title, @"title", ytv.url, @"url", nil];
     [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
-
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:@"Video Player"
-                                         action:@"Video Watched"
-                                          label:[NSString stringWithFormat:@"%@",ytv]
-                                          value:-1
-                                      withError:&error]) {
-      // Handle error here
-    }
 
     curVideo = ytv;
     [self updateLabels];
