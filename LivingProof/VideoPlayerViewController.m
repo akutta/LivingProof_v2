@@ -18,9 +18,8 @@
 
 @implementation VideoPlayerViewController
 
-
 @synthesize gridView = _gridView;
-
+@synthesize notificationView;
 
 -(void)reloadCurrentGrid
 {
@@ -96,23 +95,30 @@
           buttonTitle:(NSString*)curTitle
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        previousButtonTitle = [[NSString alloc] initWithString:curTitle];
+    if (self)
+    {
+      previousButtonTitle = [[NSString alloc] initWithString:curTitle];
 
-        _curCategory = curCategory;
-        _curFilter = _searchText;
-        _relatedVideos =  [[relatedVideos copy] retain];
+      _curCategory = curCategory;
+      _curFilter = _searchText;
+      _relatedVideos =  [[relatedVideos copy] retain];
+    
 
-        // Custom initialization
-        curVideo = video;
-        [curVideo retain];
+      // add dictionary popup button over treatment label
+      UIButton *popupButton = [[UIButton alloc] initWithFrame:treatment.frame];
+      [popupButton addTarget:self action:@selector(showDefinition:) forControlEvents:UIControlEventTouchUpInside];
+      [self.view addSubview:popupButton];
 
-        // log current video
-        NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
-        [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
+      // Custom initialization
+      curVideo = video;
+      [curVideo retain];
 
-        // log current view
-        [FlurryAnalytics logPageView];
+      // log current video
+      NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
+      [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
+
+      // log current view
+      [FlurryAnalytics logPageView];
     }
     return self;
 }
@@ -130,6 +136,27 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark -
+#pragma mark - Definition Popup
+
+- (void)showDefinition:(id)sender
+{
+  // To get the vertical location we start at the top of the tab bar (0), go up by the height of the notification view, then go up another 2 pixels so our view is slightly above the tab bar
+  CGFloat verticalLocation = - notificationView.frame.size.height - 2.0;
+  notificationView.frame = CGRectMake(notificationView.frame.origin.x, verticalLocation, 
+                                      notificationView.frame.size.width, notificationView.frame.size.height);
+
+  if (!notificationView.superview)
+    [self.view addSubview:notificationView];
+
+  notificationView.alpha = 0.0;
+
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.5];
+  notificationView.alpha = 1.0;
+  [UIView commitAnimations];
+}
+
 #pragma mark - View lifecycle
 
 - (void)updateLabels {
@@ -142,6 +169,14 @@
     childrenStatus.text = curVideo.parsedKeys.childrenStatus;
     
     videoTitle.text = curVideo.title;
+}
+
+- (IBAction)hideNotificationView:(id)sender
+{
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.5];
+  notificationView.alpha = 0.0;
+  [UIView commitAnimations];
 }
 
 -(void) setTextPositions:(CGFloat)x y:(CGFloat)y{

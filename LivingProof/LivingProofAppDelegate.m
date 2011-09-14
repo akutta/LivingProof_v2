@@ -76,27 +76,27 @@ void uncaughtExceptionHandler(NSException *exception)
     // load Flurry
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [FlurryAnalytics startSession:kFlurryKey];
-    
+
     // Switched to a new welcome screen
-    
-//    CategoriesViewController *firstView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-//    [self setCurView:firstView];
-//    self.categories = firstView;
-//    [_window addSubview:categories.view];
-//    [firstView release];
-     
+
+    //    CategoriesViewController *firstView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+    //    [self setCurView:firstView];
+    //    self.categories = firstView;
+    //    [_window addSubview:categories.view];
+    //    [firstView release];
+ 
     MainScreenViewController *firstView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
     [self setCurView:firstView];
     main = firstView;
     [_window addSubview:main.view];
     [firstView release];
-    
+
     //
     // Start downloading videos from youtube
     //
-    
+
     [[self iYouTube] loadVideoFeed];
-    
+
     return YES;
 }
 
