@@ -49,6 +49,10 @@
 	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)rotateYouTube:(CGRect)frame {
+    videoView.frame = frame;
+}
+
 - (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
     NSString* embedHTML = @""
     "<html><head>"
@@ -184,10 +188,8 @@
 -(void) updateYoutubeVideo:(UIInterfaceOrientation)orientation {
     if ( UIInterfaceOrientationIsPortrait(orientation) ) {
         [self embedYouTube:curVideo.url frame:CGRectMake(106, 199, 556, 364)];
-        //[self embedYouTube:curVideo.url frame:CGRectMake(106, 199, 556, 364)];
     } else {
-        [self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 351)];  
-        //[self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 451)];            
+        [self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 351)];            
     }
 }
 
@@ -200,11 +202,11 @@
     }
     
     if ( UIInterfaceOrientationIsPortrait(orientation) )
-        [self embedYouTube:curVideo.url frame:CGRectMake(106, 199, 556, 364)];
+        [self rotateYouTube:CGRectMake(106,199,556,364)];
         //[self embedYouTube:curVideo.url frame:CGRectMake(106, 199, 556, 364)];
     else  {
-        [self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 351)];  
-        //[self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 451)]; 
+        [self rotateYouTube:CGRectMake(63, 198, 451, 351)];
+        //[self embedYouTube:curVideo.url frame:CGRectMake(63, 198, 451, 351)]; 
     }
 }
 
