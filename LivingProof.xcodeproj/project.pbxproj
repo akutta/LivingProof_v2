@@ -12,6 +12,13 @@
 		4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */; };
 		4D126F6314180037004F18AB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F6214180037004F18AB /* libsqlite3.0.dylib */; };
 		4D126F651418004A004F18AB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D126F641418004A004F18AB /* CFNetwork.framework */; };
+		4D43679B1427C3B200035197 /* HorizontalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D43679A1427C3B200035197 /* HorizontalTableCell.m */; };
+		4D43679E1427C64E00035197 /* VideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D43679D1427C64E00035197 /* VideoCell.m */; };
+		4D4367A11427C69100035197 /* VideoTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367A01427C69100035197 /* VideoTitleLabel.m */; };
+		4D4367A71427C90E00035197 /* VideoCell_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367A61427C90E00035197 /* VideoCell_iPad.m */; };
+		4D4367AA1427C95A00035197 /* HorizontalTableCell_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367A91427C95A00035197 /* HorizontalTableCell_iPad.m */; };
+		4D4367AD1427C9E800035197 /* CategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367AC1427C9E800035197 /* CategoryListViewController.m */; };
+		4D4367B01427CA9000035197 /* CategoryListViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */; };
 		4D9A3A7814215F1B00413EDA /* notificationToast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9A3A7614215F1B00413EDA /* notificationToast@2x.png */; };
 		4D9A3A7914215F1B00413EDA /* notificationToast.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9A3A7714215F1B00413EDA /* notificationToast.png */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
@@ -200,6 +207,21 @@
 		4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		4D126F6214180037004F18AB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		4D126F641418004A004F18AB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4D4367991427C3B200035197 /* HorizontalTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTableCell.h; sourceTree = "<group>"; };
+		4D43679A1427C3B200035197 /* HorizontalTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableCell.m; sourceTree = "<group>"; };
+		4D43679C1427C64E00035197 /* VideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell.h; sourceTree = "<group>"; };
+		4D43679D1427C64E00035197 /* VideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell.m; sourceTree = "<group>"; };
+		4D43679F1427C69000035197 /* VideoTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoTitleLabel.h; sourceTree = "<group>"; };
+		4D4367A01427C69100035197 /* VideoTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoTitleLabel.m; sourceTree = "<group>"; };
+		4D4367A21427C6B900035197 /* HorizontalVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalVariables.h; sourceTree = "<group>"; };
+		4D4367A51427C90D00035197 /* VideoCell_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCell_iPad.h; sourceTree = "<group>"; };
+		4D4367A61427C90E00035197 /* VideoCell_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCell_iPad.m; sourceTree = "<group>"; };
+		4D4367A81427C95900035197 /* HorizontalTableCell_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalTableCell_iPad.h; sourceTree = "<group>"; };
+		4D4367A91427C95A00035197 /* HorizontalTableCell_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableCell_iPad.m; sourceTree = "<group>"; };
+		4D4367AB1427C9E700035197 /* CategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListViewController.h; sourceTree = "<group>"; };
+		4D4367AC1427C9E800035197 /* CategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListViewController.m; sourceTree = "<group>"; };
+		4D4367AE1427CA8F00035197 /* CategoryListViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListViewController_iPad.h; sourceTree = "<group>"; };
+		4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListViewController_iPad.m; sourceTree = "<group>"; };
 		4D9A3A7614215F1B00413EDA /* notificationToast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToast@2x.png"; sourceTree = "<group>"; };
 		4D9A3A7714215F1B00413EDA /* notificationToast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToast.png; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
@@ -592,6 +614,28 @@
 				4D126F581417D656004F18AB /* libFlurryAnalytics.a */,
 			);
 			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+		4D4367971427C37000035197 /* Horizontal Tables */ = {
+			isa = PBXGroup;
+			children = (
+				4D4367991427C3B200035197 /* HorizontalTableCell.h */,
+				4D43679A1427C3B200035197 /* HorizontalTableCell.m */,
+				4D43679C1427C64E00035197 /* VideoCell.h */,
+				4D43679D1427C64E00035197 /* VideoCell.m */,
+				4D43679F1427C69000035197 /* VideoTitleLabel.h */,
+				4D4367A01427C69100035197 /* VideoTitleLabel.m */,
+				4D4367A21427C6B900035197 /* HorizontalVariables.h */,
+				4D4367A51427C90D00035197 /* VideoCell_iPad.h */,
+				4D4367A61427C90E00035197 /* VideoCell_iPad.m */,
+				4D4367A81427C95900035197 /* HorizontalTableCell_iPad.h */,
+				4D4367A91427C95A00035197 /* HorizontalTableCell_iPad.m */,
+				4D4367AB1427C9E700035197 /* CategoryListViewController.h */,
+				4D4367AC1427C9E800035197 /* CategoryListViewController.m */,
+				4D4367AE1427CA8F00035197 /* CategoryListViewController_iPad.h */,
+				4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */,
+			);
+			name = "Horizontal Tables";
 			sourceTree = "<group>";
 		};
 		A9469E7613B0567A009D28DC /* SDWebImage */ = {
@@ -1028,6 +1072,7 @@
 		A9BCDDDF13AAE45500811831 /* LivingProof */ = {
 			isa = PBXGroup;
 			children = (
+				4D4367971427C37000035197 /* Horizontal Tables */,
 				4D126F511417D656004F18AB /* FlurryAppCircle */,
 				4D126F561417D656004F18AB /* FlurryAnalytics */,
 				A9ACD70B13B2A49300979ECA /* Supporting Classes */,
@@ -1365,6 +1410,13 @@
 				A90B437B13BD06000055A556 /* Survivor.m in Sources */,
 				A98D524813CD4CBE00399792 /* AgesViewController.m in Sources */,
 				A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */,
+				4D43679B1427C3B200035197 /* HorizontalTableCell.m in Sources */,
+				4D43679E1427C64E00035197 /* VideoCell.m in Sources */,
+				4D4367A11427C69100035197 /* VideoTitleLabel.m in Sources */,
+				4D4367A71427C90E00035197 /* VideoCell_iPad.m in Sources */,
+				4D4367AA1427C95A00035197 /* HorizontalTableCell_iPad.m in Sources */,
+				4D4367AD1427C9E800035197 /* CategoryListViewController.m in Sources */,
+				4D4367B01427CA9000035197 /* CategoryListViewController_iPad.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
