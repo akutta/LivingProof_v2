@@ -11,31 +11,16 @@
 #import "AgesViewController.h"
 #import "LivingProofAppDelegate.h"
 
+
+@interface MainScreenViewController (Private)
+-(LivingProofAppDelegate*)delegate;
+-(IBAction)sortByCategories;
+-(IBAction)sortByAge;
+- (void)displayPortrait;
+- (void)displayLandscape;
+@end
+
 @implementation MainScreenViewController
-
-
--(LivingProofAppDelegate*)delegate {
-    static LivingProofAppDelegate* del;
-    if ( del == nil ) {
-        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    }
-    
-    return del;
-}
-
-
--(IBAction)sortByCategories
-{
-    CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
-}
-
-
--(IBAction)sortByAge
-{
-    AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,33 +39,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-- (void)displayPortrait {
-    CGRect sortAgeFrame = sortAge.frame;
-    sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
-    sortAge.frame = sortAgeFrame;
-    
-    
-    CGRect sortCategoryFrame = sortCategory.frame;
-    sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
-    sortCategory.frame = sortCategoryFrame;
-    
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
-}
-
-- (void)displayLandscape {
-    CGRect sortAgeFrame = sortAge.frame;
-    sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
-    sortAge.frame = sortAgeFrame;
-    
-    
-    CGRect sortCategoryFrame = sortCategory.frame;
-    sortCategoryFrame.origin = CGPointMake(516.0f, 573.0f);
-    sortCategory.frame = sortCategoryFrame;
-    
-    
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
@@ -118,5 +76,74 @@
     [self delegate].curOrientation = interfaceOrientation;
 	return YES;
 }
+
+//
+// Private Implementations 
+//
+
+
+//
+// Wrapper to get pointer to delegate
+//
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
+//
+// Event Handler
+//
+-(IBAction)sortByCategories
+{
+    CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+}
+
+//
+// Event Handler
+//
+-(IBAction)sortByAge
+{
+    AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+}
+
+//
+// Portrait Orientations of the Buttons and Background
+//
+- (void)displayPortrait {
+    CGRect sortAgeFrame = sortAge.frame;
+    sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
+    sortAge.frame = sortAgeFrame;
+    
+    
+    CGRect sortCategoryFrame = sortCategory.frame;
+    sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
+    sortCategory.frame = sortCategoryFrame;
+    
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+}
+
+//
+// Landscape Orientations of the Buttons and Background
+//
+- (void)displayLandscape {
+    CGRect sortAgeFrame = sortAge.frame;
+    sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
+    sortAge.frame = sortAgeFrame;
+    
+    
+    CGRect sortCategoryFrame = sortCategory.frame;
+    sortCategoryFrame.origin = CGPointMake(516.0f, 573.0f);
+    sortCategory.frame = sortCategoryFrame;
+    
+    
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
+}
+
 
 @end

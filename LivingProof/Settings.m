@@ -7,7 +7,6 @@
 //
 
 #import "Settings.h"
-//#import "Image.h"
 #import "Image.h"
 
 @implementation Settings

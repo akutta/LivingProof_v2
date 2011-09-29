@@ -32,6 +32,22 @@
 
 @interface YouTubeInterface (Private)
 
+- (LivingProofAppDelegate*)delegate;
+- (NSArray*)getAges;
+- (NSArray*)getCategories;
+
+- (void)setFinished:(BOOL)value;
+- (BOOL)getFinished;
+
+- (BOOL)isInternetConnected;
+
+- (void)loadVideoFeed;
+- (void)addToAges:(NSString*)newAge;
+- (void) addToCategories:(NSString*)newCategory;
+- (NSString*) replaceSymbols:(NSString*)input;
+- (NSString*) safeGetValue:(NSArray*)input index:(NSInteger)index;
+- (Keys*) parseKeys:(NSArray*)unparsed;
+
 - (GDataServiceGoogleYouTube *)youTubeService;
 - (void) parseVideos;
 
@@ -49,7 +65,7 @@
 
 @implementation YouTubeInterface
 
--(LivingProofAppDelegate*)delegate {
+- (LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
         del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -58,12 +74,12 @@
     return del;
 }
 
--(NSArray*)getAges {
+- (NSArray*)getAges {
     NSArray *ret = [[ages copy] autorelease];
     return ret;
 }
 
--(NSArray*)getCategories {
+- (NSArray*)getCategories {
     NSArray *ret = [[categories copy] autorelease];
     return ret;
 }
@@ -76,7 +92,7 @@
     return [finished boolValue];
 }
 
--(BOOL)isInternetConnected {
+- (BOOL)isInternetConnected {
     return NO;
 }
 
@@ -143,85 +159,6 @@
     [service setYouTubeDeveloperKey:YouTube_devKey];
 	
     return service;
-}
-
-// Check if the age exists, if not add to mutable array
--(void)addToAges:(NSString*)newAge {
-    if ( newAge == nil ) {
-        newAge = @""; // There is an error in the ages
-    }
-    
-    BOOL bFound = NO;
-    for ( id objects in ages ) {
-        if ( [objects isKindOfClass:[NSString class]] ) {
-            NSString* curObject = objects;
-            if ( ![curObject compare:newAge] ) 
-                bFound = YES;
-        }
-    }
-    if ( !bFound ) {
-        [ages addObject:newAge];
-    }
-}
-
-
-// Check if the category exists, if not add to mutable array
-- (void) addToCategories:(NSString*)newCategory {    
-    BOOL bFound = NO;
-    for ( id objects in categories ) {
-        if ( [objects isKindOfClass:[NSString class]] )
-        {
-            NSString *curObject = objects;
-            if ( ![curObject compare:newCategory] )
-                bFound = YES;
-        }
-    }
-    if ( !bFound ) {
-        [categories addObject:newCategory];
-    }
-
-}
-
--(NSString*) replaceSymbols:(NSString*)input {
-    NSMutableString *output = [[NSMutableString alloc] initWithString:input];
-    
-    [output replaceOccurrencesOfString:@"_" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [output length])];
-    
-    return output;
-}
-
--(NSString*) safeGetValue:(NSArray*)input index:(NSInteger)index {
-    if ( index >= [input count] - 1 )
-        return @"Unavailable";
-    
-    return [self replaceSymbols:[input objectAtIndex:(index+1)]];
-}
-
-- (Keys*) parseKeys:(NSArray*)unparsed {
-    Keys *tmp = [[[Keys alloc] init] autorelease];
-    
-    NSInteger index = 0;
-    for ( NSString* key in unparsed ) 
-    {
-        if ( ![key caseInsensitiveCompare:@"name"] ) {
-            tmp.name = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"age"] ) {
-            tmp.age = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"survivor"] ) {
-            tmp.survivorshipLength = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"treatment"]) {
-            tmp.treatment = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"relationship"]) {
-            tmp.maritalStatus = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"jobstatus"]) {
-            tmp.employmentStatus = [self safeGetValue:unparsed index:index];
-        } else if ( ![key caseInsensitiveCompare:@"kids"]) {
-            tmp.childrenStatus = [self safeGetValue:unparsed index:index];
-        }
-        index++;
-    }
-    
-    return tmp;
 }
 
 /*
@@ -381,5 +318,88 @@
     
     return retValue;
 }
+
+#pragma mark - 
+#pragma mark Parsing of Categories
+
+// Check if the age exists, if not add to mutable array
+-(void)addToAges:(NSString*)newAge {
+    if ( newAge == nil ) {
+        newAge = @""; // There is an error in the ages
+    }
+    
+    BOOL bFound = NO;
+    for ( id objects in ages ) {
+        if ( [objects isKindOfClass:[NSString class]] ) {
+            NSString* curObject = objects;
+            if ( ![curObject compare:newAge] ) 
+                bFound = YES;
+        }
+    }
+    if ( !bFound ) {
+        [ages addObject:newAge];
+    }
+}
+
+
+// Check if the category exists, if not add to mutable array
+- (void) addToCategories:(NSString*)newCategory {
+    BOOL bFound = NO;
+    for ( id objects in categories ) {
+        if ( [objects isKindOfClass:[NSString class]] )
+        {
+            NSString *curObject = objects;
+            if ( ![curObject compare:newCategory] )
+                bFound = YES;
+        }
+    }
+    if ( !bFound ) {
+        [categories addObject:newCategory];
+    }
+    
+}
+
+-(NSString*) replaceSymbols:(NSString*)input {
+    NSMutableString *output = [[NSMutableString alloc] initWithString:input];
+    
+    [output replaceOccurrencesOfString:@"_" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange(0, [output length])];
+    
+    return output;
+}
+
+-(NSString*) safeGetValue:(NSArray*)input index:(NSInteger)index {
+    if ( index >= [input count] - 1 )
+        return @"Unavailable";
+    
+    return [self replaceSymbols:[input objectAtIndex:(index+1)]];
+}
+
+- (Keys*) parseKeys:(NSArray*)unparsed {
+    Keys *tmp = [[[Keys alloc] init] autorelease];
+    
+    NSInteger index = 0;
+    for ( NSString* key in unparsed ) 
+    {
+        if ( ![key caseInsensitiveCompare:@"name"] ) {
+            tmp.name = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"age"] ) {
+            tmp.age = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"survivor"] ) {
+            tmp.survivorshipLength = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"treatment"]) {
+            tmp.treatment = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"relationship"]) {
+            tmp.maritalStatus = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"jobstatus"]) {
+            tmp.employmentStatus = [self safeGetValue:unparsed index:index];
+        } else if ( ![key caseInsensitiveCompare:@"kids"]) {
+            tmp.childrenStatus = [self safeGetValue:unparsed index:index];
+        }
+        index++;
+    }
+    
+    return tmp;
+}
+
 
 @end

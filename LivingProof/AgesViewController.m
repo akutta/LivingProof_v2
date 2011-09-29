@@ -17,88 +17,13 @@
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
 
+@interface AgesViewController (Private)
+- (LivingProofAppDelegate*)delegate;
+@end
 
 @implementation AgesViewController
 
 @synthesize gridView = _gridView;
-
--(LivingProofAppDelegate*)delegate {
-    static LivingProofAppDelegate* del;
-    if ( del == nil ) {
-        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    }
-    
-    return del;
-}
-
--(IBAction)back {
-    
-    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
-}
-
--(void)reloadCurrentGrid
-{
-    if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
-    {
-        // Find new images
-        NSInteger errorCount = 0;
-        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
-        NSMutableArray* survivors = [[NSMutableArray alloc] init];
-        for ( Video* curVideo in videos )
-        {
-            if ( !curVideo.parsedKeys.age ) {
-                curVideo.parsedKeys.age = @"";
-                errorCount++;
-            }
-            BOOL bFound = NO;
-            for ( Survivor* survivor in survivors )
-            {
-                if ( ![survivor.name compare:curVideo.parsedKeys.age] ) {
-                    bFound = YES;
-                }
-            }
-            
-            if ( !bFound ) {
-                Survivor *tmp = [[Survivor alloc] init];
-                tmp.name = curVideo.parsedKeys.age;
-                tmp.url = curVideo.thumbnailURL;
-                [survivors addObject:tmp];
-                //[tmp release];
-            }
-            bUsedPlaceholder = NO;
-        }
-        
-        [_ages release];
-        NSMutableArray* _ageImages = [[NSMutableArray alloc] init];
-        
-        _ageNames = [[[[self delegate] iYouTube] getAges] copy];
-        NSInteger index = 0;
-        for ( NSString* name in _ageNames ) {
-            Image *tmp = [[Image alloc] init];
-            tmp.imageData = nil;
-            tmp.imageView = nil;
-            for ( index = 0; index < [survivors count]; index ++ ) {
-                Survivor *surv = [survivors objectAtIndex:index];
-                
-                if ( ![surv.name compare:name] ) {
-//                    NSLog(@"Using %@ for %@",surv.url, surv.name);
-                    tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
-                }   
-            }
-            tmp.name = name;
-            [_ageImages addObject:tmp];
-            index++;
-        }
-        _ages = [_ageImages copy];
-        
-        [[[self delegate] settings] saveAgeImages:_ageImages];
-        
-        NSLog(@"There are %d uncategorized ages", errorCount);
-    }
-    
-    [_gridView reloadData];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -163,6 +88,9 @@
 	return YES;
 }
 
+#pragma mark -
+#pragma mark Grid Implementation
+
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
 {
     // When a new category is added check that we have an image for it
@@ -214,9 +142,6 @@
     return CGSizeMake(220.0, 260.0);
 }
 
-#pragma mark -
-#pragma mark Grid View Delegate
-
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
     
@@ -229,5 +154,93 @@
     [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView];
     [[self delegate] reloadCurrentGrid];
 }
+
+#pragma mark -
+#pragma mark Event Handlers
+
+-(IBAction)back {
+    
+    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
+}
+
+#pragma mark -
+#pragma mark Public Functions
+
+-(void)reloadCurrentGrid
+{
+    if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
+    {
+        // Find new images
+        NSInteger errorCount = 0;
+        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
+        NSMutableArray* survivors = [[NSMutableArray alloc] init];
+        for ( Video* curVideo in videos )
+        {
+            if ( !curVideo.parsedKeys.age ) {
+                curVideo.parsedKeys.age = @"";
+                errorCount++;
+            }
+            BOOL bFound = NO;
+            for ( Survivor* survivor in survivors )
+            {
+                if ( ![survivor.name compare:curVideo.parsedKeys.age] ) {
+                    bFound = YES;
+                }
+            }
+            
+            if ( !bFound ) {
+                Survivor *tmp = [[Survivor alloc] init];
+                tmp.name = curVideo.parsedKeys.age;
+                tmp.url = curVideo.thumbnailURL;
+                [survivors addObject:tmp];
+                //[tmp release];
+            }
+            bUsedPlaceholder = NO;
+        }
+        
+        [_ages release];
+        NSMutableArray* _ageImages = [[NSMutableArray alloc] init];
+        
+        _ageNames = [[[[self delegate] iYouTube] getAges] copy];
+        NSInteger index = 0;
+        for ( NSString* name in _ageNames ) {
+            Image *tmp = [[Image alloc] init];
+            tmp.imageData = nil;
+            tmp.imageView = nil;
+            for ( index = 0; index < [survivors count]; index ++ ) {
+                Survivor *surv = [survivors objectAtIndex:index];
+                
+                if ( ![surv.name compare:name] ) {
+                    //                    NSLog(@"Using %@ for %@",surv.url, surv.name);
+                    tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
+                }   
+            }
+            tmp.name = name;
+            [_ageImages addObject:tmp];
+            index++;
+        }
+        _ages = [_ageImages copy];
+        
+        [[[self delegate] settings] saveAgeImages:_ageImages];
+        
+        NSLog(@"There are %d uncategorized ages", errorCount);
+    }
+    
+    [_gridView reloadData];
+}
+
+#pragma mark -
+#pragma mark Private Function Definitions
+
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
 
 @end
