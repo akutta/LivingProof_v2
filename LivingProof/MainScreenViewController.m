@@ -27,14 +27,14 @@
 -(IBAction)sortByCategories
 {
     CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView]; 
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
 }
 
 
 -(IBAction)sortByAge
 {
     AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView]; 
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +42,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-       // self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     }
     return self;
 }
@@ -54,10 +53,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)displayPortrait {
@@ -89,9 +85,9 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
 {
-    if ( toInterfaceOrientation == UIInterfaceOrientationPortrait || toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown ) {
+    if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ) {
         [self displayPortrait];
-    } else if ( toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || toInterfaceOrientation == UIInterfaceOrientationLandscapeRight ) {
+    } else {
         [self displayLandscape];
     }
 }
@@ -119,6 +115,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
+    [self delegate].curOrientation = interfaceOrientation;
 	return YES;
 }
 

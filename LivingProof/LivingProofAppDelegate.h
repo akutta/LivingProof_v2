@@ -27,9 +27,11 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) CategoriesViewController *categories;
 @property (nonatomic, retain) id curView;
+@property (nonatomic) UIInterfaceOrientation curOrientation;
 
 -(Settings*) settings;
 -(void)reloadCurrentGrid;
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller;
 -(YouTubeInterface*) iYouTube;
+-(UIViewAnimationTransition)getAnimation:(BOOL)goingForward;
 @end

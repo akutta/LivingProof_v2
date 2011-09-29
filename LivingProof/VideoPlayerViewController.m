@@ -21,6 +21,15 @@
 @synthesize gridView = _gridView;
 @synthesize notificationView;
 
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
 -(void)reloadCurrentGrid
 {
   [_gridView reloadData];
@@ -86,7 +95,7 @@
                                                                                             bundle:nil category:_curCategory 
                                                                                             filter:_curFilter 
                                                                                         buttonText:previousButtonTitle];
-    [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
+    [delegate switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView]; 
     [delegate reloadCurrentGrid];
 }
 
@@ -330,7 +339,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-
+    [self delegate].curOrientation = interfaceOrientation;
 	return YES; 
 }
 
