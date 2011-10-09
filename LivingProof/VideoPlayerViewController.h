@@ -33,8 +33,6 @@
     IBOutlet UILabel *maritalStatusLabel;
     IBOutlet UILabel *employentLabel;
     IBOutlet UILabel *childrenLabel;
-
-    IBOutlet UIView* notificationView;
     
     NSString* _curCategory;
     NSString* _curFilter;
@@ -44,8 +42,6 @@
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
-
-@property (nonatomic, retain) IBOutlet UIView *notificationView;
 
 -(void)updateLabels;
 -(void)reloadCurrentGrid;

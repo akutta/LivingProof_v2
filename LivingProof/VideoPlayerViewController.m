@@ -19,7 +19,6 @@
 @implementation VideoPlayerViewController
 
 @synthesize gridView = _gridView;
-@synthesize notificationView;
 
 -(void)reloadCurrentGrid
 {
@@ -106,9 +105,6 @@
       _curCategory = curCategory;
       _curFilter = _searchText;
       _relatedVideos =  [[relatedVideos copy] retain];
-    
-      // hide popup on startup
-      self.notificationView.alpha = 0.0;
 
       // Custom initialization
       curVideo = video;
@@ -144,27 +140,14 @@
 
 - (void)showDefinition:(UITapGestureRecognizer*)recognizer
 {
-  CGFloat verticalLocation = CGRectGetMinY(treatment.frame) - notificationView.frame.size.height - 2.0;
-  notificationView.frame = CGRectMake(CGRectGetMinX(treatment.frame), verticalLocation, 
-                                      notificationView.frame.size.width, notificationView.frame.size.height);
-
-  if (!notificationView.superview)
-    [self.view addSubview:notificationView];
-
-  notificationView.alpha = 0.0;
-
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.5];
-  notificationView.alpha = 1.0;
-  [UIView commitAnimations];
-}
-
-- (void)hideNotificationView:(id)sender
-{
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.5];
-  notificationView.alpha = 0.0;
-  [UIView commitAnimations];
+  UIReferenceLibraryViewController *dictionaryView;
+  if ([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:[treatment text]]) {
+    dictionaryView = [[UIReferenceLibraryViewController alloc] initWithTerm:[treatment text]];
+    UIPopoverController *dictionarypop = [[UIPopoverController alloc] initWithContentViewController:dictionaryView];
+    CGRect frame = treatment.frame;
+    [dictionarypop presentPopoverFromRect:CGRectMake(frame.origin.x, frame.origin.y, 240, 400) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];    
+    [dictionaryView release];
+  }
 }
 
 #pragma mark - View lifecycle

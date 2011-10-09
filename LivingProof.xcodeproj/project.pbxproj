@@ -19,8 +19,6 @@
 		4D4367AA1427C95A00035197 /* HorizontalTableCell_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367A91427C95A00035197 /* HorizontalTableCell_iPad.m */; };
 		4D4367AD1427C9E800035197 /* CategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367AC1427C9E800035197 /* CategoryListViewController.m */; };
 		4D4367B01427CA9000035197 /* CategoryListViewController_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */; };
-		4D9A3A7814215F1B00413EDA /* notificationToast@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9A3A7614215F1B00413EDA /* notificationToast@2x.png */; };
-		4D9A3A7914215F1B00413EDA /* notificationToast.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D9A3A7714215F1B00413EDA /* notificationToast.png */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -222,8 +220,6 @@
 		4D4367AC1427C9E800035197 /* CategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListViewController.m; sourceTree = "<group>"; };
 		4D4367AE1427CA8F00035197 /* CategoryListViewController_iPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListViewController_iPad.h; sourceTree = "<group>"; };
 		4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListViewController_iPad.m; sourceTree = "<group>"; };
-		4D9A3A7614215F1B00413EDA /* notificationToast@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationToast@2x.png"; sourceTree = "<group>"; };
-		4D9A3A7714215F1B00413EDA /* notificationToast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationToast.png; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -1167,8 +1163,6 @@
 		A9E0199A13B0061800FEE942 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				4D9A3A7614215F1B00413EDA /* notificationToast@2x.png */,
-				4D9A3A7714215F1B00413EDA /* notificationToast.png */,
 				A9B2C0B713EA228C0024B570 /* WelcomeScreenRotated.png */,
 				A90BEFFA13CDE18A0051EEB5 /* Background.png */,
 				A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */,
@@ -1241,8 +1235,6 @@
 				A90BEFFD13CDE18A0051EEB5 /* WelcomeScreen.png in Resources */,
 				A9B2C0B813EA228C0024B570 /* WelcomeScreenRotated.png in Resources */,
 				4D126F5D1417E525004F18AB /* VideoPlayerViewController.xib in Resources */,
-				4D9A3A7814215F1B00413EDA /* notificationToast@2x.png in Resources */,
-				4D9A3A7914215F1B00413EDA /* notificationToast.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1486,6 +1478,7 @@
 				GCC_PREFIX_HEADER = "LivingProof/LivingProof-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "LivingProof/LivingProof-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
@@ -1508,6 +1501,7 @@
 				GCC_PREFIX_HEADER = "LivingProof/LivingProof-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "LivingProof/LivingProof-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/LivingProof/FlurryAppCircle\"",
