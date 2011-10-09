@@ -17,95 +17,17 @@
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
 
+@interface VideoSelectionViewController (Private)
+- (LivingProofAppDelegate*)delegate;
+- (NSArray*)YouTubeArray:(BOOL)shouldClear;
+- (NSArray*)getFilteredArray;
+- (void)filteredArray:(NSString*)searchText;
+@end
+
 @implementation VideoSelectionViewController
 
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
-
-
--(void)reloadCurrentGrid
-{
-    [_gridView reloadData];
-    [_gridView reloadData];
-}
-
-
--(LivingProofAppDelegate*)delegate {
-    static LivingProofAppDelegate* del;
-    if ( del == nil ) {
-        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    }
-    
-    return del;
-}
-
--(NSArray*)YouTubeArray:(BOOL)shouldClear
-{
-    static NSArray* retArray;
-    if ( retArray == nil || shouldClear == YES) {
-        retArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
-        
-        if ( [retArray count] == 0 )
-            retArray = nil;
-        else
-            [retArray retain];
-        
-    }
-    return retArray;
-}
-
--(NSArray*)getFilteredArray {
-    
-    if ( _filteredResults != nil ) {
-        return [_filteredResults copy];
-    }
-    
-    return [self YouTubeArray:YES];
-}
-
--(void)filteredArray:(NSString*)searchText {
-    
-    if ( _filteredResults != nil )
-        [_filteredResults release];
-    
-    if ( searchText == nil || [searchText length] == 0 ) {
-        _filteredResults = [[NSMutableArray alloc] initWithArray:[self YouTubeArray:NO]];
-        return;
-    }
-    
-    _filteredResults = [[NSMutableArray alloc] init];
-    
-    for ( Video* video in [self YouTubeArray:NO] ) {
-        if ( ([video.category rangeOfString:searchText]).location == NSNotFound ) {
-            for ( NSString* keyword in video.keysArray ) {
-                
-                NSRange range = [[keyword lowercaseString] rangeOfString:searchText]; 
-                if ( range.location != NSNotFound ) {
-                    [_filteredResults addObject:video];
-                }
-            }
-        } else {
-            [_filteredResults addObject:video];
-        }
-    }
-    
-    _searchText = [searchText copy];
-}
-
-
--(IBAction)swapViewToCategories:(id)sender
-{
-    if ( ![[sender title] compare:@"Categories"] ) {
-        // Switch to Categories since that was the last view
-        CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-        [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
-        [[self delegate] reloadCurrentGrid];
-    } else {
-        AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-        [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
-        [[self delegate] reloadCurrentGrid];
-    }
-}
 
 //
 // Customized so we can keep track of the type of category we are filtering for
@@ -181,6 +103,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
+    [self delegate].curOrientation = interfaceOrientation;
 	return YES;
 }
 
@@ -241,7 +164,7 @@
                                                                                       filter:_searchText 
                                                                                relatedVideos:videoArray
                                                                                  buttonTitle:_curButtonText];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionNone newController:nextView]; 
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
 }
 
 #pragma mark -
@@ -253,4 +176,91 @@
     [self reloadCurrentGrid];
 }
 
+#pragma mark -
+#pragma mark as
+-(void)reloadCurrentGrid
+{
+    [_gridView reloadData];
+    [_gridView reloadData];
+}
+
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
+-(NSArray*)YouTubeArray:(BOOL)shouldClear
+{
+    static NSArray* retArray;
+    if ( retArray == nil || shouldClear == YES) {
+        retArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
+        
+        if ( [retArray count] == 0 )
+            retArray = nil;
+        else
+            [retArray retain];
+        
+    }
+    return retArray;
+}
+
+-(NSArray*)getFilteredArray {
+    
+    if ( _filteredResults != nil ) {
+        return [_filteredResults copy];
+    }
+    
+    return [self YouTubeArray:YES];
+}
+
+-(void)filteredArray:(NSString*)searchText {
+    
+    if ( _filteredResults != nil )
+        [_filteredResults release];
+    
+    if ( searchText == nil || [searchText length] == 0 ) {
+        _filteredResults = [[NSMutableArray alloc] initWithArray:[self YouTubeArray:NO]];
+        return;
+    }
+    
+    _filteredResults = [[NSMutableArray alloc] init];
+    
+    for ( Video* video in [self YouTubeArray:NO] ) {
+        if ( ([video.category rangeOfString:searchText]).location == NSNotFound ) {
+            for ( NSString* keyword in video.keysArray ) {
+                
+                NSRange range = [[keyword lowercaseString] rangeOfString:searchText]; 
+                if ( range.location != NSNotFound ) {
+                    [_filteredResults addObject:video];
+                }
+            }
+        } else {
+            [_filteredResults addObject:video];
+        }
+    }
+    
+    _searchText = [searchText copy];
+}
+
+//
+// Event Handler
+//
+-(IBAction)swapViewToCategories:(id)sender
+{
+    UIViewAnimationTransition animation = [[self delegate] getAnimation:NO];
+    if ( ![[sender title] compare:@"Categories"] ) {
+        // Switch to Categories since that was the last view
+        CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        [[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+        [[self delegate] reloadCurrentGrid];
+    } else {
+        AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
+        [[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+        [[self delegate] reloadCurrentGrid];
+    }
+}
 @end

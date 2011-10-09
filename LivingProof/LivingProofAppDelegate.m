@@ -23,7 +23,12 @@
 @implementation LivingProofAppDelegate
 
 
-@synthesize window=_window, categories, curView;//, mEntriesFeed, mEntriesFetchTicket;
+@synthesize window=_window, categories, curView, curOrientation;//, mEntriesFeed, mEntriesFetchTicket;
+
+-(UIViewAnimationTransition)getAnimation:(BOOL)goingForward {
+    UIViewAnimationTransition animation = UIViewAnimationTransitionNone;
+    return animation;
+}
 
 // Singleton
 -(Settings*) settings {

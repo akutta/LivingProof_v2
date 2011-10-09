@@ -16,78 +16,16 @@
 
 #import "FlurryAnalytics.h"
 
+@interface VideoPlayerViewController (Private)
+- (LivingProofAppDelegate*)delegate;
+- (UIButton *)findButtonInView:(UIView *)view;
+- (void)rotateYouTube:(CGRect)frame;
+- (void)embedYouTube:(NSURL*)url frame:(CGRect)frame;
+@end
+
 @implementation VideoPlayerViewController
 
 @synthesize gridView = _gridView;
-
--(void)reloadCurrentGrid
-{
-  [_gridView reloadData];
-}
-
-- (UIButton *)findButtonInView:(UIView *)view {
-	UIButton *button = nil;
-	
-	if ([view isMemberOfClass:[UIButton class]]) {
-		return (UIButton *)view;
-	}
-	
-	if (view.subviews && [view.subviews count] > 0) {
-		for (UIView *subview in view.subviews) {
-			button = [self findButtonInView:subview];
-			if (button) return button;
-		}
-	}
-	
-	return button;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)_webView {
-	UIButton *b = [self findButtonInView:_webView];
-	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
-}
-
-- (void)rotateYouTube:(CGRect)frame {
-    videoView.frame = frame;
-}
-
-- (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
-    NSString* embedHTML = @""
-    "<html><head>"
-    "<style type=\"text/css\">"
-    "body {" 
-    "background-color: transparent;"
-    "color: white;"
-    "}" 
-    "</style>"
-    "</head><body style=\"margin:0\">" 
-    "</param><embed src=\"%@&autoplay=1\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed></object>"
-    "</body></html>"; 
-    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
-    
-    if(videoView == nil) {
-        videoView = [[UIWebView alloc] initWithFrame:frame];
-        videoView.mediaPlaybackRequiresUserAction = NO;
-        [self.view addSubview:videoView];
-    }
-    
-    videoView.frame = frame;
-    [videoView loadHTMLString:html baseURL:nil];
-}
-
--(IBAction)swapViews:(id)sender
-{
-    // Used to stop video playing when back button is pushed.
-    [self embedYouTube:nil frame:CGRectMake(0,0,0,0)];
-    
-    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
-                                                                                            bundle:nil category:_curCategory 
-                                                                                            filter:_curFilter 
-                                                                                        buttonText:previousButtonTitle];
-    [delegate switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView]; 
-    [delegate reloadCurrentGrid];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
                bundle:(NSBundle *)nibBundleOrNil 
@@ -133,6 +71,23 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+//
+// Event Handler
+//
+-(IBAction)swapViews:(id)sender
+{
+    // Used to stop video playing when back button is pushed.
+    [self embedYouTube:nil frame:CGRectMake(0,0,0,0)];
+    
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
+                                                                                            bundle:nil category:_curCategory 
+                                                                                            filter:_curFilter 
+                                                                                        buttonText:previousButtonTitle];
+    [delegate switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView]; 
+    [delegate reloadCurrentGrid];
 }
 
 #pragma mark -
@@ -313,7 +268,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-
+    [self delegate].curOrientation = interfaceOrientation;
 	return YES; 
 }
 
@@ -378,5 +333,72 @@
     // Call this since we are replacing what video is being displayed
     [self updateYoutubeVideo:application.statusBarOrientation];
 }
+
+
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
+-(void)reloadCurrentGrid
+{
+    [_gridView reloadData];
+}
+
+- (UIButton *)findButtonInView:(UIView *)view {
+	UIButton *button = nil;
+	
+	if ([view isMemberOfClass:[UIButton class]]) {
+		return (UIButton *)view;
+	}
+	
+	if (view.subviews && [view.subviews count] > 0) {
+		for (UIView *subview in view.subviews) {
+			button = [self findButtonInView:subview];
+			if (button) return button;
+		}
+	}
+	
+	return button;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)_webView {
+	UIButton *b = [self findButtonInView:_webView];
+	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)rotateYouTube:(CGRect)frame {
+    videoView.frame = frame;
+}
+
+- (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
+    NSString* embedHTML = @""
+    "<html><head>"
+    "<style type=\"text/css\">"
+    "body {" 
+    "background-color: transparent;"
+    "color: white;"
+    "}" 
+    "</style>"
+    "</head><body style=\"margin:0\">" 
+    "</param><embed src=\"%@&autoplay=1\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed></object>"
+    "</body></html>"; 
+    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+    
+    if(videoView == nil) {
+        videoView = [[UIWebView alloc] initWithFrame:frame];
+        videoView.mediaPlaybackRequiresUserAction = NO;
+        [self.view addSubview:videoView];
+    }
+    
+    videoView.frame = frame;
+    [videoView loadHTMLString:html baseURL:nil];
+}
+
+
 
 @end

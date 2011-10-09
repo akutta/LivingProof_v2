@@ -17,77 +17,15 @@
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
 
+@interface CategoriesViewController (Private)
+- (LivingProofAppDelegate*)delegate;
+- (IBAction)back;
+- (void)reloadCurrentGrid;
+@end
+
 @implementation CategoriesViewController
 
 @synthesize gridView = _gridView;
-
--(LivingProofAppDelegate*)delegate {
-    static LivingProofAppDelegate* del;
-    if ( del == nil ) {
-        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
-    }
-    
-    return del;
-}
-
--(IBAction)back {
-    
-    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromLeft newController:nextView];
-}
-
--(void)reloadCurrentGrid
-{
-    if ( [_gridView numberOfItems] != [_categories count] )
-    {
-        // Find new images
-        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
-        NSMutableArray* survivors = [[NSMutableArray alloc] init];
-        for ( Video* curVideo in videos )
-        {
-            BOOL bFound = NO;
-            for ( Survivor* survivor in survivors )
-            {
-                if ( ![survivor.name compare:curVideo.parsedKeys.name] ) {
-                    bFound = YES;
-                }
-            }
-            
-            if ( !bFound ) {
-                Survivor *tmp = [[Survivor alloc] init];
-                tmp.name = curVideo.parsedKeys.name;
-                tmp.url = curVideo.thumbnailURL;
-                [survivors addObject:tmp];
-                //[tmp release];
-            }
-        }
-        
-        [_categories release];
-        NSMutableArray* _categoryImages = [[NSMutableArray alloc] init];
-        
-        _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
-        NSInteger index = 0;
-        for ( NSString* name in _categoryNames ) {
-            Image *tmp = [[Image alloc] init];
-            if ( index >= [survivors count] ) {
-                tmp.imageData = nil;
-                tmp.imageView = nil;
-            } else {
-                Survivor *surv = [survivors objectAtIndex:index];
-                tmp.imageData = nil;
-                tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
-            }
-            tmp.name = name;
-            [_categoryImages addObject:tmp];
-            index++;
-        }
-        _categories = [_categoryImages copy];
-        
-        [[[self delegate] settings] saveCategoryImages:_categoryImages];
-    }
-    
-    [_gridView reloadData];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -147,17 +85,21 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
+    [self delegate].curOrientation = interfaceOrientation;
 	return YES;
 }
+
+#pragma mark -
+#pragma mark Grid View Delegate
 
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
 {
     // When a new category is added check that we have an image for it
     if ( [[[self delegate] iYouTube] getFinished] == NO )
         return [_categories count];
-        
+    
     _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
-   return [_categoryNames count];
+    return [_categoryNames count];
 }
 
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
@@ -199,9 +141,6 @@
     return CGSizeMake(220.0, 260.0);
 }
 
-#pragma mark -
-#pragma mark Grid View Delegate
-
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
     
@@ -211,8 +150,81 @@
                                                                                           category:cell.title 
                                                                                             filter:nil
                                                                                         buttonText:@"Categories"];    // Change to Title of the selected
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:UIViewAnimationTransitionFlipFromRight newController:nextView];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView];
     [[self delegate] reloadCurrentGrid];
+}
+
+//
+// Event Handler
+//
+-(IBAction)back {
+    
+    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
+}
+
+#pragma mark -
+#pragma mark Private Function Definitions
+
+-(LivingProofAppDelegate*)delegate {
+    static LivingProofAppDelegate* del;
+    if ( del == nil ) {
+        del = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return del;
+}
+
+-(void)reloadCurrentGrid
+{
+    if ( [_gridView numberOfItems] != [_categories count] )
+    {
+        // Find new images
+        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
+        NSMutableArray* survivors = [[NSMutableArray alloc] init];
+        for ( Video* curVideo in videos )
+        {
+            BOOL bFound = NO;
+            for ( Survivor* survivor in survivors )
+            {
+                if ( ![survivor.name compare:curVideo.parsedKeys.name] ) {
+                    bFound = YES;
+                }
+            }
+            
+            if ( !bFound ) {
+                Survivor *tmp = [[Survivor alloc] init];
+                tmp.name = curVideo.parsedKeys.name;
+                tmp.url = curVideo.thumbnailURL;
+                [survivors addObject:tmp];
+            }
+        }
+        
+        [_categories release];
+        NSMutableArray* _categoryImages = [[NSMutableArray alloc] init];
+        
+        _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
+        NSInteger index = 0;
+        for ( NSString* name in _categoryNames ) {
+            Image *tmp = [[Image alloc] init];
+            if ( index >= [survivors count] ) {
+                tmp.imageData = nil;
+                tmp.imageView = nil;
+            } else {
+                Survivor *surv = [survivors objectAtIndex:index];
+                tmp.imageData = nil;
+                tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
+            }
+            tmp.name = name;
+            [_categoryImages addObject:tmp];
+            index++;
+        }
+        _categories = [_categoryImages copy];
+        
+        [[[self delegate] settings] saveCategoryImages:_categoryImages];
+    }
+    
+    [_gridView reloadData];
 }
 
 
