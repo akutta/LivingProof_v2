@@ -96,11 +96,16 @@
 - (void)showDefinition:(UITapGestureRecognizer*)recognizer
 {
   UIReferenceLibraryViewController *dictionaryView;
+
   if ([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:[treatment text]]) {
+
     dictionaryView = [[UIReferenceLibraryViewController alloc] initWithTerm:[treatment text]];
+    
     UIPopoverController *dictionarypop = [[UIPopoverController alloc] initWithContentViewController:dictionaryView];
-    CGRect frame = treatment.frame;
-    [dictionarypop presentPopoverFromRect:CGRectMake(frame.origin.x, frame.origin.y, 240, 400) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];    
+    CGRect frame = CGRectMake(treatment.frame.origin.x, treatment.frame.origin.y, 240, 400);
+    
+    [dictionarypop presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];    
+    
     [dictionaryView release];
   }
 }
