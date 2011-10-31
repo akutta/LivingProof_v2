@@ -11,6 +11,6 @@
 
 @implementation Image
 
-@synthesize name = _name, imageData = _imageData, imageView = _imageView;
+@synthesize name = _name, imageData = _imageData, imageView = _imageView, thumbnailURL = _thumbnailURL;
 
 @end

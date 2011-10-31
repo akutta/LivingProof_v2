@@ -125,7 +125,7 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 220.0, 235.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 330, 350.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
@@ -143,8 +143,8 @@
 
 - (CGSize) portraitGridCellSizeForGridView:(AQGridView *)aGridView
 {
- //   return CGSizeMake(220.0, 260.0);
-    return CGSizeMake(150.0, 200.0);
+    return CGSizeMake(220.0, 260.0);
+  //  return CGSizeMake(150.0, 200.0);
 }
 
 #pragma mark -

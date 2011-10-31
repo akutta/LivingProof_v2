@@ -13,10 +13,12 @@
     NSString *_name;
     UIImage *_imageData;
     UIImageView *_imageView;
+    NSURL *_thumbnailURL;
 }
 
 @property (retain) UIImage* imageData;
 @property (retain) NSString* name;
 @property (retain) UIImageView* imageView;
+@property (retain) NSURL* thumbnailURL;
 
 @end
