@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "234"
          endingLineNumber = "234"
-         landmarkName = "-gridView:didSelectItemAtIndex:"
+         landmarkName = "-filteredArray:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -103,11 +103,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "LivingProof/Settings.m"
-         timestampString = "336085471.844742"
+         timestampString = "341295689.771605"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "167"
-         endingLineNumber = "167"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-stripParenthesis:"
          landmarkType = "5">
       </FileBreakpoint>
