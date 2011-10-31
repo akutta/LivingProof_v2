@@ -93,7 +93,7 @@
 }
 
 - (BOOL)isInternetConnected {
-    return NO;
+    return internetConnected;
 }
 
 - (void)loadVideoFeed
@@ -184,11 +184,11 @@
         NSLog(@"Error: %@",[error localizedDescription]);
 
         // Not able to connect to internet
-        internetConnected = FALSE;
+        internetConnected = NO;
         return;
 	}
     
-    internetConnected = TRUE;
+    internetConnected = YES;
         
     // Create Mutable Arrays
     if ( YouTubeArray == nil )
