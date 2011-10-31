@@ -124,6 +124,8 @@
     // check if anything has been saved
     if ( settingsPath == nil ) {
         return nil;
+    } else if ( settingsPath.length == 0 ) {
+        return nil;
     } else {
         NSLog(@"CategorySettings:\r%@",settingsPath);
         // Path to settings file

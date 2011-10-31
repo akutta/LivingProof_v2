@@ -183,10 +183,12 @@
 	if ( error != nil ) {
         NSLog(@"Error: %@",[error localizedDescription]);
 
-        // Add ability to re-connect to youtube here.
+        // Not able to connect to internet
+        internetConnected = FALSE;
         return;
 	}
     
+    internetConnected = TRUE;
         
     // Create Mutable Arrays
     if ( YouTubeArray == nil )
@@ -284,6 +286,9 @@
 
 -(NSArray*)getYouTubeArray:(NSString*)filter {
 
+    if ( [self isInternetConnected] == NO )
+        [self loadVideoFeed];
+    
     // Only retrieve if we have finished downloading list from youtube
     if ( [self getFinished] == NO ) {
         return 0;

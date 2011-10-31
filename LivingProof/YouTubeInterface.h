@@ -18,6 +18,7 @@
     @private NSMutableArray *YouTubeArray;  
     @private NSMutableArray *categories;
     @private NSMutableArray *ages;
+    @private BOOL internetConnected;
     
     NSNumber *finished;
 }

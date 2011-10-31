@@ -143,7 +143,6 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
-    
     VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
