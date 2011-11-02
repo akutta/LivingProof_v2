@@ -13,6 +13,7 @@
 #import "Settings.h"
 
 #import "FlurryAnalytics.h"
+#import "UIDevice+Identifier.h"
 
 #define kFlurryKey @"4JNASXVGUMNS3WPLG8BZ"
 
@@ -81,6 +82,9 @@ void uncaughtExceptionHandler(NSException *exception)
     // load Flurry
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
     [FlurryAnalytics startSession:kFlurryKey];
+
+    // Set unique device
+    [FlurryAnalytics setUserID:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]]; 
 
     // Switched to a new welcome screen
 
