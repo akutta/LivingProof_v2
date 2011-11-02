@@ -15,6 +15,7 @@
 #import "UIImageView+WebCache.h"
 
 #import "FlurryAnalytics.h"
+#import "NSString+DateAdditions.h"
 
 @interface VideoPlayerViewController (Private)
 - (LivingProofAppDelegate*)delegate;
@@ -51,7 +52,9 @@
       [self updateLabels];
 
       // log current video
-      NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:video.title, @"title", video.url, @"url", nil];
+      NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  video.title, @"title", video.url, @"url", 
+                                  [NSString currentTime], @"timestamp", nil];
       [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
 
       // log current view
@@ -97,8 +100,8 @@
 {
   UIReferenceLibraryViewController *dictionaryView;
 
-  if ([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:[treatment text]]) {
-
+  if ([UIReferenceLibraryViewController dictionaryHasDefinitionForTerm:[treatment text]])
+  {
     dictionaryView = [[UIReferenceLibraryViewController alloc] initWithTerm:[treatment text]];
     
     UIPopoverController *dictionarypop = [[UIPopoverController alloc] initWithContentViewController:dictionaryView];
@@ -325,9 +328,11 @@
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {  
     Video *ytv = [_relatedVideos objectAtIndex:index];
-  
-    // log new video
-    NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:ytv.title, @"title", ytv.url, @"url", nil];
+
+    // log current video
+    NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                                ytv.title, @"title", ytv.url, @"url",
+                                [NSString currentTime], @"timestamp", nil];
     [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
 
     curVideo = ytv;
@@ -338,7 +343,6 @@
     // Call this since we are replacing what video is being displayed
     [self updateYoutubeVideo:application.statusBarOrientation];
 }
-
 
 -(LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
