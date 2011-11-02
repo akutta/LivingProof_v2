@@ -15,7 +15,6 @@
 #import "UIImageView+WebCache.h"
 
 #import "FlurryAnalytics.h"
-#import "NSString+DateAdditions.h"
 
 @interface VideoPlayerViewController (Private)
 - (LivingProofAppDelegate*)delegate;
@@ -53,8 +52,7 @@
 
       // log current video
       NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  video.title, @"title", video.url, @"url", 
-                                  [NSString currentTime], @"timestamp", nil];
+                                  video.title, @"title", video.url, @"url", nil];
       [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
 
       // log current view
@@ -331,15 +329,14 @@
 
     // log current video
     NSDictionary* video_dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                ytv.title, @"title", ytv.url, @"url",
-                                [NSString currentTime], @"timestamp", nil];
+                                ytv.title, @"title", ytv.url, @"url", nil];
     [FlurryAnalytics logEvent:@"Video" withParameters:video_dict];
 
     curVideo = ytv;
     [self updateLabels];
     
     UIApplication *application = [UIApplication sharedApplication];
-    
+
     // Call this since we are replacing what video is being displayed
     [self updateYoutubeVideo:application.statusBarOrientation];
 }

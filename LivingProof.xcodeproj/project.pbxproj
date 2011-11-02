@@ -23,7 +23,6 @@
 		4D5E12FD14427AB90081AAFA /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D5E12F914427AB90081AAFA /* Icon-Small-50.png */; };
 		4D5E12FE14427AB90081AAFA /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D5E12FA14427AB90081AAFA /* Icon-Small.png */; };
 		4D5E12FF14427AB90081AAFA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 4D5E12FB14427AB90081AAFA /* iTunesArtwork */; };
-		4D8CA5141461E539001E3344 /* NSString+DateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CA5131461E539001E3344 /* NSString+DateAdditions.m */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -229,8 +228,6 @@
 		4D5E12F914427AB90081AAFA /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		4D5E12FA14427AB90081AAFA /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		4D5E12FB14427AB90081AAFA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
-		4D8CA5121461E539001E3344 /* NSString+DateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DateAdditions.h"; sourceTree = "<group>"; };
-		4D8CA5131461E539001E3344 /* NSString+DateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateAdditions.m"; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -1040,8 +1037,6 @@
 				A9ACD71613B993A800979ECA /* Keys.m */,
 				A90B437913BD06000055A556 /* Survivor.h */,
 				A90B437A13BD06000055A556 /* Survivor.m */,
-				4D8CA5121461E539001E3344 /* NSString+DateAdditions.h */,
-				4D8CA5131461E539001E3344 /* NSString+DateAdditions.m */,
 			);
 			name = "Supporting Classes";
 			sourceTree = "<group>";
@@ -1430,7 +1425,6 @@
 				4D4367AA1427C95A00035197 /* HorizontalTableCell_iPad.m in Sources */,
 				4D4367AD1427C9E800035197 /* CategoryListViewController.m in Sources */,
 				4D4367B01427CA9000035197 /* CategoryListViewController_iPad.m in Sources */,
-				4D8CA5141461E539001E3344 /* NSString+DateAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
