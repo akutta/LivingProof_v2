@@ -59,7 +59,8 @@
     //application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
-    self.gridView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
+    self.gridView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
     _categories = [[[self delegate] settings] getCategoryImages];
