@@ -59,6 +59,7 @@
     //application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.gridView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
     _categories = [[[self delegate] settings] getCategoryImages];
@@ -66,6 +67,8 @@
         NSLog(@"No Local Categories Found");
         [_categories release];
     }
+    
+    
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;

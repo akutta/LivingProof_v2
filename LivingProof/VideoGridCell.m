@@ -7,6 +7,7 @@
 //
 
 #import "VideoGridCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation VideoGridCell
 
@@ -17,6 +18,12 @@
     if ((self = [super initWithFrame: frame reuseIdentifier: aReuseIdentifier]))
     {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        [_imageView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        [_imageView.layer setMasksToBounds:YES];
+        [_imageView.layer setBorderWidth:2];
+        [_imageView.layer setCornerRadius:12.0];
+        
+        
         _title = [[UILabel alloc] initWithFrame:CGRectZero];
         _title.highlightedTextColor = [UIColor whiteColor];
         
@@ -30,7 +37,17 @@
         self.backgroundColor = [UIColor clearColor];
         self.contentView.backgroundColor = self.backgroundColor;
         _imageView.backgroundColor = self.backgroundColor;
-        _title.backgroundColor = self.backgroundColor;
+        _title.backgroundColor = [UIColor whiteColor];
+        
+        
+        
+        [_title.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        [_title.layer setMasksToBounds:YES];
+        [_title.layer setBorderWidth:2];
+        [_title.layer setCornerRadius:12.0];
+//        self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:.25];
+
+        
         
         [self.contentView addSubview:_imageView];
         [self.contentView addSubview:_title];
@@ -115,7 +132,7 @@
     
     [_title sizeToFit];
     frame = _title.frame;
-    frame.size.width = MIN(frame.size.width, bounds.size.width);
+    frame.size.width = MIN(frame.size.width + 10, bounds.size.width + 10);
     frame.size.height = titleHeight;  // Modified by Drew:  Sets the height so it positions properly
     frame.origin.y = CGRectGetMaxY(bounds) - frame.size.height * 0.7;    // multiply by .5
     frame.origin.x = floorf((bounds.size.width - frame.size.width) * 0.5);

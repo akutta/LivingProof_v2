@@ -56,7 +56,8 @@
     //UIApplication *application = [UIApplication sharedApplication];
     //application.statusBarOrientation = UIInterfaceOrientationPortrait;
     
-    self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.view.frame = [[UIScreen mainScreen] applicationFrame];    
+    self.gridView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
     _ages = [[[self delegate] settings] getAgeImages];

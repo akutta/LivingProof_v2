@@ -201,6 +201,7 @@
 		A9BCE00413AFE96800811831 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BCDFFA13AFE96800811831 /* UIColor+AQGridView.m */; };
 		A9BCE00613AFEA9800811831 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BCE00513AFEA9800811831 /* QuartzCore.framework */; };
 		A9BCE00813AFEAB100811831 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BCE00713AFEAB100811831 /* libxml2.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		A9EB250C1471D49500AEE020 /* breast-cancer-ribbon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9EB250B1471D49500AEE020 /* breast-cancer-ribbon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -588,6 +589,7 @@
 		A9BCDFFA13AFE96800811831 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
 		A9BCE00513AFEA9800811831 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A9BCE00713AFEAB100811831 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		A9EB250B1471D49500AEE020 /* breast-cancer-ribbon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breast-cancer-ribbon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1197,6 +1199,7 @@
 		A9E0199A13B0061800FEE942 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9EB250B1471D49500AEE020 /* breast-cancer-ribbon.png */,
 				4D5E12F814427AB90081AAFA /* Icon-72.png */,
 				4D5E12F914427AB90081AAFA /* Icon-Small-50.png */,
 				4D5E12FA14427AB90081AAFA /* Icon-Small.png */,
@@ -1278,6 +1281,7 @@
 				4D5E12FE14427AB90081AAFA /* Icon-Small.png in Resources */,
 				4D5E12FF14427AB90081AAFA /* iTunesArtwork in Resources */,
 				4DED4EA91471AE520010C1C2 /* SVProgressHUD.bundle in Resources */,
+				A9EB250C1471D49500AEE020 /* breast-cancer-ribbon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -229,6 +229,7 @@
     
     // Force the application into Landscape view    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

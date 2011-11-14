@@ -93,6 +93,7 @@
     [self displayPortrait];
 
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
 
   /* ensure buttons appear if the feed has already been fetched */
   if ([[[self delegate] iYouTube] getFinished])
