@@ -11,7 +11,6 @@
 #import "Video.h"
 #import "Keys.h"
 
-
 #import "GDataYouTube.h"
 #import "GDataEntryYouTubeVideo.h"
 
@@ -26,6 +25,8 @@
 #import "GDataMediaThumbnail.h"
 
 #import "LivingProofAppDelegate.h"
+
+#import "SVProgressHUD.h"
 
 #define YouTube_devKey @"AI39si73rPI3lBhtbSwjwML_FPEUeg7th7VQgaN3QplOaA5j9C7r-MbrP8LHwQ3ncIfMgIcevYzNpE83ynB69Uy2v-1aoq4PbQ"
 
@@ -98,6 +99,8 @@
 
 - (void)loadVideoFeed
 {
+    //[SVProgressHUD showWithStatus:@"Loading"];
+
     // Ensure we initialize this
     finished = [NSNumber numberWithBool:NO];
 
@@ -244,8 +247,11 @@
     
     // reload the current grid (UI) to update pictures
     [[self delegate] reloadCurrentGrid];
-}
 
+    // Done loading
+    //[SVProgressHUD dismiss];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"FinishedLoadingYoutube" object:nil];
+}
 
 #pragma mark -
 #pragma mark Get & Set

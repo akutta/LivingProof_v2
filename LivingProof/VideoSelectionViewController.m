@@ -164,7 +164,11 @@
                                                                                       filter:_searchText 
                                                                                relatedVideos:videoArray
                                                                                  buttonTitle:_curButtonText];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  [[self delegate] switchView:self.view 
+                       toView:nextView.view 
+                withAnimation:UIViewAnimationTransitionNone 
+                newController:nextView];
 }
 
 #pragma mark -
@@ -252,15 +256,26 @@
 //
 -(IBAction)swapViewToCategories:(id)sender
 {
-    UIViewAnimationTransition animation = [[self delegate] getAnimation:NO];
+  //UIViewAnimationTransition animation = [[self delegate] getAnimation:NO];
+    
     if ( ![[sender title] compare:@"Categories"] ) {
         // Switch to Categories since that was the last view
         CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-        [[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+      //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+      [[self delegate] switchView:self.view 
+                           toView:nextView.view 
+                    withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                    newController:nextView];
+
         [[self delegate] reloadCurrentGrid];
     } else {
         AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-        [[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+      //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
+      [[self delegate] switchView:self.view 
+                           toView:nextView.view 
+                    withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                    newController:nextView];
+
         [[self delegate] reloadCurrentGrid];
     }
 }

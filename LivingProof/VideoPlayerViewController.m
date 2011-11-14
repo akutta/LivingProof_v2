@@ -87,7 +87,12 @@
                                                                                             bundle:nil category:_curCategory 
                                                                                             filter:_curFilter 
                                                                                         buttonText:previousButtonTitle];
-    [delegate switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView]; 
+    //[delegate switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView]; 
+    [delegate switchView:self.view 
+                  toView:nextView.view 
+           withAnimation:UIViewAnimationTransitionFlipFromLeft 
+           newController:nextView];
+
     [delegate reloadCurrentGrid];
 }
 

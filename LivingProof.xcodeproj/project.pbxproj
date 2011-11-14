@@ -25,6 +25,8 @@
 		4D5E12FF14427AB90081AAFA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 4D5E12FB14427AB90081AAFA /* iTunesArtwork */; };
 		4D8CA5181461F07D001E3344 /* NSString+MD5Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CA5171461F07D001E3344 /* NSString+MD5Additions.m */; };
 		4D8CA78B1461F09D001E3344 /* UIDevice+Identifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8CA78A1461F09D001E3344 /* UIDevice+Identifier.m */; };
+		4DED4EA91471AE520010C1C2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4DED4EA61471AE520010C1C2 /* SVProgressHUD.bundle */; };
+		4DED4EAA1471AE520010C1C2 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DED4EA81471AE520010C1C2 /* SVProgressHUD.m */; };
 		A90B437B13BD06000055A556 /* Survivor.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B437A13BD06000055A556 /* Survivor.m */; };
 		A90BEFF813CDE1770051EEB5 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */; };
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
@@ -234,6 +236,9 @@
 		4D8CA5171461F07D001E3344 /* NSString+MD5Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5Additions.m"; sourceTree = "<group>"; };
 		4D8CA7891461F09D001E3344 /* UIDevice+Identifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Identifier.h"; sourceTree = "<group>"; };
 		4D8CA78A1461F09D001E3344 /* UIDevice+Identifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Identifier.m"; sourceTree = "<group>"; };
+		4DED4EA61471AE520010C1C2 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		4DED4EA71471AE520010C1C2 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		4DED4EA81471AE520010C1C2 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		A90B437913BD06000055A556 /* Survivor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Survivor.h; sourceTree = "<group>"; };
 		A90B437A13BD06000055A556 /* Survivor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Survivor.m; sourceTree = "<group>"; };
 		A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -646,6 +651,16 @@
 				4D4367AF1427CA8F00035197 /* CategoryListViewController_iPad.m */,
 			);
 			name = "Horizontal Tables";
+			sourceTree = "<group>";
+		};
+		4DED4EA51471AE520010C1C2 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4DED4EA61471AE520010C1C2 /* SVProgressHUD.bundle */,
+				4DED4EA71471AE520010C1C2 /* SVProgressHUD.h */,
+				4DED4EA81471AE520010C1C2 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		A9469E7613B0567A009D28DC /* SDWebImage */ = {
@@ -1141,6 +1156,7 @@
 		A9BCDFE213AFE96800811831 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				4DED4EA51471AE520010C1C2 /* SVProgressHUD */,
 				A9ACCFBA13B1479600979ECA /* gdata */,
 				A9469E7613B0567A009D28DC /* SDWebImage */,
 				A9BCDFE313AFE96800811831 /* GridView */,
@@ -1261,6 +1277,7 @@
 				4D5E12FD14427AB90081AAFA /* Icon-Small-50.png in Resources */,
 				4D5E12FE14427AB90081AAFA /* Icon-Small.png in Resources */,
 				4D5E12FF14427AB90081AAFA /* iTunesArtwork in Resources */,
+				4DED4EA91471AE520010C1C2 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1437,6 +1454,7 @@
 				4D4367B01427CA9000035197 /* CategoryListViewController_iPad.m in Sources */,
 				4D8CA5181461F07D001E3344 /* NSString+MD5Additions.m in Sources */,
 				4D8CA78B1461F09D001E3344 /* UIDevice+Identifier.m in Sources */,
+				4DED4EAA1471AE520010C1C2 /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

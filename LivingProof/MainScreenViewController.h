@@ -11,6 +11,9 @@
 @interface MainScreenViewController : UIViewController {
     IBOutlet UIButton *sortAge;
     IBOutlet UIButton *sortCategory;
+  
+  IBOutlet UILabel *loadingLabel;
+  IBOutlet UIActivityIndicatorView *activityView;
     
 }
 -(IBAction)sortByCategories;

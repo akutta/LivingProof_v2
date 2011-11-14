@@ -27,6 +27,16 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+      sortAge.hidden = YES;
+      sortCategory.hidden = YES;
+
+      loadingLabel.hidden = NO;
+      activityView.hidden = NO;
+      [activityView startAnimating];
+
+      [[NSNotificationCenter defaultCenter] addObserver:self 
+                                               selector:@selector(finishedLoadingYoutube:) 
+                                                   name:@"FinishedLoadingYoutube" object:nil];
     }
     return self;
 }
@@ -41,11 +51,33 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
+- (void)finishedLoadingYoutube:(id)sender
 {
-    if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ) {
+  sortAge.hidden = NO;
+  sortCategory.hidden = NO;
+  
+  [activityView stopAnimating];
+  activityView.hidden = YES;
+  loadingLabel.hidden = YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
+{    
+  // if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ) {
+  // [self displayPortrait];
+  // } else {
+  // [self displayLandscape];
+  // }
+
+    if ( toInterfaceOrientation == UIInterfaceOrientationPortrait || 
+        toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
         [self displayPortrait];
-    } else {
+    }
+    else if ( toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
+             toInterfaceOrientation == UIInterfaceOrientationLandscapeRight )
+    {
+
         [self displayLandscape];
     }
 }
@@ -57,10 +89,14 @@
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+
     [self displayPortrait];
-    
+
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+
+  /* ensure buttons appear if the feed has already been fetched */
+  if ([[[self delegate] iYouTube] getFinished])
+    [self finishedLoadingYoutube:nil];
 }
 
 - (void)viewDidUnload
@@ -100,7 +136,12 @@
 -(IBAction)sortByCategories
 {
     CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  [[self delegate] switchView:self.view 
+                       toView:nextView.view 
+                withAnimation:UIViewAnimationTransitionFlipFromRight 
+                newController:nextView];
+
 }
 
 //
@@ -109,7 +150,11 @@
 -(IBAction)sortByAge
 {
     AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+  [[self delegate] switchView:self.view 
+                       toView:nextView.view 
+                withAnimation:UIViewAnimationTransitionFlipFromRight
+                newController:nextView];
 }
 
 //
@@ -124,7 +169,13 @@
     CGRect sortCategoryFrame = sortCategory.frame;
     sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
     sortCategory.frame = sortCategoryFrame;
-    
+
+    CGRect labelFrame = (CGRect){ CGPointMake(364, 878) ,loadingLabel.frame.size };
+    loadingLabel.frame = labelFrame;
+
+    CGRect loadFrame = (CGRect){ CGPointMake(384, 849), activityView.frame.size };
+    activityView.frame = loadFrame;
+
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
 }
 
@@ -136,12 +187,16 @@
     sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
     sortAge.frame = sortAgeFrame;
     
-    
     CGRect sortCategoryFrame = sortCategory.frame;
     sortCategoryFrame.origin = CGPointMake(516.0f, 573.0f);
     sortCategory.frame = sortCategoryFrame;
-    
-    
+
+    CGRect labelFrame = (CGRect){ CGPointMake(480, 630) ,loadingLabel.frame.size };
+    loadingLabel.frame = labelFrame;
+
+    CGRect loadFrame = (CGRect){ CGPointMake(500, 600), activityView.frame.size };
+    activityView.frame = loadFrame;
+
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
 }
 

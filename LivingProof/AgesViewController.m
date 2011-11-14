@@ -150,7 +150,14 @@
                                                                                           category:cell.title 
                                                                                             filter:nil
                                                                                         buttonText:@"Ages"];    // Change to Title of the selected
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView];
+    //[[self delegate] switchView:self.view toView:nextView.view 
+    // withAnimation:[[self delegate] getAnimation:NO] 
+    // newController:nextView];
+    [[self delegate] switchView:self.view 
+                         toView:nextView.view 
+                  withAnimation:UIViewAnimationTransitionFlipFromRight
+                  newController:nextView];
+
     [[self delegate] reloadCurrentGrid];
 }
 
@@ -160,7 +167,11 @@
 -(IBAction)back {
     
     MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
-    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
+  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
+  [[self delegate] switchView:self.view 
+                       toView:nextView.view 
+                withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                newController:nextView];
 }
 
 #pragma mark -
