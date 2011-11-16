@@ -13,6 +13,7 @@
 #import "Video.h"
 //#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+#import <QuartzCore/QuartzCore.h>
 
 #import "FlurryAnalytics.h"
 
@@ -127,8 +128,12 @@
     maritalStatus.text = curVideo.parsedKeys.maritalStatus;
     employmentStatus.text = curVideo.parsedKeys.employmentStatus;
     childrenStatus.text = curVideo.parsedKeys.childrenStatus;
-    
     videoTitle.text = curVideo.title;
+    
+  /*  videoTitle.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+    [videoTitle.layer setMasksToBounds:YES];
+    [videoTitle.layer setBorderWidth:2];
+    [videoTitle.layer setCornerRadius:12.0];*/
 }
 
 -(void) setTextPositions:(CGFloat)x y:(CGFloat)y{
@@ -257,6 +262,12 @@
     self.gridView.layoutDirection = AQGridViewLayoutDirectionHorizontal;
     
     self.gridView.contentInset = UIEdgeInsetsMake(-25 ,5 /* shifts left*/,0,0);
+    
+    
+    [self.gridView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [self.gridView.layer setMasksToBounds:YES];
+    [self.gridView.layer setBorderWidth:2];
+    [self.gridView.layer setCornerRadius:12.0];
     
     // Enable the gridView and update it's content
     [_gridView reloadData];
@@ -408,6 +419,10 @@
     }
     
     videoView.frame = frame;
+    [videoView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [videoView.layer setMasksToBounds:YES];
+    [videoView.layer setBorderWidth:2];
+    [videoView.layer setCornerRadius:12.0];
     [videoView loadHTMLString:html baseURL:nil];
 }
 

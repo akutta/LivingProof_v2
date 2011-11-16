@@ -175,6 +175,9 @@
 		A9ACD70E13B2FBA400979ECA /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACD70D13B2FBA300979ECA /* Settings.m */; };
 		A9ACD71413B96D1C00979ECA /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACD71313B96D1B00979ECA /* Image.m */; };
 		A9ACD71713B993A800979ECA /* Keys.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACD71613B993A800979ECA /* Keys.m */; };
+		A9B15D841472F71600606FC7 /* WelcomeScreen_current.png in Resources */ = {isa = PBXBuildFile; fileRef = A9B15D7F1472F71600606FC7 /* WelcomeScreen_current.png */; };
+		A9B15D8B1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png in Resources */ = {isa = PBXBuildFile; fileRef = A9B15D891472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png */; };
+		A9B15D8C1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png in Resources */ = {isa = PBXBuildFile; fileRef = A9B15D8A1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png */; };
 		A9B2C0B813EA228C0024B570 /* WelcomeScreenRotated.png in Resources */ = {isa = PBXBuildFile; fileRef = A9B2C0B713EA228C0024B570 /* WelcomeScreenRotated.png */; };
 		A9BCDDDA13AAE45500811831 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BCDDD913AAE45500811831 /* UIKit.framework */; };
 		A9BCDDDC13AAE45500811831 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BCDDDB13AAE45500811831 /* Foundation.framework */; };
@@ -542,6 +545,9 @@
 		A9ACD71313B96D1B00979ECA /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		A9ACD71513B993A700979ECA /* Keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Keys.h; sourceTree = "<group>"; };
 		A9ACD71613B993A800979ECA /* Keys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Keys.m; sourceTree = "<group>"; };
+		A9B15D7F1472F71600606FC7 /* WelcomeScreen_current.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_current.png; sourceTree = "<group>"; };
+		A9B15D891472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_LightPink_StrongPink_cursive.png; sourceTree = "<group>"; };
+		A9B15D8A1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_LightPink_StrongPink.png; sourceTree = "<group>"; };
 		A9B2C0B713EA228C0024B570 /* WelcomeScreenRotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreenRotated.png; sourceTree = "<group>"; };
 		A9BCDDD513AAE45500811831 /* LivingProof.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LivingProof.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9BCDDD913AAE45500811831 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -1199,6 +1205,9 @@
 		A9E0199A13B0061800FEE942 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9B15D891472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png */,
+				A9B15D8A1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png */,
+				A9B15D7F1472F71600606FC7 /* WelcomeScreen_current.png */,
 				A9EB250B1471D49500AEE020 /* breast-cancer-ribbon.png */,
 				4D5E12F814427AB90081AAFA /* Icon-72.png */,
 				4D5E12F914427AB90081AAFA /* Icon-Small-50.png */,
@@ -1282,6 +1291,9 @@
 				4D5E12FF14427AB90081AAFA /* iTunesArtwork in Resources */,
 				4DED4EA91471AE520010C1C2 /* SVProgressHUD.bundle in Resources */,
 				A9EB250C1471D49500AEE020 /* breast-cancer-ribbon.png in Resources */,
+				A9B15D841472F71600606FC7 /* WelcomeScreen_current.png in Resources */,
+				A9B15D8B1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png in Resources */,
+				A9B15D8C1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

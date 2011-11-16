@@ -63,12 +63,6 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
 {    
-  // if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ) {
-  // [self displayPortrait];
-  // } else {
-  // [self displayLandscape];
-  // }
-
     if ( toInterfaceOrientation == UIInterfaceOrientationPortrait || 
         toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
@@ -93,7 +87,10 @@
     [self displayPortrait];
 
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
-    //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink_cursive.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink.png"]];
+  
+    
 
   /* ensure buttons appear if the feed has already been fetched */
   if ([[[self delegate] iYouTube] getFinished])

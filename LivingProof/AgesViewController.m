@@ -52,10 +52,6 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
-    // Ensure we are in portrait mode
-    //UIApplication *application = [UIApplication sharedApplication];
-    //application.statusBarOrientation = UIInterfaceOrientationPortrait;
-    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];    
     
     self.gridView.backgroundColor = [UIColor clearColor];
