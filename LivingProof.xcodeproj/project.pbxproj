@@ -32,6 +32,7 @@
 		A90BEFF913CDE1770051EEB5 /* MainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */; };
 		A90BEFFC13CDE18A0051EEB5 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFA13CDE18A0051EEB5 /* Background.png */; };
 		A90BEFFD13CDE18A0051EEB5 /* WelcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */; };
+		A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */ = {isa = PBXBuildFile; fileRef = A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */; };
 		A9469E8313B0567A009D28DC /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7813B0567A009D28DC /* SDImageCache.m */; };
 		A9469E8413B0567A009D28DC /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7C13B0567A009D28DC /* SDWebImageDownloader.m */; };
 		A9469E8513B0567A009D28DC /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7F13B0567A009D28DC /* SDWebImageManager.m */; };
@@ -250,6 +251,7 @@
 		A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainScreenViewController.xib; sourceTree = "<group>"; };
 		A90BEFFA13CDE18A0051EEB5 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = LivingProof/Images/Background.png; sourceTree = SOURCE_ROOT; };
 		A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeScreen.png; path = LivingProof/Images/WelcomeScreen.png; sourceTree = SOURCE_ROOT; };
+		A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_LightPink_StrongPink_Rotated.png; sourceTree = "<group>"; };
 		A9469E7713B0567A009D28DC /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		A9469E7813B0567A009D28DC /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
 		A9469E7913B0567A009D28DC /* SDImageCacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheDelegate.h; sourceTree = "<group>"; };
@@ -1205,6 +1207,7 @@
 		A9E0199A13B0061800FEE942 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */,
 				A9B15D891472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png */,
 				A9B15D8A1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png */,
 				A9B15D7F1472F71600606FC7 /* WelcomeScreen_current.png */,
@@ -1294,6 +1297,7 @@
 				A9B15D841472F71600606FC7 /* WelcomeScreen_current.png in Resources */,
 				A9B15D8B1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png in Resources */,
 				A9B15D8C1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png in Resources */,
+				A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1530,7 +1534,7 @@
 					"\"$(SRCROOT)/LivingProof/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -1589,7 +1593,7 @@
 					"\"$(SRCROOT)/LivingProof/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1612,7 +1616,7 @@
 					"\"$(SRCROOT)/LivingProof/Library\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos5.0;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

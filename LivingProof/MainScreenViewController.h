@@ -14,6 +14,11 @@
   
   IBOutlet UILabel *loadingLabel;
   IBOutlet UIActivityIndicatorView *activityView;
+ 
+    UIColor *landscapeBackgroundImage;
+    UIColor *portraitBackgroundImage;
+    UIColor *lightPink;
+    UIColor *strongPink;
     
 }
 -(IBAction)sortByCategories;

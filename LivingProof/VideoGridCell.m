@@ -18,7 +18,7 @@
     if ((self = [super initWithFrame: frame reuseIdentifier: aReuseIdentifier]))
     {
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        [_imageView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        [_imageView.layer setBorderColor:[[UIColor blackColor] CGColor]];
         [_imageView.layer setMasksToBounds:YES];
         [_imageView.layer setBorderWidth:2];
         [_imageView.layer setCornerRadius:12.0];
@@ -41,7 +41,7 @@
         
         
         
-        [_title.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+        [_title.layer setBorderColor:[[UIColor blackColor] CGColor]];
         [_title.layer setMasksToBounds:YES];
         [_title.layer setBorderWidth:2];
         [_title.layer setCornerRadius:12.0];

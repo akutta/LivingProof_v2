@@ -171,11 +171,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "LivingProof/MainScreenViewController.m"
-         timestampString = "343080905.604508"
+         timestampString = "344829180.814726"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "97"
-         endingLineNumber = "97"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>

@@ -10,6 +10,7 @@
 #import "CategoriesViewController.h"
 #import "AgesViewController.h"
 #import "LivingProofAppDelegate.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface MainScreenViewController (Private)
@@ -78,6 +79,30 @@
 
 #pragma mark - View lifecycle
 
+- (UIImage*)initFromColor:(UIColor*)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
+- (void)setButtonLook:(UIButton*)button {
+    
+    button.backgroundColor = lightPink;
+    [button.layer setBorderColor:[button.currentTitleColor CGColor]];
+    [button.layer setMasksToBounds:YES];
+    [button.layer setBorderWidth:2];
+    [button.layer setCornerRadius:12.0];
+    
+    [button setTitleColor:lightPink forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self initFromColor:strongPink] forState:UIControlStateHighlighted];
+}
+
 - (void)viewDidLoad
 {
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
@@ -86,14 +111,26 @@
 
     [self displayPortrait];
 
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink_cursive.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink.png"]];
-  
+    landscapeBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink_Rotated.png"]]; 
+    portraitBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink.png"]];
+    lightPink = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_current.png"]];
+    strongPink = sortCategory.currentTitleColor;
     
+    
+    self.view.backgroundColor = portraitBackgroundImage;
+    [self setButtonLook:sortAge];
+    [self setButtonLook:sortCategory];
+    
+    
+    sortCategory.backgroundColor = lightPink;
+    [sortCategory.layer setBorderColor:[sortCategory.currentTitleColor CGColor]];
+    [sortCategory.layer setMasksToBounds:YES];
+    [sortCategory.layer setBorderWidth:2];
+    [sortCategory.layer setCornerRadius:12.0];
+
 
   /* ensure buttons appear if the feed has already been fetched */
-  if ([[[self delegate] iYouTube] getFinished])
+  //if ([[[self delegate] iYouTube] getFinished])
     [self finishedLoadingYoutube:nil];
 }
 
@@ -134,11 +171,11 @@
 -(IBAction)sortByCategories
 {
     CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
-  [[self delegate] switchView:self.view 
-                       toView:nextView.view 
-                withAnimation:UIViewAnimationTransitionFlipFromRight 
-                newController:nextView];
+  [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+//  [[self delegate] switchView:self.view 
+//                       toView:nextView.view 
+//                withAnimation:UIViewAnimationTransitionFlipFromRight 
+//                newController:nextView];
 
 }
 
@@ -148,11 +185,11 @@
 -(IBAction)sortByAge
 {
     AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
-  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
-  [[self delegate] switchView:self.view 
-                       toView:nextView.view 
-                withAnimation:UIViewAnimationTransitionFlipFromRight
-                newController:nextView];
+    [[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+//  [[self delegate] switchView:self.view 
+//                       toView:nextView.view 
+//                withAnimation:UIViewAnimationTransitionFlipFromRight
+//                newController:nextView];
 }
 
 //
@@ -174,7 +211,7 @@
     CGRect loadFrame = (CGRect){ CGPointMake(384, 849), activityView.frame.size };
     activityView.frame = loadFrame;
 
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    self.view.backgroundColor = portraitBackgroundImage;
 }
 
 //
@@ -195,7 +232,7 @@
     CGRect loadFrame = (CGRect){ CGPointMake(500, 600), activityView.frame.size };
     activityView.frame = loadFrame;
 
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]];
+    self.view.backgroundColor = landscapeBackgroundImage;
 }
 
 
