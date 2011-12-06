@@ -23,6 +23,7 @@
         [_imageView.layer setBorderWidth:2];
         [_imageView.layer setCornerRadius:12.0];
         
+        
         _title = [[UILabel alloc] initWithFrame:CGRectZero];
         _title.highlightedTextColor = [UIColor whiteColor];
         
@@ -97,9 +98,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
+    
     CGSize imageSize = _imageView.image.size;
-
+    
     CGRect bounds = CGRectInset(self.contentView.bounds, 10.0, 10.0);
     CGFloat ratio = MIN(bounds.size.width / imageSize.width , ((bounds.size.height) / imageSize.height));;
     //CGFloat aspectRatio = imageSize.width / imageSize.height;
@@ -113,7 +114,7 @@
     [_imageView sizeToFit];
     // get current frame
     frame = _imageView.frame;
-      
+    
     // update frame variable based on image
     frame.size.width = floorf(imageSize.width * ratio);
     frame.size.height = floorf(imageSize.height * ratio);
@@ -126,8 +127,6 @@
     
     // update frame
     _imageView.frame = frame;
-
-    NSLog(@"frame: %@", NSStringFromCGRect(_imageView.frame));
     
     imageSize = _imageView.image.size;
     

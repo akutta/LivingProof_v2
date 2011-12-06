@@ -11,7 +11,7 @@
 #import "Video.h"
 #import "AQGridView.h"
 
-@interface VideoPlayerViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource, UIWebViewDelegate> {
+@interface VideoPlayerViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource> {
     Video *curVideo;
     NSString *previousButtonTitle;
     

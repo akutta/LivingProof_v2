@@ -392,10 +392,6 @@
 - (void)webViewDidFinishLoad:(UIWebView *)_webView {
 	UIButton *b = [self findButtonInView:_webView];
 	[b sendActionsForControlEvents:UIControlEventTouchUpInside];
-  
-#if TARGET_IPHONE_SIMULATOR
-  [videoView stringByEvaluatingJavaScriptFromString:@"scrollTo(50,140);"];
-#endif
 }
 
 - (void)rotateYouTube:(CGRect)frame {
@@ -403,40 +399,33 @@
 }
 
 - (void)embedYouTube:(NSURL*)url frame:(CGRect)frame {
-
-#if !TARGET_IPHONE_SIMULATOR
-  NSString* embedHTML = @""
-  "<html><head>"
-  "<style type=\"text/css\">"
-  "body {" 
-  "background-color: transparent;"
-  "color: white;"
-  "}" 
-  "</style>"
-  "</head><body style=\"margin:0\">" 
-  "</param><embed src=\"%@&autoplay=1\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed></object>"
-  "</body></html>";
-
-  NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
-#endif
-
+    NSString* embedHTML = @""
+    "<html><head>"
+    "<style type=\"text/css\">"
+    "body {" 
+    "background-color: transparent;"
+    "color: white;"
+    "}" 
+    "</style>"
+    "</head><body style=\"margin:0\">" 
+    "</param><embed src=\"%@&autoplay=1\" type=\"application/x-shockwave-flash\" width=\"%0.0f\" height=\"%0.0f\"></embed></object>"
+    "</body></html>"; 
+    NSString* html = [NSString stringWithFormat:embedHTML, url, frame.size.width, frame.size.height];
+    
     if(videoView == nil) {
         videoView = [[UIWebView alloc] initWithFrame:frame];
         videoView.mediaPlaybackRequiresUserAction = NO;
-        videoView.delegate = self;
         [self.view addSubview:videoView];
     }
+    
     videoView.frame = frame;
     [videoView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
     [videoView.layer setMasksToBounds:YES];
     [videoView.layer setBorderWidth:2];
     [videoView.layer setCornerRadius:12.0];
-
-#if TARGET_IPHONE_SIMULATOR
-  [videoView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", url]]]];
-#else  
-  [videoView loadHTMLString:html baseURL:nil];
-#endif
+    [videoView loadHTMLString:html baseURL:nil];
 }
+
+
 
 @end

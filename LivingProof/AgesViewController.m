@@ -67,10 +67,10 @@
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    self.gridView.autoresizesSubviews = YES;
-    self.gridView.delegate = self;
-    self.gridView.dataSource = self;
-
+	self.gridView.autoresizesSubviews = YES;
+	self.gridView.delegate = self;
+	self.gridView.dataSource = self;
+    
     [_gridView reloadData];
 }
 

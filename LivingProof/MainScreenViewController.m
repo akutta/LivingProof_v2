@@ -67,12 +67,13 @@
     if ( toInterfaceOrientation == UIInterfaceOrientationPortrait || 
         toInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
     {
-      [self displayPortrait];
+        [self displayPortrait];
     }
     else if ( toInterfaceOrientation == UIInterfaceOrientationLandscapeLeft || 
              toInterfaceOrientation == UIInterfaceOrientationLandscapeRight )
     {
-      [self displayLandscape];
+
+        [self displayLandscape];
     }
 }
 
@@ -122,10 +123,14 @@
     
     
     sortCategory.backgroundColor = lightPink;
+    [sortCategory.layer setBorderColor:[sortCategory.currentTitleColor CGColor]];
+    [sortCategory.layer setMasksToBounds:YES];
+    [sortCategory.layer setBorderWidth:2];
+    [sortCategory.layer setCornerRadius:12.0];
 
 
   /* ensure buttons appear if the feed has already been fetched */
-  if ([[[self delegate] iYouTube] getFinished])
+  //if ([[[self delegate] iYouTube] getFinished])
     [self finishedLoadingYoutube:nil];
 }
 
@@ -194,7 +199,8 @@
     CGRect sortAgeFrame = sortAge.frame;
     sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
     sortAge.frame = sortAgeFrame;
-
+    
+    
     CGRect sortCategoryFrame = sortCategory.frame;
     sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
     sortCategory.frame = sortCategoryFrame;
