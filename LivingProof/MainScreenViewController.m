@@ -130,7 +130,7 @@
 
 
   /* ensure buttons appear if the feed has already been fetched */
-  //if ([[[self delegate] iYouTube] getFinished])
+  if ([[[self delegate] iYouTube] getFinished])
     [self finishedLoadingYoutube:nil];
 }
 
