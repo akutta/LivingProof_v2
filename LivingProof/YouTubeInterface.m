@@ -187,13 +187,13 @@
         
     // Create Mutable Arrays
     if ( YouTubeArray == nil )
-        YouTubeArray = [[NSMutableArray alloc] init];
+        YouTubeArray = [[[NSMutableArray alloc] init] retain];
     
     if ( categories == nil )
-        categories = [[NSMutableArray alloc] init];
+        categories = [[[NSMutableArray alloc] init] retain];
  
     if ( ages == nil ) 
-        ages = [[NSMutableArray alloc] init];
+        ages = [[[NSMutableArray alloc] init] retain];
         
     // Explore all entries downloaded from YouTube
     NSArray *entries = [mEntriesFeed entries];
