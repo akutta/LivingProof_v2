@@ -76,13 +76,11 @@
 }
 
 - (NSArray*)getAges {
-    NSArray *ret = [[ages copy] autorelease];
-    return ret;
+    return [[ages copy] autorelease];
 }
 
 - (NSArray*)getCategories {
-    NSArray *ret = [[categories copy] autorelease];
-    return ret;
+    return [[categories copy] autorelease];
 }
 
 - (void)setFinished:(BOOL)value {
@@ -302,13 +300,11 @@
     
     // if there isn't a filter send back full array
     if ( filter == nil ) {
-        NSArray* retValue = [YouTubeArray copy];
-        [retValue autorelease];
-        return retValue;
+        return [[YouTubeArray copy] autorelease];
     }
     
     // Create Mutable Array
-    NSMutableArray *tmpValue = [[NSMutableArray alloc] init];
+    NSMutableArray *tmpValue = [[[NSMutableArray alloc] init] autorelease];
     
     // Only Sorting by Category and Age here
     for ( Video* video in YouTubeArray ) {
@@ -320,14 +316,7 @@
         
     }
     
-    // Turn Mutable Array to non Mutable Array
-    NSArray* retValue = [tmpValue copy];
-    
-    // Memory Management
-    [retValue autorelease];
-    [tmpValue release];
-    
-    return retValue;
+    return [[tmpValue copy] autorelease];
 }
 
 #pragma mark - 

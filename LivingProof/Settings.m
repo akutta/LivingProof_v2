@@ -103,13 +103,14 @@
         }
     }
 #endif
+    [retValue autorelease];
     return [retValue copy];
 }
 
 
 -(NSArray*)getCategoryImages
 {
-    NSMutableArray *retValue = [[NSMutableArray alloc] init];
+    NSMutableArray *retValue = [[[NSMutableArray alloc] init] autorelease];
     
 #ifdef LOAD_FROM_IPAD
     NSMutableArray *images;
@@ -150,7 +151,7 @@
         }
     }
 #endif
-    return [retValue copy];
+    return [[retValue copy] autorelease];
 }
 
 // Removing the side-effects of converting an NSArray -> NSString

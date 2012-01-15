@@ -142,7 +142,7 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
-    VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
+    VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
                                                                                           category:cell.title 
@@ -164,8 +164,8 @@
 
 -(IBAction)back {
     
-    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
-  //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView];
+    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" 
+                                                                                     bundle:nil];
   [[self delegate] switchView:self.view 
                        toView:nextView.view 
                 withAnimation:UIViewAnimationTransitionFlipFromLeft 

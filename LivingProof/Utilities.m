@@ -35,11 +35,13 @@
     NSArray* videos;
     NSInteger index = 0;
     
+    [survivors autorelease];
+    [_survivorImages autorelease];
     
     // YouTube isn't finished downloading yet so don't continue here
     if ( [[[self delegate] iYouTube] getFinished] == NO ) {
         NSLog(@"YouTube Not Finished");
-        return [_survivorImages copy];
+        return [[_survivorImages copy] autorelease];
     }
 
     if ( getCategories == YES )
@@ -65,6 +67,7 @@
             tmp.name = curVideo.parsedKeys.name;
             tmp.url = curVideo.thumbnailURL;
             [survivors addObject:tmp];
+            [tmp release];
         }
     }
     
@@ -84,11 +87,16 @@
                 tmp.imageData = cachedImage;
             else
                 [tmp.imageView setImageWithURL:surv.url placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+            
         }
         tmp.name = name;
         [_survivorImages addObject:tmp];
+        
+        [tmp release];
         index++;
     }
+    
+    [_Names release];
     return [_survivorImages copy];
 }
 

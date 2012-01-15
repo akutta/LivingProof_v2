@@ -263,7 +263,9 @@
     
     if ( ![[sender title] compare:@"Categories"] ) {
         // Switch to Categories since that was the last view
-        CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
+        CategoriesViewController *nextView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController"
+                                                                                         bundle:nil];
+        
       //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
       [[self delegate] switchView:self.view 
                            toView:nextView.view 
@@ -272,7 +274,8 @@
 
         [[self delegate] reloadCurrentGrid];
     } else {
-        AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController" bundle:nil];
+        AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController"
+                                                                             bundle:nil];
       //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
       [[self delegate] switchView:self.view 
                            toView:nextView.view 
