@@ -14,6 +14,7 @@
 @synthesize url          = _url;
 @synthesize thumbnailURL = _thumbnailURL;
 @synthesize time         = _time;
+@synthesize viewCount    = _viewCount;
 @synthesize title        = _title;
 @synthesize category     = _category;
 @synthesize parsedKeys   = _parsedKeys;

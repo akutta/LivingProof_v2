@@ -11,23 +11,25 @@
 
 @interface Video : NSObject
 {
-  NSURL *_url;
-  NSURL *_thumbnailURL;
+    NSURL *_url;
+    NSURL *_thumbnailURL;
 
-  NSNumber *_time;
+    NSNumber *_time;
+    NSNumber *_viewCount;
 
-  NSString *_title;
-  NSString *_category;
+    NSString *_title;
+    NSString *_category;
 
-  NSArray *_parsedKeysArray;
-  NSArray *_keysArray;
-  Keys *_parsedKeys;
+    NSArray *_parsedKeysArray;
+    NSArray *_keysArray;
+    Keys *_parsedKeys;
 }
 
 @property (retain) NSURL *url;
 @property (retain) NSURL *thumbnailURL;
 
 @property (copy) NSNumber *time;
+@property (copy) NSNumber *viewCount;
 
 @property (copy) NSString *title;
 @property (copy) NSString *category;

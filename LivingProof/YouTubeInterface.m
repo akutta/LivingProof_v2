@@ -207,6 +207,8 @@
         youtubeVideo.time          = [[entry mediaGroup] duration];
         youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
         youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
+        youtubeVideo.viewCount      = [[entry statistics] viewCount];
+        
         
         /*
         if ( [[entry rating] numberOfLikes] != nil )
