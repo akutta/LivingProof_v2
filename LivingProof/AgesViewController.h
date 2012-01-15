@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AQGridView.h"
+#import "Utilities.h"
 
 @interface AgesViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>  {
     NSArray *_imageNames;
@@ -15,8 +16,7 @@
     NSArray *_ages;
     
     AQGridView *_gridView;
-    
-    BOOL bUsedPlaceholder;
+    Utilities *_utilities;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;

@@ -12,6 +12,6 @@
     
 }
 
--(NSArray*)getArrayOfSurvivorsFromYoutube;
+-(NSArray*)getArrayOfSurvivorsFromYoutube:(BOOL)getCategories;
 
 @end

@@ -62,7 +62,6 @@
     
     [super viewDidLoad];
     
-    
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
@@ -199,7 +198,8 @@
             _utilities = [Utilities alloc];
         
         [_categories release];
-        _categories = [_utilities getArrayOfSurvivorsFromYoutube];
+        _categories = [_utilities getArrayOfSurvivorsFromYoutube:YES];
+        [[[self delegate] settings] saveCategoryImages:_categories];
     }
     
     [_gridView reloadData];

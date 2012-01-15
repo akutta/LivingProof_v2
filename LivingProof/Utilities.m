@@ -27,13 +27,11 @@
     return del;
 }
 
--(NSArray*)getArrayOfSurvivorsFromYoutube {
+-(NSArray*)getArrayOfSurvivorsFromYoutube:(BOOL)getCategories {
     
-    NSLog(@"getArrayOfSurvivorsFromYouTube");
-    
-    NSArray* _categoryNames;
     NSMutableArray* survivors = [[NSMutableArray alloc] init];
-    NSMutableArray* _categoryImages = [[NSMutableArray alloc] init];
+    NSMutableArray* _survivorImages = [[NSMutableArray alloc] init];
+    NSArray* _Names;
     NSArray* videos;
     NSInteger index = 0;
     
@@ -41,10 +39,15 @@
     // YouTube isn't finished downloading yet so don't continue here
     if ( [[[self delegate] iYouTube] getFinished] == NO ) {
         NSLog(@"YouTube Not Finished");
-        return [_categoryImages copy];
+        return [_survivorImages copy];
     }
 
-    _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
+    if ( getCategories == YES )
+        _Names = [[[[self delegate] iYouTube] getCategories] copy];
+    else
+        _Names = [[[[self delegate] iYouTube] getAges] copy];
+    
+    
     videos = [[[self delegate] iYouTube] getYouTubeArray:nil];;
     
     for ( Video* curVideo in videos )
@@ -65,7 +68,7 @@
         }
     }
     
-    for ( NSString* name in _categoryNames ) {
+    for ( NSString* name in _Names ) {
         Image *tmp = [[Image alloc] init];
         if ( index >= [survivors count] ) {
             tmp.imageData = nil;
@@ -83,12 +86,10 @@
                 [tmp.imageView setImageWithURL:surv.url placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
         }
         tmp.name = name;
-        [_categoryImages addObject:tmp];
+        [_survivorImages addObject:tmp];
         index++;
     }
-    
-    [[[self delegate] settings] saveCategoryImages:_categoryImages];
-    return [_categoryImages copy];
+    return [_survivorImages copy];
 }
 
 @end

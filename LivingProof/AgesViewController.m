@@ -14,6 +14,7 @@
 #import "Image.h"
 #import "Settings.h"
 #import "Video.h"
+#import "Utilities.h"
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
 
@@ -58,12 +59,6 @@
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
-    _ages = [[[self delegate] settings] getAgeImages];
-    if ( [_ages count] == 0 ) {
-        NSLog(@"No Local Ages Found");
-        bUsedPlaceholder = YES;
-        [_ages release];
-    }
     
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -71,7 +66,11 @@
 	self.gridView.delegate = self;
 	self.gridView.dataSource = self;
     
-    [_gridView reloadData];
+    _ages = [[[self delegate] settings] getAgeImages];    
+    if ( [_ages count] == 0 ) 
+        [self reloadCurrentGrid];
+    else
+        [_gridView reloadData];
 }
 
 - (void)viewDidUnload
@@ -113,14 +112,12 @@
     }
     
     if ( index >= [_ages count]  ) {
-        bUsedPlaceholder = YES;
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     } else {
         Image *tmp = [_ages objectAtIndex:index];
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil ) {
                 [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
-                bUsedPlaceholder = YES;
             } else
                 cell.imageView = tmp.imageView;
         } else {
@@ -178,62 +175,15 @@
 
 -(void)reloadCurrentGrid
 {
-    if ( [_gridView numberOfItems] != [_ages count] || bUsedPlaceholder )
-    {
-        // Find new images
-        NSInteger errorCount = 0;
-        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
-        NSMutableArray* survivors = [[NSMutableArray alloc] init];
-        for ( Video* curVideo in videos )
-        {
-            if ( !curVideo.parsedKeys.age ) {
-                curVideo.parsedKeys.age = @"";
-                errorCount++;
-            }
-            BOOL bFound = NO;
-            for ( Survivor* survivor in survivors )
-            {
-                if ( ![survivor.name compare:curVideo.parsedKeys.age] ) {
-                    bFound = YES;
-                }
-            }
-            
-            if ( !bFound ) {
-                Survivor *tmp = [[Survivor alloc] init];
-                tmp.name = curVideo.parsedKeys.age;
-                tmp.url = curVideo.thumbnailURL;
-                [survivors addObject:tmp];
-                //[tmp release];
-            }
-            bUsedPlaceholder = NO;
-        }
-
+    if ( ([_gridView numberOfItems] != [_ages count] || [_ages count] == 0)
+        && [[[self delegate] iYouTube] getFinished] == YES ) {
+        
+        if ( _utilities == nil ) 
+            _utilities = [Utilities alloc];
+        
         [_ages release];
-        NSMutableArray* _ageImages = [[NSMutableArray alloc] init];
-        
-        _ageNames = [[[[self delegate] iYouTube] getAges] copy];
-        NSInteger index = 0;
-        for ( NSString* name in _ageNames ) {
-            Image *tmp = [[Image alloc] init];
-            tmp.imageData = nil;
-            tmp.imageView = nil;
-            for ( index = 0; index < [survivors count]; index ++ ) {
-                Survivor *surv = [survivors objectAtIndex:index];
-                
-                if ( ![surv.name compare:name] ) {
-                    //                    NSLog(@"Using %@ for %@",surv.url, surv.name);
-                    tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
-                }   
-            }
-            tmp.name = name;
-            [_ageImages addObject:tmp];
-            index++;
-        }
-        _ages = [_ageImages copy];
-        
-        [[[self delegate] settings] saveAgeImages:_ageImages];
-        
-        NSLog(@"There are %d uncategorized ages", errorCount);
+        _ages = [_utilities getArrayOfSurvivorsFromYoutube:YES];
+        [[[self delegate] settings] saveCategoryImages:_ages];
     }
     
     [_gridView reloadData];
