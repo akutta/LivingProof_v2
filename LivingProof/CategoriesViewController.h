@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AQGridView.h"
+#import "Utilities.h"
 
 @interface CategoriesViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource>  {
     NSArray *_imageNames;
@@ -15,6 +16,8 @@
     NSArray *_categories;
     
     AQGridView *_gridView;
+    
+    Utilities *_utilities;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;

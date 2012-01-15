@@ -19,7 +19,6 @@
     UIColor *portraitBackgroundImage;
     UIColor *lightPink;
     UIColor *strongPink;
-    
 }
 -(IBAction)sortByCategories;
 -(IBAction)sortByAge;

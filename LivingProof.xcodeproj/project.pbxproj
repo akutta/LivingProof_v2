@@ -41,6 +41,7 @@
 		A9469EA213B11F61009D28DC /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469EA113B11F61009D28DC /* Video.m */; };
 		A98D524813CD4CBE00399792 /* AgesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D524613CD4CBE00399792 /* AgesViewController.m */; };
 		A98D524913CD4CBE00399792 /* AgesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A98D524713CD4CBE00399792 /* AgesViewController.xib */; };
+		A9A0E25414C2710000E1DE80 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0E25314C2710000E1DE80 /* Utilities.m */; };
 		A9ACD2DC13B1479700979ECA /* GDataACLKeyedRole.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCFBE13B1479600979ECA /* GDataACLKeyedRole.m */; };
 		A9ACD2DD13B1479700979ECA /* GDataACLRole.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCFC013B1479600979ECA /* GDataACLRole.m */; };
 		A9ACD2DE13B1479700979ECA /* GDataACLScope.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCFC213B1479600979ECA /* GDataACLScope.m */; };
@@ -271,6 +272,8 @@
 		A98D524513CD4CBE00399792 /* AgesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgesViewController.h; sourceTree = "<group>"; };
 		A98D524613CD4CBE00399792 /* AgesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgesViewController.m; sourceTree = "<group>"; };
 		A98D524713CD4CBE00399792 /* AgesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgesViewController.xib; sourceTree = "<group>"; };
+		A9A0E25214C2710000E1DE80 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		A9A0E25314C2710000E1DE80 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		A9ACCFBC13B1479600979ECA /* GDataACL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACL.h; sourceTree = "<group>"; };
 		A9ACCFBD13B1479600979ECA /* GDataACLKeyedRole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataACLKeyedRole.h; sourceTree = "<group>"; };
 		A9ACCFBE13B1479600979ECA /* GDataACLKeyedRole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataACLKeyedRole.m; sourceTree = "<group>"; };
@@ -1123,6 +1126,8 @@
 				A9BCDDE913AAE45500811831 /* LivingProofAppDelegate.m */,
 				A9ACD70C13B2FBA300979ECA /* Settings.h */,
 				A9ACD70D13B2FBA300979ECA /* Settings.m */,
+				A9A0E25214C2710000E1DE80 /* Utilities.h */,
+				A9A0E25314C2710000E1DE80 /* Utilities.m */,
 				A9BCDDFA13AAE7FE00811831 /* VideoSelectionViewController.h */,
 				A9BCDDFB13AAE7FE00811831 /* VideoSelectionViewController.m */,
 				A9BCDDFF13AAE83400811831 /* VideoPlayerViewController.h */,
@@ -1475,6 +1480,7 @@
 				4D8CA5181461F07D001E3344 /* NSString+MD5Additions.m in Sources */,
 				4D8CA78B1461F09D001E3344 /* UIDevice+Identifier.m in Sources */,
 				4DED4EAA1471AE520010C1C2 /* SVProgressHUD.m in Sources */,
+				A9A0E25414C2710000E1DE80 /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

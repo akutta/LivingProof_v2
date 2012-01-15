@@ -105,11 +105,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "LivingProof/Settings.m"
-         timestampString = "341295689.771605"
+         timestampString = "348285454.746404"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
          landmarkName = "-stripParenthesis:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -15,7 +15,11 @@
 #import "Settings.h"
 #import "Video.h"
 #import "Survivor.h"
+#import "Utilities.h"
+#import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
+
+
 
 @interface CategoriesViewController (Private)
 - (LivingProofAppDelegate*)delegate;
@@ -46,8 +50,6 @@
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 
@@ -59,12 +61,6 @@
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     
     [super viewDidLoad];
-    _categories = [[[self delegate] settings] getCategoryImages];
-    if ( [_categories count] == 0 ) {
-        NSLog(@"No Local Categories Found");
-        [_categories release];
-    }
-    
     
     
     // Enable GridView
@@ -73,7 +69,11 @@
 	self.gridView.delegate = self;
 	self.gridView.dataSource = self;
     
-    [_gridView reloadData];
+    _categories = [[[self delegate] settings] getCategoryImages];
+    if ( [_categories count] == 0 ) 
+        [self reloadCurrentGrid];
+    else
+        [_gridView reloadData];
 }
 
 - (void)viewDidUnload
@@ -114,9 +114,10 @@
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
-    if ( index >= [_categories count] )
+    if ( index >= [_categories count] ) {
+        // New Category was added or we havn't stored this category yet
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
-    else {
+    } else {
         Image *tmp = [_categories objectAtIndex:index];
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil )
@@ -188,51 +189,17 @@
 
 -(void)reloadCurrentGrid
 {
-    if ( [_gridView numberOfItems] != [_categories count] )
+    NSLog(@"reloadCurrentGrid");
+    if ( ([_gridView numberOfItems] != [_categories count] || [_categories count] == 0)
+        && [[[self delegate] iYouTube] getFinished] == YES )
     {
-        // Find new images
-        NSArray* videos = [[[self delegate] iYouTube] getYouTubeArray:nil];
-        NSMutableArray* survivors = [[NSMutableArray alloc] init];
-        for ( Video* curVideo in videos )
-        {
-            BOOL bFound = NO;
-            for ( Survivor* survivor in survivors )
-            {
-                if ( ![survivor.name compare:curVideo.parsedKeys.name] ) {
-                    bFound = YES;
-                }
-            }
-            
-            if ( !bFound ) {
-                Survivor *tmp = [[Survivor alloc] init];
-                tmp.name = curVideo.parsedKeys.name;
-                tmp.url = curVideo.thumbnailURL;
-                [survivors addObject:tmp];
-            }
-        }
+        NSLog(@"Updating _categories");
 
-        [_categories release];
-        NSMutableArray* _categoryImages = [[NSMutableArray alloc] init];
-
-        _categoryNames = [[[[self delegate] iYouTube] getCategories] copy];
-        NSInteger index = 0;
-        for ( NSString* name in _categoryNames ) {
-            Image *tmp = [[Image alloc] init];
-            if ( index >= [survivors count] ) {
-                tmp.imageData = nil;
-                tmp.imageView = nil;
-            } else {
-                Survivor *surv = [survivors objectAtIndex:index];
-                tmp.imageData = nil;
-                tmp.imageData = [UIImage imageWithData: [NSData dataWithContentsOfURL:surv.url]];
-            }
-            tmp.name = name;
-            [_categoryImages addObject:tmp];
-            index++;
-        }
-        _categories = [_categoryImages copy];
+        if ( _utilities == nil ) 
+            _utilities = [Utilities alloc];
         
-        [[[self delegate] settings] saveCategoryImages:_categoryImages];
+        [_categories release];
+        _categories = [_utilities getArrayOfSurvivorsFromYoutube];
     }
     
     [_gridView reloadData];

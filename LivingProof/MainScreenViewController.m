@@ -111,9 +111,9 @@
 
     [self displayPortrait];
 
-    landscapeBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink_Rotated.png"]]; 
-    portraitBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_LightPink_StrongPink.png"]];
-    lightPink = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen_current.png"]];
+    landscapeBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]]; 
+    portraitBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
+    lightPink = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     strongPink = sortCategory.currentTitleColor;
     
     

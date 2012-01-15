@@ -13,6 +13,9 @@
 
 @synthesize settingsPath;
 
+//#define SAVE_TO_IPAD
+//#define LOAD_FROM_IPAD
+
 - (BOOL)check:(NSString*)file forSubstring:(NSString*)subString {
     
     NSRange textRange;
@@ -68,6 +71,7 @@
 {
     NSMutableArray *retValue = [[NSMutableArray alloc] init];
     
+#ifdef LOAD_FROM_IPAD
     NSString *agesDirectory = [self getDirPath:@"Age Images"];
     NSArray *files  = [self getFilesInDirectory:agesDirectory];
     NSMutableArray *images = [self getImages:agesDirectory
@@ -98,7 +102,7 @@
             curImage++;
         }
     }
-
+#endif
     return [retValue copy];
 }
 
@@ -106,11 +110,8 @@
 -(NSArray*)getCategoryImages
 {
     NSMutableArray *retValue = [[NSMutableArray alloc] init];
-    /*
-    NSString* id = [[UIDevice currentDevice] uniqueIdentifier];
-    NSLog(@"Identifier:  %@",id);*/
     
-    
+#ifdef LOAD_FROM_IPAD
     NSMutableArray *images;
     NSArray *files;
     NSString *categoryDirectory = [self getDirPath:@"Category Images"];
@@ -148,7 +149,7 @@
             curImage++;
         }
     }
-    
+#endif
     return [retValue copy];
 }
 
@@ -186,6 +187,9 @@
 }
 
 -(void)saveAgeImages:(NSArray *)data {
+    
+#ifdef SAVE_TO_IPAD
+    
     NSInteger curImage = 0;
     NSString *ageDirectory = [self getDirPath:@"Age Images"];
     NSMutableArray *ageData = [[NSMutableArray alloc] init];
@@ -208,9 +212,15 @@
     
     NSString *toFile = [self stripParenthesis:[NSString stringWithFormat:@"%@", ageData]];
     [toFile writeToFile:[ageDirectory stringByAppendingPathComponent:@"ages"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+#endif
+    
 }
 
 -(void)saveCategoryImages:(NSArray *)data {
+    
+#ifdef SAVE_TO_IPAD
+    
     NSInteger curImage = 0;
     NSString *categoryDirectory = [self getDirPath:@"Category Images"];
     NSMutableArray *categoryData = [[NSMutableArray alloc] init];
@@ -232,6 +242,9 @@
     
     NSString *toFile = [self stripParenthesis:[NSString stringWithFormat:@"%@", categoryData]];
     [toFile writeToFile:[categoryDirectory stringByAppendingPathComponent:@"categories"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+#endif
+    
 }
 
 @end
