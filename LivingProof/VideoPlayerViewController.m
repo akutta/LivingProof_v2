@@ -91,7 +91,8 @@
     //[delegate switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:YES] newController:nextView]; 
     [delegate switchView:self.view 
                   toView:nextView.view 
-           withAnimation:UIViewAnimationTransitionFlipFromLeft 
+           withAnimation:[[self delegate] getAnimation:NO] 
+           //withAnimation:UIViewAnimationTransitionFlipFromLeft 
            newController:nextView];
 
     [delegate reloadCurrentGrid];

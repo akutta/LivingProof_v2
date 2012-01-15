@@ -153,7 +153,8 @@
     // newController:nextView];
     [[self delegate] switchView:self.view 
                          toView:nextView.view 
-                  withAnimation:UIViewAnimationTransitionFlipFromRight
+                  withAnimation:[[self delegate] getAnimation:NO] 
+//                  withAnimation:UIViewAnimationTransitionFlipFromRight
                   newController:nextView];
 
     [[self delegate] reloadCurrentGrid];
@@ -168,7 +169,8 @@
                                                                                      bundle:nil];
   [[self delegate] switchView:self.view 
                        toView:nextView.view 
-                withAnimation:UIViewAnimationTransitionFlipFromLeft 
+   //                withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                withAnimation:[[self delegate] getAnimation:NO] 
                 newController:nextView];
 }
 

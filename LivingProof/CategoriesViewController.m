@@ -158,7 +158,8 @@
     // newController:nextView];
     [[self delegate] switchView:self.view 
                          toView:nextView.view 
-                  withAnimation:UIViewAnimationTransitionFlipFromRight
+                        withAnimation:[[self delegate] getAnimation:NO] 
+                  //withAnimation:UIViewAnimationTransitionFlipFromRight
                   newController:nextView];
 
     [[self delegate] reloadCurrentGrid];
@@ -171,8 +172,9 @@
     MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" 
                                                                                      bundle:nil];
     [[self delegate] switchView:self.view 
-                       toView:nextView.view 
-                withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                         toView:nextView.view 
+                  withAnimation:[[self delegate] getAnimation:NO] 
+                //withAnimation:UIViewAnimationTransitionFlipFromLeft 
                 newController:nextView];
 }
 

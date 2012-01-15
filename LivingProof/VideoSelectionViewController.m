@@ -259,7 +259,7 @@
 //
 -(IBAction)swapViewToCategories:(id)sender
 {
-  //UIViewAnimationTransition animation = [[self delegate] getAnimation:NO];
+  UIViewAnimationTransition animation = [[self delegate] getAnimation:NO];
     
     if ( ![[sender title] compare:@"Categories"] ) {
         // Switch to Categories since that was the last view
@@ -269,7 +269,8 @@
       //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
       [[self delegate] switchView:self.view 
                            toView:nextView.view 
-                    withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                    withAnimation:animation
+                    //withAnimation:UIViewAnimationTransitionFlipFromLeft 
                     newController:nextView];
 
         [[self delegate] reloadCurrentGrid];
@@ -279,7 +280,8 @@
       //[[self delegate] switchView:self.view toView:nextView.view withAnimation:animation newController:nextView]; 
       [[self delegate] switchView:self.view 
                            toView:nextView.view 
-                    withAnimation:UIViewAnimationTransitionFlipFromLeft 
+                    withAnimation:animation
+                   // withAnimation:UIViewAnimationTransitionFlipFromLeft 
                     newController:nextView];
 
         [[self delegate] reloadCurrentGrid];

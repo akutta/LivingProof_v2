@@ -15,7 +15,12 @@
 #import "FlurryAnalytics.h"
 #import "UIDevice+Identifier.h"
 
+#import "CoreLocation/CLLocationManager.h"
+
 #define kFlurryKey @"4JNASXVGUMNS3WPLG8BZ"
+
+// Uncomment to test gps locationing
+//#define USE_DEEPER_LOCATION
 
 @interface LivingProofAppDelegate (Private)
 
@@ -69,6 +74,7 @@
     [UIView commitAnimations];
 }
 
+// Crash exception handler logged to Flurry
 void uncaughtExceptionHandler(NSException *exception)
 {
   [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
@@ -86,13 +92,26 @@ void uncaughtExceptionHandler(NSException *exception)
     // Set unique device
     [FlurryAnalytics setUserID:[[UIDevice currentDevice] uniqueGlobalDeviceIdentifier]]; 
 
-    // Switched to a new welcome screen
+    // Add Deeper Location Using GPS
+    
 
-    //    CategoriesViewController *firstView = [[CategoriesViewController alloc] initWithNibName:@"CategoriesViewController" bundle:nil];
-    //    [self setCurView:firstView];
-    //    self.categories = firstView;
-    //    [_window addSubview:categories.view];
-    //    [firstView release];
+#ifdef USE_DEEPER_LOCATION
+    // This is used to determine the effects of adding new videos for the study that is being 
+    // performed on the benefits of these videos
+    //
+    // Without this enabled, just able to obtain general continent versus city.
+    
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    [locationManager startUpdatingLocation];
+    
+    CLLocation *location = locationManager.location;
+    
+    [FlurryAnalytics setLatitude:location.coordinate.latitude            
+                       longitude:location.coordinate.longitude            
+              horizontalAccuracy:location.horizontalAccuracy            
+                verticalAccuracy:location.verticalAccuracy];
+    
+#endif
  
     MainScreenViewController *firstView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController" bundle:nil];
     [self setCurView:firstView];
