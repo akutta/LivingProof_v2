@@ -81,7 +81,7 @@
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.gridView.backgroundColor = [UIColor clearColor];
     //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     
     [super viewDidLoad];
     

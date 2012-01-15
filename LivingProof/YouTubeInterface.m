@@ -107,14 +107,15 @@
     GDataServiceTicket *ticket;
     
     // construct the feed url
-    NSURL *feedURL = [NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/livingproofapp/uploads"];
+    NSURL *feedURL = [[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/livingproofapp/uploads"] autorelease];
     
     // MODIFICATION:
     //      Improves network time by increasing the number of results per page
     //      Overall improvement of network speed
     GDataQueryYouTube *query = [GDataQueryYouTube youTubeQueryWithFeedURL:feedURL];
     
-    // Reduced from 8 to 4.  Supposedly supports more but always returns an error when attempted >50.
+    // 'next' Pages Used Reduced from 8 to 4.  Supposedly supports more but always 
+    // returns an error when attempted >50.
     [query setMaxResults:50]; // IMPORTANT:  set to 50 for full testing.
     
     // Replaces api call below 
@@ -124,13 +125,6 @@
     ticket = [service fetchFeedWithQuery:query
                                 delegate:self 
                        didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:error:)];
-    
-    /*
-    // make API call
-    ticket = [service fetchFeedWithURL:feedURL
-                              delegate:self
-                     didFinishSelector:@selector(entryListFetchTicket:finishedWithFeed:error:)];
-    */
     
     [self setEntriesFetchTicket:ticket];
 }
