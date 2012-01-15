@@ -44,6 +44,9 @@
 
 - (void)dealloc
 {
+    [landscapeBackgroundImage release];
+    [portraitBackgroundImage release];
+    [lightPink release];
     [super dealloc];
 }
 
