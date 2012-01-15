@@ -66,6 +66,35 @@
 
 @implementation YouTubeInterface
 
+NSInteger compareLargestNumber(NSString *firstTitle, NSString *secondTitle, void *context)
+{
+    NSArray *firstTitleChunks = [firstTitle componentsSeparatedByString:@" "];
+    NSArray *secondTitleChunks = [secondTitle componentsSeparatedByString:@" "];
+    
+    NSInteger firstMaxAge = 0;
+    NSInteger secondMaxAge = 0;
+    
+    // Find the largest number in the first chunk
+    for ( NSString* entry in firstTitleChunks ) {
+        if ( [entry integerValue] > firstMaxAge ) { // a non number is converted to a 0
+            firstMaxAge = [entry integerValue];
+        }
+        //NSLog(@"%@ -> %i",entry, [entry integerValue]);
+    }
+    
+    for ( NSString* entry in secondTitleChunks ) {
+        if ( [entry integerValue] > secondMaxAge ) {
+            secondMaxAge = [entry integerValue];
+        }
+    }
+    
+    if ( firstMaxAge < secondMaxAge )
+        return NSOrderedAscending;
+    else if ( firstMaxAge > secondMaxAge )
+        return NSOrderedDescending;
+    
+    return NSOrderedSame;
+}
 
 NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 {
@@ -241,6 +270,7 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
         [youtubeVideo release];
     }
     
+    [ages sortUsingFunction:compareLargestNumber context:NULL];
     [YouTubeArray sortUsingFunction:compareViewCount context:NULL];
         
     // if asked tell them we are finished
