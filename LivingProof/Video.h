@@ -15,7 +15,7 @@
     NSURL *_thumbnailURL;
 
     NSNumber *_time;
-    NSNumber *_viewCount;
+    NSInteger _viewCount;
 
     NSString *_title;
     NSString *_category;
@@ -29,7 +29,7 @@
 @property (retain) NSURL *thumbnailURL;
 
 @property (copy) NSNumber *time;
-@property (copy) NSNumber *viewCount;
+@property NSInteger viewCount;
 
 @property (copy) NSString *title;
 @property (copy) NSString *category;

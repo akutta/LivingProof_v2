@@ -66,6 +66,19 @@
 
 @implementation YouTubeInterface
 
+
+NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
+{
+    //NSLog(@"Comparing %@ with %@",[firstVideo viewCount], [secondVideo viewCount]);
+    
+    if ( [firstVideo viewCount] < [secondVideo viewCount] )
+        return NSOrderedDescending; // Normally NSOrderedAscending but this makes it order from 0..1...MAX
+    else if ( [firstVideo viewCount] > [secondVideo viewCount] )
+        return NSOrderedAscending;
+    else
+        return NSOrderedSame;
+}
+
 - (LivingProofAppDelegate*)delegate {
     static LivingProofAppDelegate* del;
     if ( del == nil ) {
@@ -107,7 +120,7 @@
     GDataServiceTicket *ticket;
     
     // construct the feed url
-    NSURL *feedURL = [[NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/livingproofapp/uploads"] autorelease];
+    NSURL *feedURL = [NSURL URLWithString:@"http://gdata.youtube.com/feeds/api/users/livingproofapp/uploads"];
     
     // MODIFICATION:
     //      Improves network time by increasing the number of results per page
@@ -207,16 +220,8 @@
         youtubeVideo.time          = [[entry mediaGroup] duration];
         youtubeVideo.category      = [[[entry mediaGroup] mediaDescription] stringValue];
         youtubeVideo.thumbnailURL  = [NSURL URLWithString:[[[[entry mediaGroup] mediaThumbnails] objectAtIndex:0] URLString]];        
-        youtubeVideo.viewCount      = [[entry statistics] viewCount];
+        youtubeVideo.viewCount      = [[entry statistics] viewCount].intValue;
         
-        
-        /*
-        if ( [[entry rating] numberOfLikes] != nil )
-            NSLog(@"Likes:     %@", [[entry rating] numberOfLikes]);
-            
-        if ( [[entry rating] numberOfDislikes] != nil ) 
-            NSLog(@"Dislikes:  %@", [[entry rating] numberOfDislikes]);
-        */         
         
         // Dynamically update the categories that can be selected from
         [self addToCategories:youtubeVideo.category];
@@ -235,6 +240,8 @@
         // Memory Management
         [youtubeVideo release];
     }
+    
+    [YouTubeArray sortUsingFunction:compareViewCount context:NULL];
         
     // if asked tell them we are finished
     [self setFinished:YES];
