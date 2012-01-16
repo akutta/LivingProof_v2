@@ -165,8 +165,11 @@
     
     Video *video = [videoArray objectAtIndex:index];
     
+    // Kind of annoying how many special cases there are here
     if ( [_curButtonText compare:@"Categories"] ) {
+        // Get rid of memory leak
         [videoArray release];
+        // Update with newest version of the array
         videoArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
     }
     
