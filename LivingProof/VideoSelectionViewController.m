@@ -164,6 +164,12 @@
         return;
     
     Video *video = [videoArray objectAtIndex:index];
+    
+    if ( [_curButtonText compare:@"Categories"] ) {
+        [videoArray release];
+        videoArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
+    }
+    
     VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
                                                                                       bundle:nil 
                                                                                        video:video 
