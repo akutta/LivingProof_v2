@@ -635,7 +635,8 @@
 				4D126F541417D656004F18AB /* FlurryOffer.h */,
 				4D126F551417D656004F18AB /* libFlurryAppCircle.a */,
 			);
-			path = FlurryAppCircle;
+			name = FlurryAppCircle;
+			path = ../FlurryAppCircle;
 			sourceTree = "<group>";
 		};
 		4D126F561417D656004F18AB /* FlurryAnalytics */ = {
@@ -644,7 +645,8 @@
 				4D126F571417D656004F18AB /* FlurryAnalytics.h */,
 				4D126F581417D656004F18AB /* libFlurryAnalytics.a */,
 			);
-			path = FlurryAnalytics;
+			name = FlurryAnalytics;
+			path = ../FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		4D4367971427C37000035197 /* Horizontal Tables */ = {
@@ -677,6 +679,27 @@
 				4DED4EA81471AE520010C1C2 /* SVProgressHUD.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		A913746A14C3A2BC00943194 /* UniqueID */ = {
+			isa = PBXGroup;
+			children = (
+				4D8CA5161461F07D001E3344 /* NSString+MD5Additions.h */,
+				4D8CA5171461F07D001E3344 /* NSString+MD5Additions.m */,
+				4D8CA7891461F09D001E3344 /* UIDevice+Identifier.h */,
+				4D8CA78A1461F09D001E3344 /* UIDevice+Identifier.m */,
+			);
+			name = UniqueID;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		A913746B14C3A31F00943194 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				4D126F511417D656004F18AB /* FlurryAppCircle */,
+				4D126F561417D656004F18AB /* FlurryAnalytics */,
+			);
+			name = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		A9469E7613B0567A009D28DC /* SDWebImage */ = {
@@ -1074,10 +1097,6 @@
 				A9ACD71613B993A800979ECA /* Keys.m */,
 				A90B437913BD06000055A556 /* Survivor.h */,
 				A90B437A13BD06000055A556 /* Survivor.m */,
-				4D8CA5161461F07D001E3344 /* NSString+MD5Additions.h */,
-				4D8CA5171461F07D001E3344 /* NSString+MD5Additions.m */,
-				4D8CA7891461F09D001E3344 /* UIDevice+Identifier.h */,
-				4D8CA78A1461F09D001E3344 /* UIDevice+Identifier.m */,
 			);
 			name = "Supporting Classes";
 			sourceTree = "<group>";
@@ -1119,9 +1138,8 @@
 			isa = PBXGroup;
 			children = (
 				4D4367971427C37000035197 /* Horizontal Tables */,
-				4D126F511417D656004F18AB /* FlurryAppCircle */,
-				4D126F561417D656004F18AB /* FlurryAnalytics */,
 				A9ACD70B13B2A49300979ECA /* Supporting Classes */,
+				A9BCDFE213AFE96800811831 /* External API */,
 				A98D524513CD4CBE00399792 /* AgesViewController.h */,
 				A98D524613CD4CBE00399792 /* AgesViewController.m */,
 				A9BCDDF313AAE49100811831 /* CategoriesViewController.h */,
@@ -1140,7 +1158,6 @@
 				A9469E9613B11A0D009D28DC /* YouTubeInterface.m */,
 				A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */,
 				A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */,
-				A9BCDFE213AFE96800811831 /* lib */,
 				A9BCDDE013AAE45500811831 /* Supporting Files */,
 				A9BCDDF813AAE4EA00811831 /* Resources */,
 				A9E0199A13B0061800FEE942 /* Images */,
@@ -1172,14 +1189,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		A9BCDFE213AFE96800811831 /* lib */ = {
+		A9BCDFE213AFE96800811831 /* External API */ = {
 			isa = PBXGroup;
 			children = (
+				A913746B14C3A31F00943194 /* FlurryAnalytics */,
+				A913746A14C3A2BC00943194 /* UniqueID */,
 				4DED4EA51471AE520010C1C2 /* SVProgressHUD */,
 				A9ACCFBA13B1479600979ECA /* gdata */,
 				A9469E7613B0567A009D28DC /* SDWebImage */,
 				A9BCDFE313AFE96800811831 /* GridView */,
 			);
+			name = "External API";
 			path = lib;
 			sourceTree = "<group>";
 		};
