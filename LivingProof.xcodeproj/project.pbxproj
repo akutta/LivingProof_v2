@@ -33,8 +33,6 @@
 		A90BEFFC13CDE18A0051EEB5 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFA13CDE18A0051EEB5 /* Background.png */; };
 		A90BEFFD13CDE18A0051EEB5 /* WelcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */; };
 		A913746C14C3C0EA00943194 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A913746714C3998700943194 /* CoreLocation.framework */; };
-		A913747014C3C2F400943194 /* SurvivorNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A913746E14C3C2F400943194 /* SurvivorNamesViewController.m */; };
-		A913747114C3C2F400943194 /* SurvivorNamesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A913746F14C3C2F400943194 /* SurvivorNamesViewController.xib */; };
 		A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */ = {isa = PBXBuildFile; fileRef = A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */; };
 		A9469E8313B0567A009D28DC /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7813B0567A009D28DC /* SDImageCache.m */; };
 		A9469E8413B0567A009D28DC /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7C13B0567A009D28DC /* SDWebImageDownloader.m */; };
@@ -256,9 +254,6 @@
 		A90BEFFA13CDE18A0051EEB5 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = LivingProof/Images/Background.png; sourceTree = SOURCE_ROOT; };
 		A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeScreen.png; path = LivingProof/Images/WelcomeScreen.png; sourceTree = SOURCE_ROOT; };
 		A913746714C3998700943194 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		A913746D14C3C2F400943194 /* SurvivorNamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurvivorNamesViewController.h; sourceTree = "<group>"; };
-		A913746E14C3C2F400943194 /* SurvivorNamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurvivorNamesViewController.m; sourceTree = "<group>"; };
-		A913746F14C3C2F400943194 /* SurvivorNamesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SurvivorNamesViewController.xib; sourceTree = "<group>"; };
 		A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_LightPink_StrongPink_Rotated.png; sourceTree = "<group>"; };
 		A9469E7713B0567A009D28DC /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		A9469E7813B0567A009D28DC /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
@@ -1163,8 +1158,6 @@
 				A9469E9613B11A0D009D28DC /* YouTubeInterface.m */,
 				A90BEFF513CDE1770051EEB5 /* MainScreenViewController.h */,
 				A90BEFF613CDE1770051EEB5 /* MainScreenViewController.m */,
-				A913746D14C3C2F400943194 /* SurvivorNamesViewController.h */,
-				A913746E14C3C2F400943194 /* SurvivorNamesViewController.m */,
 				A9BCDDE013AAE45500811831 /* Supporting Files */,
 				A9BCDDF813AAE4EA00811831 /* Resources */,
 				A9E0199A13B0061800FEE942 /* Images */,
@@ -1186,7 +1179,6 @@
 		A9BCDDF813AAE4EA00811831 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A913746F14C3C2F400943194 /* SurvivorNamesViewController.xib */,
 				4D126F5C1417E525004F18AB /* VideoPlayerViewController.xib */,
 				A98D524713CD4CBE00399792 /* AgesViewController.xib */,
 				A90BEFF713CDE1770051EEB5 /* MainScreenViewController.xib */,
@@ -1336,7 +1328,6 @@
 				A9B15D8B1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png in Resources */,
 				A9B15D8C1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png in Resources */,
 				A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */,
-				A913747114C3C2F400943194 /* SurvivorNamesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1515,7 +1506,6 @@
 				4D8CA78B1461F09D001E3344 /* UIDevice+Identifier.m in Sources */,
 				4DED4EAA1471AE520010C1C2 /* SVProgressHUD.m in Sources */,
 				A9A0E25414C2710000E1DE80 /* Utilities.m in Sources */,
-				A913747014C3C2F400943194 /* SurvivorNamesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
