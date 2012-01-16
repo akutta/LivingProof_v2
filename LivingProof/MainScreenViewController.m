@@ -28,14 +28,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-      sortAge.hidden = YES;
-      sortCategory.hidden = YES;
+        sortAge.hidden = YES;
+        sortCategory.hidden = YES;
 
-      loadingLabel.hidden = NO;
-      activityView.hidden = NO;
-      [activityView startAnimating];
+        loadingLabel.hidden = NO;
+        activityView.hidden = NO;
+        [activityView startAnimating];
 
-      [[NSNotificationCenter defaultCenter] addObserver:self 
+        [[NSNotificationCenter defaultCenter] addObserver:self 
                                                selector:@selector(finishedLoadingYoutube:) 
                                                    name:@"FinishedLoadingYoutube" object:nil];
     }
@@ -110,15 +110,13 @@
 {
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view from its nib
 
-    [self displayPortrait];
+    if ( UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ) {
+        [self displayPortrait];
+    } else
+        [self displayLandscape];
 
-    /*
-    landscapeBackgroundImage = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]] autorelease]; 
-    portraitBackgroundImage = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]] autorelease];
-    lightPink = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]] autorelease];
-     */
     landscapeBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreenRotated.png"]]; 
     portraitBackgroundImage = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
     lightPink = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"WelcomeScreen.png"]];
@@ -137,9 +135,7 @@
     [sortCategory.layer setCornerRadius:12.0];
 
 
-  /* ensure buttons appear if the feed has already been fetched */
-  if ([[[self delegate] iYouTube] getFinished])
-    [self finishedLoadingYoutube:nil];
+  /* ensure buttons appear if the feed has already been fetched */   if ([[[self delegate] iYouTube] getFinished])     [self finishedLoadingYoutube:nil];
 }
 
 - (void)viewDidUnload
@@ -153,7 +149,7 @@
 {
     // Return YES for supported orientations
     [self delegate].curOrientation = interfaceOrientation;
-	return YES;
+    return YES;
 }
 
 //

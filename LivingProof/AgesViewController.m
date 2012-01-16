@@ -18,6 +18,8 @@
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
 
+#import "SurvivorNamesViewController.h"
+
 @interface AgesViewController (Private)
 - (LivingProofAppDelegate*)delegate;
 @end
@@ -143,14 +145,18 @@
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
     VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
+    /*
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
                                                                                           category:cell.title 
                                                                                             filter:nil
                                                                                         buttonText:@"Ages"];    // Change to Title of the selected
-    //[[self delegate] switchView:self.view toView:nextView.view 
-    // withAnimation:[[self delegate] getAnimation:NO] 
-    // newController:nextView];
+     */
+    
+    SurvivorNamesViewController *nextView = [[SurvivorNamesViewController alloc] initWithNibName:@"SurvivorNamesViewController" 
+                                                                                            bundle:nil
+                                                                                          filter:cell.title];
+
     [[self delegate] switchView:self.view 
                          toView:nextView.view 
                   withAnimation:[[self delegate] getAnimation:NO] 
