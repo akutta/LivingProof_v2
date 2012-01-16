@@ -345,6 +345,8 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
             [tmpValue addObject:video];
         else if ( [video.parsedKeys.age caseInsensitiveCompare:filter] == NSOrderedSame) {
             [tmpValue addObject:video];
+        } else if ( [video.parsedKeys.name caseInsensitiveCompare:filter] == NSOrderedSame) {
+            [tmpValue addObject:video];
         }
         
     }

@@ -13,6 +13,7 @@
 #import "VideoPlayerViewController.h"
 #import "VideoGridCell.h"
 #import "Video.h"
+#import "Utilities.h"
 
 #import "SDWebImageManager.h"
 #import "UIImageView+WebCache.h"
@@ -49,7 +50,6 @@
         }
         
         [self reloadCurrentGrid];
-        [self reloadCurrentGrid];
     }
     return self;
 }
@@ -57,6 +57,7 @@
 
 - (void)dealloc
 {
+    [_utilities release];
     [super dealloc];
 }
 
@@ -85,7 +86,6 @@
     
     [super viewDidLoad];
     
- //   NSLog(@"curButtonText: %@",_curButtonText);
     if ( _curButtonText )
         display.title = _curButtonText;
     
@@ -139,7 +139,11 @@
     } else
         [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 
-    cell.title = ytv.title;
+    if ( [_curButtonText compare:@"Categories"] ) {
+        cell.title = ytv.parsedKeys.name;
+    } else {
+        cell.title = ytv.title;
+    }
     
     return cell;
 }
@@ -189,7 +193,6 @@
 -(void)reloadCurrentGrid
 {
     [_gridView reloadData];
-    [_gridView reloadData];
 }
 
 -(LivingProofAppDelegate*)delegate {
@@ -202,10 +205,22 @@
 }
 
 -(NSArray*)YouTubeArray:(BOOL)shouldClear
-{
+{   
     static NSArray* retArray;
     if ( retArray == nil || shouldClear == YES) {
-        retArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
+        
+        NSArray* tmpArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory]; 
+        
+        if ( [_curButtonText compare:@"Categories"] ) {
+            if ( _utilities == nil ) {
+                _utilities = [[Utilities alloc] init];
+            }
+            
+            return [[[_utilities getNameVideoArray:tmpArray] copy] retain];
+        } 
+        
+        retArray = [tmpArray copy];
+        [tmpArray release];         // When you call this in the if block above, it will crash the application.  I don't know why exactly
         
         if ( [retArray count] == 0 )
             retArray = nil;
@@ -217,7 +232,6 @@
 }
 
 -(NSArray*)getFilteredArray {
-    
     if ( _filteredResults != nil ) {
         return [_filteredResults copy];
     }
@@ -226,7 +240,6 @@
 }
 
 -(void)filteredArray:(NSString*)searchText {
-    
     if ( _filteredResults != nil )
         [_filteredResults release];
     

@@ -13,6 +13,7 @@
 {
     AQGridView *_gridView;
     NSArray* NameArray;
+    NSArray* SpecificAgeVideoArray;
 }
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 

@@ -27,6 +27,62 @@
     return del;
 }
 
+
+-(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray {
+    NSMutableArray* nameArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    for ( Video* video in SpecificAgeVideoArray ) {
+        BOOL bFound = NO;
+        
+        for ( Video *savedVideo in nameArray ) {
+            if ( ![savedVideo.parsedKeys.name compare:video.parsedKeys.name] ) {
+                bFound = YES;
+            }
+        }
+        
+        if ( bFound == NO ) {
+            [nameArray addObject:video];
+        }
+    }
+    
+    return [nameArray copy];
+}
+
+-(NSArray*)getNameArray:(NSArray*)SpecificAgeVideoArray {  
+
+    NSMutableArray* nameImageArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    for ( Video* video in SpecificAgeVideoArray ) {
+        BOOL bFound = NO;
+        for ( Image *savedName in nameImageArray ) {
+            if ( ![savedName.name compare:video.parsedKeys.name] ) {
+                bFound = YES;
+            }
+        }
+        
+        if ( bFound == NO ) {
+            Image *tmpImage = [[Image alloc] init];
+            tmpImage.name = video.parsedKeys.name;
+            tmpImage.thumbnailURL = video.thumbnailURL;
+            
+            SDWebImageManager *manager = [SDWebImageManager sharedManager];
+            UIImage *cachedImage = [manager imageWithURL:tmpImage.thumbnailURL];
+            if ( cachedImage ) {
+                tmpImage.imageData = cachedImage;
+            } else {
+                [tmpImage.imageView setImageWithURL:tmpImage.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+            }
+            
+            [nameImageArray addObject:tmpImage];
+            [tmpImage release];
+        }
+        
+    }
+    
+    return [nameImageArray copy];
+}
+
+
 -(NSArray*)getArrayOfSurvivorsFromYoutube:(BOOL)getCategories {
     
     NSMutableArray* survivors = [[NSMutableArray alloc] init];

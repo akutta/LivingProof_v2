@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AQGridView.h"
-
+#import "Utilities.h"
 
 @interface VideoSelectionViewController : UIViewController <AQGridViewDelegate, AQGridViewDataSource> {
     
@@ -20,6 +20,7 @@
     NSString *_searchText;
     
     NSMutableArray *_filteredResults;
+    Utilities *_utilities;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;

@@ -38,14 +38,14 @@
                   newController:nextView];
 }
 
--(NSArray*)getNameArray:(NSArray*)inputArray {    
-    if (inputArray == nil) {
+-(NSArray*)getNameArray {    
+    if (SpecificAgeVideoArray == nil) {
         return nil;
     }
     
     NSMutableArray* nameImageArray = [[[NSMutableArray alloc] init] autorelease];
     
-    for ( Video* video in inputArray ) {
+    for ( Video* video in SpecificAgeVideoArray ) {
         BOOL bFound = NO;
         for ( Image *savedName in nameImageArray ) {
             if ( ![savedName.name compare:video.parsedKeys.name] ) {
@@ -81,8 +81,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSArray* SpecificAgeArray = [[[self delegate] iYouTube] getYouTubeArray:filter];
-        NameArray = [self getNameArray:SpecificAgeArray];
+        SpecificAgeVideoArray = [[[self delegate] iYouTube] getYouTubeArray:filter];
+        NameArray = [self getNameArray];
         
     }
     return self;
@@ -177,6 +177,23 @@
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {  
     Image* selectedVideo = [NameArray objectAtIndex:index];
+    
+    NSLog(@"Selected:  %@",selectedVideo.name);
+
+    NSArray* relatedVideos = [[[self delegate] iYouTube] getYouTubeArray:selectedVideo.name];
+    
+    VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
+                                                                                      bundle:nil 
+                                                                                       video:selectedVideo.video
+                                                                                 curCategory:nil 
+                                                                                      filter:selectedVideo.name 
+                                                                               relatedVideos:relatedVideos
+                                                                                 buttonTitle:selectedVideo.name];
+    //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
+    [[self delegate] switchView:self.view 
+                         toView:nextView.view 
+                  withAnimation:UIViewAnimationTransitionNone 
+                  newController:nextView]; 
     
 }
 
