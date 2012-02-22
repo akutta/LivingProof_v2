@@ -18,7 +18,7 @@
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
 
-#import "SurvivorNamesViewController.h"
+//#import "SurvivorNamesViewController.h"
 
 @interface AgesViewController (Private)
 - (LivingProofAppDelegate*)delegate;
