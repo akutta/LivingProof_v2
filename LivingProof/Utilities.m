@@ -27,6 +27,22 @@
     return del;
 }
 
+-(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray specificAge:(NSString*)age {
+    NSMutableArray* videoArray = [[[NSMutableArray alloc] init] autorelease];
+    
+    for ( Video* video in SpecificAgeVideoArray ) {
+        BOOL bFound = NO;
+        if ( ![video.parsedKeys.age compare:age] ) {
+            bFound = YES;
+        }
+        
+        if ( bFound == YES ) {
+            [videoArray addObject:video];
+        }
+    }
+    
+    return videoArray;
+}
 
 -(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray {
     NSMutableArray* nameArray = [[[NSMutableArray alloc] init] autorelease];

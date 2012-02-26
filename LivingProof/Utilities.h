@@ -12,6 +12,7 @@
     
 }
 
+-(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray specificAge:(NSString*)age;
 -(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray;
 -(NSArray*)getArrayOfSurvivorsFromYoutube:(BOOL)getCategories;
 -(NSArray*)getNameArray:(NSArray*)SpecificAgeVideoArray;

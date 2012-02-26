@@ -170,7 +170,9 @@
         // Get rid of memory leak
         [videoArray release];
         // Update with newest version of the array
-        videoArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
+        NSArray* tmpArray = [[[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name] autorelease];
+        videoArray = [_utilities getNameVideoArray:tmpArray specificAge:video.parsedKeys.age];
+//        videoArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
     }
     
     VideoPlayerViewController *nextView = [[VideoPlayerViewController alloc] initWithNibName:@"VideoPlayerViewController" 
@@ -218,7 +220,7 @@
     static NSArray* retArray;
     if ( retArray == nil || shouldClear == YES) {
         
-        NSArray* tmpArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory]; 
+        NSArray* tmpArray = [[[self delegate] iYouTube] getYouTubeArray:_curCategory];
         
         if ( [_curButtonText compare:@"Categories"] ) {
             if ( _utilities == nil ) {
