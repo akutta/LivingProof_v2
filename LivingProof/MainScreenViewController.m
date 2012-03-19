@@ -96,14 +96,20 @@
 
 - (void)setButtonLook:(UIButton*)button {
     
+    /*
     button.backgroundColor = lightPink;
     [button.layer setBorderColor:[button.currentTitleColor CGColor]];
+     */
+    button.backgroundColor = button.currentTitleColor;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button.layer setBorderColor:[lightPink CGColor]];
+    
     [button.layer setMasksToBounds:YES];
     [button.layer setBorderWidth:2];
     [button.layer setCornerRadius:12.0];
     
-    [button setTitleColor:lightPink forState:UIControlStateHighlighted];
-    [button setBackgroundImage:[self initFromColor:strongPink] forState:UIControlStateHighlighted];
+    [button setTitleColor:button.backgroundColor forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self initFromColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidLoad
@@ -126,16 +132,10 @@
     self.view.backgroundColor = portraitBackgroundImage;
     [self setButtonLook:sortAge];
     [self setButtonLook:sortCategory];
-    
-    
-    sortCategory.backgroundColor = lightPink;
-    [sortCategory.layer setBorderColor:[sortCategory.currentTitleColor CGColor]];
-    [sortCategory.layer setMasksToBounds:YES];
-    [sortCategory.layer setBorderWidth:2];
-    [sortCategory.layer setCornerRadius:12.0];
 
-
-  /* ensure buttons appear if the feed has already been fetched */   if ([[[self delegate] iYouTube] getFinished])     [self finishedLoadingYoutube:nil];
+  /* ensure buttons appear if the feed has already been fetched */   
+    if ([[[self delegate] iYouTube] getFinished])    
+        [self finishedLoadingYoutube:nil];
 }
 
 - (void)viewDidUnload
@@ -201,12 +201,14 @@
 //
 - (void)displayPortrait {
     CGRect sortAgeFrame = sortAge.frame;
-    sortAgeFrame.origin = CGPointMake(199.0f, 807.0f);
+    sortAgeFrame.origin = CGPointMake(170.0f, 807.0f);
+    sortAgeFrame.size = CGSizeMake(210,93);
     sortAge.frame = sortAgeFrame;
     
     
     CGRect sortCategoryFrame = sortCategory.frame;
-    sortCategoryFrame.origin = CGPointMake(388.0f, 807.0f);
+    sortCategoryFrame.origin = CGPointMake(390.0f, 807.0f);
+    sortCategoryFrame.size = CGSizeMake(210,93);
     sortCategory.frame = sortCategoryFrame;
 
     CGRect labelFrame = (CGRect){ CGPointMake(364, 878) ,loadingLabel.frame.size };
@@ -223,11 +225,13 @@
 //
 - (void)displayLandscape {
     CGRect sortAgeFrame = sortAge.frame;
-    sortAgeFrame.origin = CGPointMake(327.0f, 573.0f);
+    sortAgeFrame.origin = CGPointMake(150.0f, 573.0f);
+    sortAgeFrame.size = CGSizeMake(360,90);
     sortAge.frame = sortAgeFrame;
     
     CGRect sortCategoryFrame = sortCategory.frame;
     sortCategoryFrame.origin = CGPointMake(516.0f, 573.0f);
+    sortCategoryFrame.size = CGSizeMake(360,90);
     sortCategory.frame = sortCategoryFrame;
 
     CGRect labelFrame = (CGRect){ CGPointMake(480, 630) ,loadingLabel.frame.size };
