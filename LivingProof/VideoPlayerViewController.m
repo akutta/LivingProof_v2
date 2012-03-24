@@ -209,7 +209,7 @@
         [self setTextPositions:408 y:613];
         
         // setup new frame
-        _gridView.frame = CGRectMake(76,835,617,149);
+        _gridView.frame = CGRectMake(76,835,617,150);
     } else {
         CGRect frame = videoTitle.frame;
         frame.origin = CGPointMake(371, frame.origin.y);
@@ -218,7 +218,7 @@
         [self setTextPositions:759 y:236];
         
         // setup gridview
-        _gridView.frame = CGRectMake(204, 590, 617, 149);
+        _gridView.frame = CGRectMake(204, 590, 617, 150);
     }
     //[self updateYoutubeVideo:orientation];
     // just changes the position of the video.  allows to continue playing the video \
@@ -263,9 +263,6 @@
     self.gridView.scrollsToTop = NO;
     self.gridView.bounces = NO;
     self.gridView.layoutDirection = AQGridViewLayoutDirectionHorizontal;
-    
-    self.gridView.contentInset = UIEdgeInsetsMake(-25 ,5 /* shifts left*/,0,0);
-    
     
     [self.gridView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
     [self.gridView.layer setMasksToBounds:YES];
@@ -316,7 +313,7 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 160.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 140.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
@@ -337,7 +334,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView:(AQGridView *)aGridView
 {
-    return CGSizeMake(120.0, 160.0);
+    return CGSizeMake(130.0, 150.0);
 }
 
 #pragma mark -

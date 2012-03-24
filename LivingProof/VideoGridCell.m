@@ -47,8 +47,6 @@
         _imageView.backgroundColor = self.backgroundColor;
         _title.backgroundColor = [UIColor whiteColor];
         
-        
-        
         [_title.layer setBorderColor:[[UIColor blackColor] CGColor]];
         [_title.layer setMasksToBounds:YES];
         [_title.layer setBorderWidth:2];

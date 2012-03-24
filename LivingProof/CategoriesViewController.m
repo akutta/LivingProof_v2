@@ -139,7 +139,7 @@
 
 - (CGSize) portraitGridCellSizeForGridView:(AQGridView *)aGridView
 {
-    return CGSizeMake(260.0, 305.0);
+    return CGSizeMake(250.0, 305.0);
 }
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
