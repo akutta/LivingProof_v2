@@ -143,8 +143,6 @@
     frame = _title.frame;
     
     frame.size.width = bounds.size.width;
-    
-//    frame.size.height = titleHeight;  // Modified by Drew:  Sets the height so it positions properly
     frame.origin.y = _imageView.frame.origin.y + _imageView.frame.size.height + inset;
     frame.origin.x = inset;
     frame.size.width = bounds.size.width;
