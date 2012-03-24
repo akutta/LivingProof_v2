@@ -22,6 +22,7 @@
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 
+-(IBAction)goHome:(id)sender;
 -(IBAction)back;
 -(void)reloadCurrentGrid;
 @end

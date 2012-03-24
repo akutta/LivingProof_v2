@@ -63,6 +63,17 @@
     }
 }
 
+-(void)goHome:(UIView*)lastView
+{
+    
+    MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController"
+                                                                                    bundle:nil];
+    [self switchView:lastView
+                  toView:nextView.view
+           withAnimation:[self getAnimation:NO] 
+           newController:nextView];
+}
+
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller
 {
     [self setCurView:controller];

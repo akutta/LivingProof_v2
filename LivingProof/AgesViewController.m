@@ -77,6 +77,15 @@
         [_gridView reloadData];
 }
 
+//
+// Event Handler to goto Welcome Screen
+//
+-(IBAction)goHome:(id)sender
+{
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate goHome:self.view];
+}
+
 - (void)viewDidUnload
 {
     self.gridView = nil;

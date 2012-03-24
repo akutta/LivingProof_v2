@@ -53,6 +53,15 @@
 }
 
 
+//
+// Event Handler to goto Welcome Screen
+//
+-(IBAction)goHome:(id)sender
+{
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate goHome:self.view];
+}
+
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {

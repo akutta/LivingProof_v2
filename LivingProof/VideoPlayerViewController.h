@@ -46,6 +46,7 @@
 -(void)updateLabels;
 -(void)reloadCurrentGrid;
 -(IBAction)swapViews:(id)sender;
+-(IBAction)goHome:(id)sender;
 - (id)initWithNibName:(NSString *)nibNameOrNil 
                bundle:(NSBundle *)nibBundleOrNil 
                 video:(Video *)video

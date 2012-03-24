@@ -28,7 +28,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText filter:(NSString *)filterText buttonText:(NSString*)title;
 
-
+-(IBAction)goHome:(id)sender;
 -(IBAction)swapViewToCategories:(id)sender;
 -(void)reloadCurrentGrid;
 @end

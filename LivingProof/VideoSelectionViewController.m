@@ -120,6 +120,15 @@
     return [[self YouTubeArray:NO] count];
 }
 
+//
+// Event Handler to goto Welcome Screen
+//
+-(IBAction)goHome:(id)sender
+{
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate goHome:self.view];
+}
+
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
 {
     static NSString *VideoGridCellIdentifier = @"VideoSelectionGridCellIdentifier";    

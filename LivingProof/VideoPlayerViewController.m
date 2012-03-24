@@ -7,6 +7,7 @@
 //
 
 #import "LivingProofAppDelegate.h"
+#import "MainScreenViewController.h"
 #import "VideoPlayerViewController.h"
 #import "VideoSelectionViewController.h"
 #import "VideoGridCell.h"
@@ -76,6 +77,18 @@
 }
 
 //
+// Event Handler to goto Welcome Screen
+//
+-(IBAction)goHome:(id)sender
+{
+    // Used to stop video playing when back button is pushed.
+    [self embedYouTube:nil frame:CGRectMake(0,0,0,0)];
+    
+    LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
+    [delegate goHome:self.view];
+}
+
+//
 // Event Handler
 //
 -(IBAction)swapViews:(id)sender
@@ -130,11 +143,6 @@
     employmentStatus.text = curVideo.parsedKeys.employmentStatus;
     childrenStatus.text = curVideo.parsedKeys.childrenStatus;
     videoTitle.text = curVideo.title;
-    
-  /*  videoTitle.layer.backgroundColor = [[UIColor whiteColor] CGColor];
-    [videoTitle.layer setMasksToBounds:YES];
-    [videoTitle.layer setBorderWidth:2];
-    [videoTitle.layer setCornerRadius:12.0];*/
 }
 
 -(void) setTextPositions:(CGFloat)x y:(CGFloat)y{
