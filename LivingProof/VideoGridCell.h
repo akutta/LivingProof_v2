@@ -11,12 +11,14 @@
 
 @interface VideoGridCell : AQGridViewCell {
     
+    UIImageView *_mainView;
     UIImageView *_imageView;
     UILabel *_title;
     NSString *_identifier;
 }
 
 @property (nonatomic, retain) UIImage *image;
+@property (nonatomic, retain) UIImageView *mainView;
 @property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) UILabel *_title;

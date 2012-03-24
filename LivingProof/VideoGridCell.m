@@ -11,7 +11,21 @@
 
 @implementation VideoGridCell
 
-@synthesize imageView = _imageView, _title = title;
+@synthesize imageView = _imageView, _title = title, mainView = _mainView;
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)aReuseIdentifier
 {
@@ -19,12 +33,15 @@
     {
         _identifier = aReuseIdentifier;
         
-        UIView* mainView = [[UIView alloc] initWithFrame:frame];
+        //UIView* mainView = [[UIView alloc] initWithFrame:frame];
+        UIImageView* mainView = [[UIImageView alloc] initWithFrame:frame];
         [mainView.layer setBorderColor:[[UIColor blackColor] CGColor]];
         [mainView.layer setMasksToBounds:YES];
         [mainView.layer setBorderWidth:2.0];
         [mainView.layer setCornerRadius:5.0];
-        mainView.backgroundColor = [UIColor whiteColor];
+        
+        mainView.image = [self imageWithColor:[UIColor whiteColor]];
+        mainView.highlightedImage = [self imageWithColor:[UIColor colorWithRed:45.0/255.0 green:54.0/255.0 blue:145.0/255.0 alpha:1.0]];
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         [_imageView.layer setBorderColor:[[UIColor blackColor] CGColor]];
@@ -63,7 +80,6 @@
         [mainView addSubview:_imageView];
         [mainView addSubview:_title];
         [self.contentView addSubview:mainView];
-        
         
         return self;
     }
