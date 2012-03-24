@@ -11,12 +11,13 @@
 
 @implementation VideoGridCell
 
-@synthesize imageView = _imageView;
+@synthesize imageView = _imageView, _title = title;
 
 - (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)aReuseIdentifier
 {
     if ((self = [super initWithFrame: frame reuseIdentifier: aReuseIdentifier]))
     {
+        _identifier = aReuseIdentifier;
         
         UIView* mainView = [[UIView alloc] initWithFrame:frame];
         [mainView.layer setBorderColor:[[UIColor blackColor] CGColor]];
@@ -36,7 +37,12 @@
         _title.highlightedTextColor = [UIColor whiteColor];
         
         // Modified by Drew
-        _title.font = [UIFont boldSystemFontOfSize: 18.0]; // Increase font size
+        if (_identifier == @"VideoPlayerGridCellIdentifier") {
+            _title.font = [UIFont boldSystemFontOfSize:12.0];
+        } else {
+            _title.font = [UIFont boldSystemFontOfSize:18.0]; // Increase font size
+        }
+        
         _title.adjustsFontSizeToFitWidth = YES;              // Set to be multiline
         _title.numberOfLines = 3;                           // Set to use as many lines as needed (3 max i think)
         _title.textAlignment = UITextAlignmentCenter;       // Center the text
@@ -55,12 +61,9 @@
         //self.backgroundColor = [UIColor colorWithWhite:1.0 alpha:.25];
         
         [mainView addSubview:_imageView];
-        //[mainView addSubview:frameImageView];
         [mainView addSubview:_title];
         [self.contentView addSubview:mainView];
         
-        //        [self.contentView addSubview:_imageView];
-        //      [self.contentView addSubview:_title];
         
         return self;
     }
@@ -97,9 +100,9 @@
     return _title.text;
 }
 
-- (void)setTitle:(NSString *)title
+- (void)setTitle:(NSString *)newTitle
 {
-    _title.text = title;
+    _title.text = newTitle;
     [self setNeedsLayout];
 }
 
@@ -113,14 +116,21 @@
     CGSize imageSize = _imageView.image.size;
     CGFloat imageHeightToWidth = imageSize.height/imageSize.width;
     
-    CGRect bounds = CGRectInset(self.contentView.bounds, 10.0, 10.0);
+    CGRect bounds;
+    if ( _identifier == @"VideoGridCellIdentifier" ) {
+        bounds = CGRectInset(self.contentView.bounds, 5.0, 5.0);
+    } else {
+        bounds = CGRectInset(self.contentView.bounds, 10.0, 10.0);
+    }
     CGRect frame;
     [_imageView sizeToFit];
     // get current frame
     frame = _imageView.frame;
+
+    CGFloat inset = ((self.contentView.bounds.size.width - bounds.size.width) / 2.0);
     
-    frame.origin.x = 10.0;
-    frame.origin.y = 10.0;
+    frame.origin.x = inset;
+    frame.origin.y = inset;
     frame.size.width = bounds.size.width;
     frame.size.height = frame.size.width * imageHeightToWidth;
     
@@ -135,10 +145,10 @@
     frame.size.width = bounds.size.width;
     
 //    frame.size.height = titleHeight;  // Modified by Drew:  Sets the height so it positions properly
-    frame.origin.y = _imageView.frame.origin.y + _imageView.frame.size.height + 10;    // multiply by .5
-    frame.origin.x = 10.0;
+    frame.origin.y = _imageView.frame.origin.y + _imageView.frame.size.height + inset;
+    frame.origin.x = inset;
     frame.size.width = bounds.size.width;
-    frame.size.height = bounds.size.height - frame.origin.y;
+    frame.size.height = bounds.size.height - frame.origin.y + inset;
     
     _title.frame = frame;
 }

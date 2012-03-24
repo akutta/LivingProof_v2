@@ -122,7 +122,7 @@
 
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
 {
-    static NSString *VideoGridCellIdentifier = @"VideoGridCellIdentifier";    
+    static NSString *VideoGridCellIdentifier = @"VideoSelectionGridCellIdentifier";    
     Video *ytv = [[self getFilteredArray] objectAtIndex:index];
     VideoGridCell *cell = (VideoGridCell *)[aGridView dequeueReusableCellWithIdentifier:VideoGridCellIdentifier];
     

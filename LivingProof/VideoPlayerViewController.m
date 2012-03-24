@@ -282,10 +282,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -306,7 +302,7 @@
 
 - (AQGridViewCell *)gridView:(AQGridView *)aGridView cellForItemAtIndex:(NSUInteger)index
 {
-    static NSString *VideoGridCellIdentifier = @"VideoGridCellIdentifier";
+    static NSString *VideoGridCellIdentifier = @"VideoPlayerGridCellIdentifier";
     
     Video *ytv = [_relatedVideos objectAtIndex:index];
     VideoGridCell *cell = (VideoGridCell *)[aGridView dequeueReusableCellWithIdentifier:VideoGridCellIdentifier];
@@ -315,20 +311,10 @@
     {
         cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 140.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
+        cell._title.font = [UIFont boldSystemFontOfSize: 8.0];
     }
-    
-    /*
-    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-    UIImage *cachedImage = [manager imageWithURL:ytv.thumbnailURL];
-    if ( cachedImage ) {
-        [cell.imageView setImage:cachedImage];
-    } else*/
-    
-    //[cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:nil];
     [cell.imageView setImageWithURL:ytv.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-
     cell.title = ytv.title;
-    
     return cell;
 }
 
