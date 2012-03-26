@@ -27,6 +27,7 @@
 
 @implementation VideoPlayerViewController
 
+@synthesize navBar = navBar;
 @synthesize gridView = _gridView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil 
@@ -245,6 +246,7 @@
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundVideoDetail.png"]] autorelease];
     self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    self.navBar.tintColor = [UIColor colorWithRed:26.0/255.0 green:32.0/255.0 blue:133.0/255.0 alpha:1.0];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

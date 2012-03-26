@@ -21,10 +21,13 @@
     
     NSMutableArray *_filteredResults;
     Utilities *_utilities;
+    
+    UINavigationBar* navBar;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 @property (nonatomic, retain) NSString* curCategory;
+@property (nonatomic, retain) IBOutlet UINavigationBar* navBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil category:(NSString *)catText filter:(NSString *)filterText buttonText:(NSString*)title;
 

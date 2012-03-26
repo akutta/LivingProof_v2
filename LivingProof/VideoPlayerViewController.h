@@ -39,8 +39,11 @@
     NSArray* _relatedVideos;
     
     AQGridView *_gridView;
+    
+    UINavigationBar *navBar;
 }
 
+@property (nonatomic, retain) IBOutlet UINavigationBar *navBar;
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
 
 -(void)updateLabels;

@@ -27,6 +27,7 @@
 
 @implementation VideoSelectionViewController
 
+@synthesize navBar = navBar;
 @synthesize gridView = _gridView;
 @synthesize curCategory = _curCategory;
 
@@ -81,6 +82,7 @@
     
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
     self.gridView.backgroundColor = [UIColor clearColor];
+    self.navBar.tintColor = [UIColor colorWithRed:26.0/255.0 green:32.0/255.0 blue:133.0/255.0 alpha:1.0];
     //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
     self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     

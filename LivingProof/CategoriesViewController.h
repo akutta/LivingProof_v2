@@ -18,9 +18,11 @@
     AQGridView *_gridView;
     
     Utilities *_utilities;
+    UINavigationBar* navBar;
 }
 
 @property (nonatomic, retain) IBOutlet AQGridView *gridView;
+@property (nonatomic, retain) IBOutlet UINavigationBar* navBar;
 
 -(IBAction)goHome:(id)sender;
 -(IBAction)back;
