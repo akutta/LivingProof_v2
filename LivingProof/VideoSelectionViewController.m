@@ -178,7 +178,7 @@
         // Get rid of memory leak
         [videoArray release];
         // Update with newest version of the array
-        NSArray* tmpArray = [[[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name] autorelease];
+        NSArray* tmpArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
         videoArray = [_utilities getNameVideoArray:tmpArray specificAge:video.parsedKeys.age];
 //        videoArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
     }
@@ -188,7 +188,7 @@
                                                                                        video:video 
                                                                                  curCategory:_curCategory 
                                                                                       filter:_searchText 
-                                                                               relatedVideos:videoArray
+                                                                               relatedVideos:[videoArray copy]
                                                                                  buttonTitle:_curButtonText];
   //[[self delegate] switchView:self.view toView:nextView.view withAnimation:[[self delegate] getAnimation:NO] newController:nextView]; 
   [[self delegate] switchView:self.view 
