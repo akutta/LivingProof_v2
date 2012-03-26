@@ -243,8 +243,7 @@
     
     // Force the application into Landscape view    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
-//    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]] autorelease];
-  
+    //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundVideoDetail.png"]] autorelease];
     self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     
     [super viewDidLoad];

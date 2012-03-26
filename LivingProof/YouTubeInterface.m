@@ -306,7 +306,7 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 - (void)setEntriesFeed:(GDataFeedBase *)feed
 {
     [mEntriesFeed autorelease];
-    mEntriesFeed = [feed retain];
+    mEntriesFeed = (GDataFeedYouTubeVideo*)([feed retain]);
 }
 
 - (void)setEntriesFetchError:(NSError *)error

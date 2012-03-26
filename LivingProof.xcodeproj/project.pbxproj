@@ -33,6 +33,7 @@
 		A90BEFFC13CDE18A0051EEB5 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFA13CDE18A0051EEB5 /* Background.png */; };
 		A90BEFFD13CDE18A0051EEB5 /* WelcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */; };
 		A913746C14C3C0EA00943194 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A913746714C3998700943194 /* CoreLocation.framework */; };
+		A921D8FE1520D50400486D2E /* backgroundVideoDetail.png in Resources */ = {isa = PBXBuildFile; fileRef = A921D8FD1520D50400486D2E /* backgroundVideoDetail.png */; };
 		A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */ = {isa = PBXBuildFile; fileRef = A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */; };
 		A9469E8313B0567A009D28DC /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7813B0567A009D28DC /* SDImageCache.m */; };
 		A9469E8413B0567A009D28DC /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9469E7C13B0567A009D28DC /* SDWebImageDownloader.m */; };
@@ -254,6 +255,7 @@
 		A90BEFFA13CDE18A0051EEB5 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = LivingProof/Images/Background.png; sourceTree = SOURCE_ROOT; };
 		A90BEFFB13CDE18A0051EEB5 /* WelcomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeScreen.png; path = LivingProof/Images/WelcomeScreen.png; sourceTree = SOURCE_ROOT; };
 		A913746714C3998700943194 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A921D8FD1520D50400486D2E /* backgroundVideoDetail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundVideoDetail.png; sourceTree = "<group>"; };
 		A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen_LightPink_StrongPink_Rotated.png; sourceTree = "<group>"; };
 		A9469E7713B0567A009D28DC /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		A9469E7813B0567A009D28DC /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
@@ -1237,6 +1239,7 @@
 		A9E0199A13B0061800FEE942 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A921D8FD1520D50400486D2E /* backgroundVideoDetail.png */,
 				A9457C3F148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png */,
 				A9B15D891472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png */,
 				A9B15D8A1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png */,
@@ -1328,6 +1331,7 @@
 				A9B15D8B1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink_cursive.png in Resources */,
 				A9B15D8C1472FAD300606FC7 /* WelcomeScreen_LightPink_StrongPink.png in Resources */,
 				A9457C40148DAD71004756C9 /* WelcomeScreen_LightPink_StrongPink_Rotated.png in Resources */,
+				A921D8FE1520D50400486D2E /* backgroundVideoDetail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
