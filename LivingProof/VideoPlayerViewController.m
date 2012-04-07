@@ -293,9 +293,14 @@
     [super viewDidUnload];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [UIView setAnimationsEnabled:YES];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
+    [UIView setAnimationsEnabled:NO];
     [self delegate].curOrientation = interfaceOrientation;
 	return YES; 
 }
