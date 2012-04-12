@@ -153,6 +153,7 @@
 {
     // Return YES for supported orientations
     [UIView setAnimationsEnabled:NO];
+    
     [self delegate].curOrientation = interfaceOrientation;
     return YES;
 }

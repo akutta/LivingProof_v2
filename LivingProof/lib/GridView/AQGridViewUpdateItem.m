@@ -80,6 +80,8 @@
 			break;
 	}
 	
+    _animation = UITableViewRowAnimationNone;
+    
 	NSString * animationDesc = @"<Unknown>";
 	switch ( _animation )
 	{

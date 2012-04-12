@@ -74,6 +74,7 @@
 
 - (void)viewDidLoad
 {
+    //NSLog(@"viewDidLoad");
     //LivingProofAppDelegate *delegate = (LivingProofAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     // Ensure we are in portrait mode
@@ -124,6 +125,7 @@
 
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
 {
+    //NSLog(@"numberOfItemsInGridView");
     return [[self YouTubeArray:NO] count];
 }
 

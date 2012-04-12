@@ -69,6 +69,8 @@
 
 -(NSArray*)getAgeImages
 {
+    NSLog(@"Settings.getAgeImages");
+    
     NSMutableArray *retValue = [[NSMutableArray alloc] init];
     
 #ifdef LOAD_FROM_IPAD

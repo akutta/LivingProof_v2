@@ -208,11 +208,11 @@
 
 -(void)reloadCurrentGrid
 {
-    NSLog(@"reloadCurrentGrid");
+    //NSLog(@"reloadCurrentGrid");
     if ( ([_gridView numberOfItems] != [_categories count] || [_categories count] == 0)
         && [[[self delegate] iYouTube] getFinished] == YES )
     {
-        NSLog(@"Updating _categories");
+        //NSLog(@"Updating _categories");
 
         if ( _utilities == nil ) 
             _utilities = [Utilities alloc];

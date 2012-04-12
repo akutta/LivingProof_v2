@@ -379,7 +379,7 @@
 			[self insertSubview: _selectedBackgroundView atIndex: 0];
 		_selectedBackgroundView.frame = self.bounds;
 		
-		[UIView setAnimationsEnabled: YES];
+//		[UIView setAnimationsEnabled: YES];
 		
 		// now the animating bit -- make the selection fade in
 		_selectedBackgroundView.alpha = 1.0;
@@ -435,7 +435,7 @@
 		[UIView setAnimationsEnabled: NO];
 		// find all non-opaque subviews and make opaque again, with original background colors
 		[self makeSubviewsOfViewOpaqueAgain: self];
-		[UIView setAnimationsEnabled: YES];
+		//[UIView setAnimationsEnabled: YES];
 		
 		_cellFlags.highlighted = 0;
 		[_selectedBackgroundView removeFromSuperview];
@@ -455,6 +455,9 @@
 	
 	_cellFlags.becomingHighlighted = (value ? 1 : 0);
 	
+    animated = NO;
+    
+    /*
 	if ( (animated) && ([UIView areAnimationsEnabled]) )
 	{
 		[UIView beginAnimations: @"AQGridCellViewHighlightAnimation" context: NULL];
@@ -463,7 +466,7 @@
 		[UIView setAnimationDidStopSelector: @selector(highlightAnimationStopped:context:)];
 		_cellFlags.animatingSelection = 1;
 	}
-	
+	*/
 	switch ( _cellFlags.selectionStyle )
 	{
 		case AQGridViewCellSelectionStyleNone:
@@ -515,10 +518,10 @@
 		}
 	}
 	
-	if ( (animated) && ([UIView areAnimationsEnabled]) )
-		[UIView commitAnimations];
+	/*if ( (animated) && ([UIView areAnimationsEnabled]) )
+		//[UIView commitAnimations];
 	else
-		[self highlightAnimationStopped: @"" context: NULL];
+		[self highlightAnimationStopped: @"" context: NULL];*/
 }
 
 - (void) setBackgroundView: (UIView *) aView

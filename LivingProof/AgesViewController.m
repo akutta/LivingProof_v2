@@ -17,6 +17,7 @@
 #import "Utilities.h"
 #import "Survivor.h"
 #import "UIImageView+WebCache.h"
+#import <QuartzCore/QuartzCore.h>
 
 //#import "SurvivorNamesViewController.h"
 
@@ -69,13 +70,22 @@
     self.gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	self.gridView.autoresizesSubviews = YES;
 	self.gridView.delegate = self;
-	self.gridView.dataSource = self;
+    self.gridView.dataSource = self;
     
     _ages = [[[self delegate] settings] getAgeImages];    
     if ( [_ages count] == 0 ) 
         [self reloadCurrentGrid];
     else
         [_gridView reloadData];
+     
+}
+
+- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration 
+{
+    [CATransaction begin];
+    for (CALayer *aLayer in self.gridView.layer.sublayers)
+        [aLayer removeAllAnimations];
+    [CATransaction commit];
 }
 
 //
@@ -110,6 +120,7 @@
 
 - (NSUInteger)numberOfItemsInGridView:(AQGridView *)aGridView
 {
+    //NSLog(@"numberOfItemsInGridView");
     // When a new category is added check that we have an image for it
     if ( [[[self delegate] iYouTube] getFinished] == NO )
         return [_ages count];
@@ -193,6 +204,8 @@
 
 -(void)reloadCurrentGrid
 {
+   // NSLog(@"reloadCurrentGrid");
+    
     if ( ([_gridView numberOfItems] != [_ages count] || [_ages count] == 0)
         && [[[self delegate] iYouTube] getFinished] == YES ) {
         

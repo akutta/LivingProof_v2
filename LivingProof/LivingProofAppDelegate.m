@@ -53,19 +53,25 @@
     return iYouTube;
 }
 
+-(void)setCurrentController:(id)controller
+{
+    [self setCurView:controller];
+}
+
 -(void)reloadCurrentGrid
 {
     if ( curView != nil ) {
         if ( [curView respondsToSelector:@selector(reloadCurrentGrid)] ) {
             [curView reloadCurrentGrid];
         } else {
+            //NSLog(@"%@ Doesn't respond to reloadCurrentGrid",curView);
         }
+    } else {
     }
 }
 
 -(void)goHome:(UIView*)lastView
 {
-    
     MainScreenViewController *nextView = [[MainScreenViewController alloc] initWithNibName:@"MainScreenViewController"
                                                                                     bundle:nil];
     [self switchView:lastView
@@ -76,6 +82,8 @@
 
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller
 {
+    //NSLog(@"newController:  %@",controller);
+    
     [self setCurView:controller];
     [UIView beginAnimations:@"Animation" context:nil];
     [UIView setAnimationDuration:0.75];

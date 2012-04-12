@@ -35,4 +35,5 @@
 -(void)switchView:(UIView *)view1 toView:(UIView*)view2 withAnimation:(UIViewAnimationTransition)transition newController:(id)controller;
 -(YouTubeInterface*) iYouTube;
 -(UIViewAnimationTransition)getAnimation:(BOOL)goingForward;
+-(void)setCurrentController:(id)controller;
 @end

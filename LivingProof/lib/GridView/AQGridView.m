@@ -982,7 +982,7 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 	[info release];
 	_reloadingSuspendedCount--;
-	[UIView commitAnimations];
+	//[UIView commitAnimations];
 }
 
 - (void) cellUpdateAnimationStopped: (NSString *) animationID finished: (BOOL) finished context: (void *) context
@@ -1016,17 +1016,17 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 
 - (void) _updateItemsAtIndices: (NSIndexSet *) indices updateAction: (AQGridViewUpdateAction) action withAnimation: (AQGridViewItemAnimation) animation
 {
-	BOOL needsAnimationSetup = ([_updateInfoStack count] <= _animationCount);
+	//BOOL needsAnimationSetup = ([_updateInfoStack count] <= _animationCount);
 
 	// not in the middle of an update loop -- start animations here
-	if ( needsAnimationSetup )
-		[self setupUpdateAnimations];
+	//if ( needsAnimationSetup )
+	//	[self setupUpdateAnimations];
 
 	[[_updateInfoStack lastObject] updateItemsAtIndices: indices updateAction: action withAnimation: animation];
 
 	// not in the middle of an update loop -- commit animations here
-	if ( needsAnimationSetup )
-		[self endUpdateAnimations];
+	//if ( needsAnimationSetup )
+    //[self endUpdateAnimations];
 }
 
 - (void) insertItemsAtIndices: (NSIndexSet *) indices withAnimation: (AQGridViewItemAnimation) animation
