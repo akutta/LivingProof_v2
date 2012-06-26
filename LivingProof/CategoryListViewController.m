@@ -19,7 +19,8 @@
 {
   if ((self = [super init]))
   {
-    self.videoDictionary = [dict retain];
+    //self.videoDictionary = [dict retain];
+      self.videoDictionary = dict;
   }
   
   return self;
@@ -66,7 +67,7 @@
   self.videoDictionary = nil;
   self.reusableCells = nil;
   
-  [super dealloc];
+  //[super dealloc];
 }
 
 @end

@@ -43,8 +43,8 @@
 
 - (void)dealloc
 {
-    [_gridView release];
-    [super dealloc];
+    /*([_gridView release];
+    [super dealloc];*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -126,7 +126,8 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:CategoryGridCellIdentifier] autorelease];
+        //cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:CategoryGridCellIdentifier] autorelease];
+        cell = [[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:CategoryGridCellIdentifier];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
@@ -161,7 +162,8 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
-    VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
+    //VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
+    VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
                                                                                           category:cell.title 
@@ -179,7 +181,7 @@
                   //withAnimation:UIViewAnimationTransitionFlipFromRight
                   newController:nextView];
 
-    [[self delegate] reloadCurrentGrid];
+    //[[self delegate] reloadCurrentGrid];
 }
 
 //
@@ -218,7 +220,7 @@
         if ( _utilities == nil ) 
             _utilities = [Utilities alloc];
         
-        [_categories release];
+        //[_categories release];
         _categories = [_utilities getArrayOfSurvivorsFromYoutube:YES];
         [[[self delegate] settings] saveCategoryImages:_categories];
     }

@@ -27,7 +27,7 @@
   self.thumbnail = nil;
   self.titleLabel = nil;
   
-  [super dealloc];
+  //[super dealloc];
 }
 
 @end

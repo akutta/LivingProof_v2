@@ -58,8 +58,8 @@
 
 - (void)dealloc
 {
-    [_utilities release];
-    [super dealloc];
+    //[_utilities release];
+    //[super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,7 +85,8 @@
     self.gridView.backgroundColor = [UIColor clearColor];
     self.navBar.tintColor = [UIColor colorWithRed:26.0/255.0 green:32.0/255.0 blue:133.0/255.0 alpha:1.0];
     //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
-    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     
     [super viewDidLoad];
     
@@ -97,6 +98,8 @@
 	self.gridView.autoresizesSubviews = YES;
 	self.gridView.delegate = self;
 	self.gridView.dataSource = self;
+    
+    [self reloadCurrentGrid];
 }
 
 - (void)viewDidUnload
@@ -146,7 +149,8 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        //cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        cell = [[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:VideoGridCellIdentifier];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
@@ -185,7 +189,7 @@
     // Kind of annoying how many special cases there are here
     if ( [_curButtonText compare:@"Categories"] ) {
         // Get rid of memory leak
-        [videoArray release];
+        //[videoArray release];
         // Update with newest version of the array
         NSArray* tmpArray = [[[self delegate] iYouTube] getYouTubeArray:video.parsedKeys.name];
         videoArray = [_utilities getNameVideoArray:tmpArray specificAge:video.parsedKeys.age];
@@ -244,16 +248,17 @@
                 _utilities = [[Utilities alloc] init];
             }
             
-            return [[[_utilities getNameVideoArray:tmpArray] copy] retain];
+            //return [[[_utilities getNameVideoArray:tmpArray] copy] retain];
+            return [[_utilities getNameVideoArray:tmpArray] copy];
         } 
         
         retArray = [tmpArray copy];
-        [tmpArray release];         // When you call this in the if block above, it will crash the application.  I don't know why exactly
+        //[tmpArray release];         // When you call this in the if block above, it will crash the application.  I don't know why exactly
         
         if ( [retArray count] == 0 )
             retArray = nil;
-        else
-            [retArray retain];
+        //else
+          //  [retArray retain];
         
     }
     return retArray;
@@ -268,8 +273,8 @@
 }
 
 -(void)filteredArray:(NSString*)searchText {
-    if ( _filteredResults != nil )
-        [_filteredResults release];
+    //if ( _filteredResults != nil )
+      //  [_filteredResults release];
     
     if ( searchText == nil || [searchText length] == 0 ) {
         _filteredResults = [[NSMutableArray alloc] initWithArray:[self YouTubeArray:NO]];

@@ -44,10 +44,10 @@
 
 - (void)dealloc
 {
-    [landscapeBackgroundImage release];
+    /*[landscapeBackgroundImage release];
     [portraitBackgroundImage release];
     [lightPink release];
-    [super dealloc];
+    [super dealloc];*/
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,7 +82,7 @@
 
 #pragma mark - View lifecycle
 
-- (UIImage*)initFromColor:(UIColor*)color {
+- (UIImage*)imageFromColor:(UIColor*)color {
     CGRect rect = CGRectMake(0, 0, 1, 1);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -109,7 +109,7 @@
     [button.layer setCornerRadius:12.0];
     
     [button setTitleColor:button.backgroundColor forState:UIControlStateHighlighted];
-    [button setBackgroundImage:[self initFromColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self imageFromColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidLoad

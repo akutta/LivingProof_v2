@@ -118,11 +118,13 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 }
 
 - (NSArray*)getAges {
-    return [[ages copy] autorelease];
+    //return [[ages copy] autorelease];
+    return [ages copy];
 }
 
 - (NSArray*)getCategories {
-    return [[categories copy] autorelease];
+    //return [[categories copy] autorelease];
+    return [categories copy];
 }
 
 - (void)setFinished:(BOOL)value {
@@ -229,13 +231,16 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
         
     // Create Mutable Arrays
     if ( YouTubeArray == nil )
-        YouTubeArray = [[[NSMutableArray alloc] init] retain];
+        YouTubeArray = [[NSMutableArray alloc] init];
+        //YouTubeArray = [[[NSMutableArray alloc] init] retain];
     
     if ( categories == nil )
-        categories = [[[NSMutableArray alloc] init] retain];
+        categories = [[NSMutableArray alloc] init];
+        //categories = [[[NSMutableArray alloc] init] retain];
  
     if ( ages == nil ) 
-        ages = [[[NSMutableArray alloc] init] retain];
+        ages = [[NSMutableArray alloc] init];
+        //ages = [[[NSMutableArray alloc] init] retain];
         
     // Explore all entries downloaded from YouTube
     NSArray *entries = [mEntriesFeed entries];
@@ -267,7 +272,7 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
         [YouTubeArray addObject:youtubeVideo];
             
         // Memory Management
-        [youtubeVideo release];
+        //[youtubeVideo release];
     }
     
     [ages sortUsingFunction:compareLargestNumber context:NULL];
@@ -289,8 +294,9 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 
 - (void)setEntriesFetchTicket:(GDataServiceTicket *)ticket
 {
-    [mEntriesFetchTicket release];
-    mEntriesFetchTicket = [ticket retain];
+    //[mEntriesFetchTicket release];
+    //mEntriesFetchTicket = [ticket retain];
+    mEntriesFetchTicket = ticket;
 }
 
 - (NSError *)entryFetchError
@@ -305,14 +311,16 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 
 - (void)setEntriesFeed:(GDataFeedBase *)feed
 {
-    [mEntriesFeed autorelease];
-    mEntriesFeed = (GDataFeedYouTubeVideo*)([feed retain]);
+    //[mEntriesFeed autorelease];
+    //mEntriesFeed = (GDataFeedYouTubeVideo*)([feed retain]);
+    mEntriesFeed = (GDataFeedYouTubeVideo*)(feed);
 }
 
 - (void)setEntriesFetchError:(NSError *)error
 {
-    [mEntriesFetchError release];
-    mEntriesFetchError = [error retain];
+    //[mEntriesFetchError release];
+    //mEntriesFetchError = [error retain];
+    mEntriesFetchError = error;
 }
 
 - (GDataServiceTicket *)entriesFetchTicket
@@ -333,11 +341,13 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
     
     // if there isn't a filter send back full array
     if ( filter == nil ) {
-        return [[YouTubeArray copy] autorelease];
+        //return [[YouTubeArray copy] autorelease];
+        return [YouTubeArray copy];
     }
     
     // Create Mutable Array
-    NSMutableArray *tmpValue = [[[NSMutableArray alloc] init] autorelease];
+    //NSMutableArray *tmpValue = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray *tmpValue = [[NSMutableArray alloc] init];
     
     // Only Sorting by Category and Age here
     for ( Video* video in YouTubeArray ) {
@@ -351,7 +361,8 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
         
     }
     
-    return [[tmpValue copy] autorelease];
+    //return [[tmpValue copy] autorelease];
+    return [tmpValue copy];
 }
 
 #pragma mark - 
@@ -410,7 +421,8 @@ NSInteger compareViewCount(Video *firstVideo, Video *secondVideo, void *context)
 }
 
 - (Keys*) parseKeys:(NSArray*)unparsed {
-    Keys *tmp = [[[Keys alloc] init] autorelease];
+    //Keys *tmp = [[[Keys alloc] init] autorelease];
+    Keys *tmp = [[Keys alloc] init];
     
     NSInteger index = 0;
     for ( NSString* key in unparsed ) 

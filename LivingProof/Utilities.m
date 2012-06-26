@@ -28,7 +28,8 @@
 }
 
 -(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray specificAge:(NSString*)age {
-    NSMutableArray* videoArray = [[[NSMutableArray alloc] init] autorelease];
+    //NSMutableArray* videoArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* videoArray = [[NSMutableArray alloc] init];
     
     for ( Video* video in SpecificAgeVideoArray ) {
         BOOL bFound = NO;
@@ -45,7 +46,8 @@
 }
 
 -(NSArray*)getNameVideoArray:(NSArray*)SpecificAgeVideoArray {
-    NSMutableArray* nameArray = [[[NSMutableArray alloc] init] autorelease];
+    //NSMutableArray* nameArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* nameArray = [[NSMutableArray alloc] init];
     
     for ( Video* video in SpecificAgeVideoArray ) {
         BOOL bFound = NO;
@@ -66,7 +68,8 @@
 
 -(NSArray*)getNameArray:(NSArray*)SpecificAgeVideoArray {  
 
-    NSMutableArray* nameImageArray = [[[NSMutableArray alloc] init] autorelease];
+    //NSMutableArray* nameImageArray = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* nameImageArray = [[NSMutableArray alloc] init];
     
     for ( Video* video in SpecificAgeVideoArray ) {
         BOOL bFound = NO;
@@ -90,7 +93,7 @@
             }
             
             [nameImageArray addObject:tmpImage];
-            [tmpImage release];
+            //[tmpImage release];
         }
         
     }
@@ -107,13 +110,14 @@
     NSArray* videos;
     NSInteger index = 0;
     
-    [survivors autorelease];
-    [_survivorImages autorelease];
+    //[survivors autorelease];
+    //[_survivorImages autorelease];
     
     // YouTube isn't finished downloading yet so don't continue here
     if ( [[[self delegate] iYouTube] getFinished] == NO ) {
         NSLog(@"YouTube Not Finished");
-        return [[_survivorImages copy] autorelease];
+        //return [[_survivorImages copy] autorelease];
+        return [_survivorImages copy];
     }
 
     if ( getCategories == YES )
@@ -141,7 +145,7 @@
             tmp.name = curVideo.parsedKeys.name;
             tmp.url = curVideo.thumbnailURL;
             [survivors addObject:tmp];
-            [tmp release];
+            //[tmp release];
         }
     }
     
@@ -165,11 +169,11 @@
         tmp.name = name;
         [_survivorImages addObject:tmp];
         
-        [tmp release];
+        //[tmp release];
         index++;
     }
     
-    [_Names release];
+    //[_Names release];
     return [_survivorImages copy];
 }
 

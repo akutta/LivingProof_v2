@@ -136,7 +136,7 @@ void uncaughtExceptionHandler(NSException *exception)
     [self setCurView:firstView];
     main = firstView;
     [_window addSubview:main.view];
-    [firstView release];
+    //[firstView release];
 
     //
     // Start downloading videos from youtube
@@ -190,11 +190,11 @@ void uncaughtExceptionHandler(NSException *exception)
 
 - (void)dealloc
 {
-    [_window release];
+    /*[_window release];
     [categories release];
     [iYouTube release];
 
-    [super dealloc];
+    [super dealloc];(*/
 }
 
 @end

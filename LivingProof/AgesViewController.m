@@ -44,8 +44,8 @@
 
 - (void)dealloc
 {
-    [_gridView release];
-    [super dealloc];
+    //[_gridView release];
+    //[super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +66,8 @@
     self.navBar.tintColor = [UIColor colorWithRed:26.0/255.0 green:32.0/255.0 blue:133.0/255.0 alpha:1.0];
     
     //self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"breast-cancer-ribbon.png"]];
-    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     
     [super viewDidLoad];
     
@@ -141,7 +142,8 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:AgeGridCellIdentifier] autorelease];
+        //cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:AgeGridCellIdentifier] autorelease];
+        cell = [[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 240.0, 285.0) reuseIdentifier:AgeGridCellIdentifier];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
     }
     
@@ -195,7 +197,8 @@
 
 - (void)gridView:(AQGridView *)gridView didSelectItemAtIndex:(NSUInteger)index
 {
-    VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
+    //VideoGridCell *cell = [(VideoGridCell*)[gridView cellForItemAtIndex:index] autorelease];
+    VideoGridCell *cell = (VideoGridCell*)[gridView cellForItemAtIndex:index];
     VideoSelectionViewController *nextView = [[VideoSelectionViewController alloc] initWithNibName:@"VideoSelectionViewController" 
                                                                                             bundle:nil 
                                                                                           category:cell.title 
@@ -207,7 +210,7 @@
 //                  withAnimation:UIViewAnimationTransitionFlipFromRight
                   newController:nextView];
 
-    [[self delegate] reloadCurrentGrid];
+    //[[self delegate] reloadCurrentGrid];
 }
 
 #pragma mark -
@@ -236,7 +239,7 @@
         if ( _utilities == nil ) 
             _utilities = [Utilities alloc];
         
-        [_ages release];
+        //[_ages release];
         NSLog(@"Getting Array From YouTube");
         //_ages = [_utilities getArrayOfSurvivorsFromYoutube:YES];
         _ages = [_utilities getArrayOfSurvivorsFromYoutube:NO];

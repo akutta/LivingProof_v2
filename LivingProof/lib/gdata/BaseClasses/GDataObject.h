@@ -102,6 +102,20 @@
 #import "GDataDefines.h"
 #import "GDataUtilities.h"
 
+#ifndef GDATA_REQUIRES_ARC
+#if defined(__clang__)
+#if __has_feature(objc_arc)
+#define GDATA_REQUIRES_ARC 1
+#endif
+#endif
+#endif
+
+#if GDATA_REQUIRES_ARC
+#define GDATA_UNSAFE_UNRETAINED __unsafe_unretained
+#else
+#define GDATA_UNSAFE_UNRETAINED
+#endif
+
 #undef _EXTERN
 #undef _INITIALIZE_AS
 #ifdef GDATAOBJECT_DEFINE_GLOBALS
@@ -131,15 +145,15 @@ _EXTERN NSString* const kGDataNamespaceBatch       _INITIALIZE_AS(@"http://schem
 _EXTERN NSString* const kGDataNamespaceBatchPrefix _INITIALIZE_AS(@"batch");
 
 #define GDATA_DEBUG_ASSERT_MIN_SERVICE_VERSION(versionString) \
-  GDATA_DEBUG_ASSERT([self isServiceVersionAtLeast:versionString], \
-    @"%@ requires newer version", NSStringFromSelector(_cmd))
+GDATA_DEBUG_ASSERT([self isServiceVersionAtLeast:versionString], \
+@"%@ requires newer version", NSStringFromSelector(_cmd))
 
 #define GDATA_DEBUG_ASSERT_MAX_SERVICE_VERSION(versionString) \
-  GDATA_DEBUG_ASSERT([self isServiceVersionAtMost:versionString], \
-    @"%@ deprecated under v%@", NSStringFromSelector(_cmd), [self serviceVersion])
+GDATA_DEBUG_ASSERT([self isServiceVersionAtMost:versionString], \
+@"%@ deprecated under v%@", NSStringFromSelector(_cmd), [self serviceVersion])
 
 #define GDATA_DEBUG_ASSERT_MIN_SERVICE_V2() \
-  GDATA_DEBUG_ASSERT_MIN_SERVICE_VERSION(@"2.0")
+GDATA_DEBUG_ASSERT_MIN_SERVICE_VERSION(@"2.0")
 
 @class GDataDateTime;
 @class GDataCategory;
@@ -160,7 +174,7 @@ _EXTERN NSString* const kGDataNamespaceBatchPrefix _INITIALIZE_AS(@"batch");
 // Functionally, this just stores a string value for the attribute.
 
 @interface GDataAttribute : NSObject {
- @private
+@private
     NSString *value_;
 }
 + (GDataAttribute *)attributeWithValue:(NSString *)str;
@@ -175,82 +189,82 @@ _EXTERN NSString* const kGDataNamespaceBatchPrefix _INITIALIZE_AS(@"batch");
 // is called.
 
 typedef enum GDataDescRecTypes {
-  kGDataDescValueLabeled = 1,
-  kGDataDescLabelIfNonNil,
-  kGDataDescArrayCount,
-  kGDataDescArrayDescs,
-  kGDataDescBooleanLabeled,
-  kGDataDescBooleanPresent,
-  kGDataDescNonZeroLength,
-  kGDataDescValueIsKeyPath
+    kGDataDescValueLabeled = 1,
+    kGDataDescLabelIfNonNil,
+    kGDataDescArrayCount,
+    kGDataDescArrayDescs,
+    kGDataDescBooleanLabeled,
+    kGDataDescBooleanPresent,
+    kGDataDescNonZeroLength,
+    kGDataDescValueIsKeyPath
 } GDataDescRecTypes;
 
 typedef struct GDataDescriptionRecord {
-  NSString *label;
-  NSString *keyPath;
-  GDataDescRecTypes reportType;
+    NSString GDATA_UNSAFE_UNRETAINED *label;
+    NSString GDATA_UNSAFE_UNRETAINED *keyPath;
+    GDataDescRecTypes reportType;
 } GDataDescriptionRecord;
 
 
 @interface GDataObject : NSObject <NSCopying> {
-
-  @private
-
-  // element name from original XML, used for later XML generation
-  NSString *elementName_;
-
-  __weak GDataObject *parent_;  // parent in tree of GData objects
-
-  // GDataObjects keep namespaces as {key:prefix value:URI} dictionary entries
-  NSMutableDictionary *namespaces_;
-
-  // extension declaration cache, retained by the topmost parent
-  //
-  // keys are classes that have declared their extensions
-  //
-  // the values are dictionaries mapping declared parent classes to
-  // GDataExtensionDeclarations objects
-  NSMutableDictionary *extensionDeclarationsCache_;
-
-  // list of attributes to be parsed for each class
-  NSMutableDictionary *attributeDeclarationsCache_;
-
-  // list of attributes to be parsed for this class (points strongly into the
-  // attribute declarations cache)
-  NSMutableArray *attributeDeclarations_;
-
-  // arrays of actual extension elements found for this element, keyed by extension class
-  NSMutableDictionary *extensions_;
-
-  // dictionary of attributes set for this element, keyed by attribute name
-  NSMutableDictionary *attributes_;
-
-  // string for element body, if declared as parseable
-  NSString *contentValue_;
-
-  // XMLElements saved from element body but not parsed, if declared by the subclass
-  NSMutableArray *childXMLElements_;
-
-  // arrays of XMLNodes of attributes and child elements not yet parsed
-  NSMutableArray *unknownChildren_;
-  NSMutableArray *unknownAttributes_;
-  BOOL shouldIgnoreUnknowns_;
-
-  // mapping of standard classes to user's surrogate subclasses, used when
-  // creating objects from XML
-  NSDictionary *surrogates_;
-
-  // service version, set for feeds and entries
-  NSString *serviceVersion_;
-
-  // core protocol version, set from the service version when
-  // -coreProtocolVersion is invoked
-  NSString *coreProtocolVersion_;
-
-  // anything defined by the client; retained but not used internally; not
-  // copied by copyWithZone:
-  id userData_;
-  NSMutableDictionary *userProperties_;
+    
+@private
+    
+    // element name from original XML, used for later XML generation
+    NSString *elementName_;
+    
+    GDataObject GDATA_UNSAFE_UNRETAINED *parent_;  // weak: parent in tree of GData objects
+    
+    // GDataObjects keep namespaces as {key:prefix value:URI} dictionary entries
+    NSMutableDictionary *namespaces_;
+    
+    // extension declaration cache, retained by the topmost parent
+    //
+    // keys are classes that have declared their extensions
+    //
+    // the values are dictionaries mapping declared parent classes to
+    // GDataExtensionDeclarations objects
+    NSMutableDictionary *extensionDeclarationsCache_;
+    
+    // list of attributes to be parsed for each class
+    NSMutableDictionary *attributeDeclarationsCache_;
+    
+    // list of attributes to be parsed for this class (points strongly into the
+    // attribute declarations cache)
+    NSMutableArray *attributeDeclarations_;
+    
+    // arrays of actual extension elements found for this element, keyed by extension class
+    NSMutableDictionary *extensions_;
+    
+    // dictionary of attributes set for this element, keyed by attribute name
+    NSMutableDictionary *attributes_;
+    
+    // string for element body, if declared as parseable
+    NSString *contentValue_;
+    
+    // XMLElements saved from element body but not parsed, if declared by the subclass
+    NSMutableArray *childXMLElements_;
+    
+    // arrays of XMLNodes of attributes and child elements not yet parsed
+    NSMutableArray *unknownChildren_;
+    NSMutableArray *unknownAttributes_;
+    BOOL shouldIgnoreUnknowns_;
+    
+    // mapping of standard classes to user's surrogate subclasses, used when
+    // creating objects from XML
+    NSDictionary *surrogates_;
+    
+    // service version, set for feeds and entries
+    NSString *serviceVersion_;
+    
+    // core protocol version, set from the service version when
+    // -coreProtocolVersion is invoked
+    NSString *coreProtocolVersion_;
+    
+    // anything defined by the client; retained but not used internally; not
+    // copied by copyWithZone:
+    id userData_;
+    NSMutableDictionary *userProperties_;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -377,6 +391,7 @@ typedef struct GDataDescriptionRecord {
 - (NSString *)uploadMIMEType;
 - (NSData *)uploadData;
 - (NSFileHandle *)uploadFileHandle;
+- (NSURL *)uploadLocationURL;
 - (BOOL)shouldUploadDataOnly;
 
 //

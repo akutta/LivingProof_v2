@@ -45,11 +45,12 @@
 
       _curCategory = curCategory;
       _curFilter = _searchText;
-      _relatedVideos =  [[relatedVideos copy] retain];
+      //_relatedVideos =  [[relatedVideos copy] retain];
+        _relatedVideos = [relatedVideos copy];
 
       // Custom initialization
       curVideo = video;
-      [curVideo retain];
+      //[curVideo retain];
 
       [self updateLabels];
 
@@ -66,7 +67,7 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+    //[super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,7 +129,7 @@
     
     [dictionarypop presentPopoverFromRect:frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];    
     
-    [dictionaryView release];
+    //[dictionaryView release];
   }
 }
 
@@ -244,7 +245,8 @@
     
     // Force the application into Landscape view    
     self.view.frame = [[UIScreen mainScreen] applicationFrame];
-    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundVideoDetail.png"]] autorelease];
+    //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundVideoDetail.png"]] autorelease];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundVideoDetail.png"]];
     //self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     self.navBar.tintColor = [UIColor colorWithRed:26.0/255.0 green:32.0/255.0 blue:133.0/255.0 alpha:1.0];
     
@@ -257,7 +259,7 @@
     tapGestureRecognizer.numberOfTapsRequired = 1;
     [treatment addGestureRecognizer:tapGestureRecognizer];
     treatment.userInteractionEnabled = YES;
-    [tapGestureRecognizer release];
+    //[tapGestureRecognizer release];
 
     // Enable GridView
     self.gridView.autoresizingMask = UIViewAutoresizingNone;
@@ -323,7 +325,8 @@
     
     if ( cell == nil )
     {
-        cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 140.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        //cell = [[[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 140.0) reuseIdentifier:VideoGridCellIdentifier] autorelease];
+        cell = [[VideoGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, 120.0, 140.0) reuseIdentifier:VideoGridCellIdentifier];
         cell.selectionStyle = AQGridViewCellSelectionStyleBlueGray;
         cell._title.font = [UIFont boldSystemFontOfSize: 8.0];
     }

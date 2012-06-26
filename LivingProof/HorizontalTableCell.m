@@ -28,7 +28,8 @@
 
   if (cell == nil) 
   {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    //cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
   }
 
   cell.textLabel.text = @"The title of the cell in the table within the table :O";
@@ -48,7 +49,7 @@
   self.horizontalTableView = nil;
   self.videos = nil;
   
-  [super dealloc];
+  //[super dealloc];
 }
 
 @end

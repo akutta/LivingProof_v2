@@ -40,7 +40,7 @@
         cell.videos = [NSArray arrayWithArray:currentCategory];
         
         [self.reusableCells addObject:cell];
-        [cell release];
+        //[cell release];
       }
     }
 }
@@ -60,18 +60,20 @@
   
   if (section == 0)
   {
-    customSectionHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kHeadlineSectionHeight)] autorelease];
+      //customSectionHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kHeadlineSectionHeight)] autorelease];
+      customSectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kHeadlineSectionHeight)];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, kHeadlineSectionHeight)];
-    labelFont = [UIFont boldSystemFontOfSize:20];
+      titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, kHeadlineSectionHeight)];
+      labelFont = [UIFont boldSystemFontOfSize:20];
   }
   else
   {
-    customSectionHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kRegularSectionHeight)] autorelease];
+      //customSectionHeaderView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kRegularSectionHeight)] autorelease];
+      customSectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, kRegularSectionHeight)];
     
-    titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, kRegularSectionHeight)];
+      titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, tableView.frame.size.width, kRegularSectionHeight)];
     
-    labelFont = [UIFont boldSystemFontOfSize:13];
+      labelFont = [UIFont boldSystemFontOfSize:13];
   }  
   
   customSectionHeaderView.backgroundColor = [UIColor colorWithRed:0 green:0.40784314 blue:0.21568627 alpha:0.95];
@@ -89,7 +91,7 @@
   titleLabel.text = [categoryName substringFromIndex:1];
 
   [customSectionHeaderView addSubview:titleLabel];
-  [titleLabel release];
+  //[titleLabel release];
   
   return customSectionHeaderView;
 }

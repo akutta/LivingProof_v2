@@ -22,7 +22,8 @@
   
   if (cell == nil) 
   {
-    cell = [[[VideoCell_iPad alloc] initWithFrame:CGRectMake(0, 0, kCellWidth_iPad, kCellHeight_iPad)] autorelease];
+    //cell = [[[VideoCell_iPad alloc] initWithFrame:CGRectMake(0, 0, kCellWidth_iPad, kCellHeight_iPad)] autorelease];
+      cell = [[VideoCell_iPad alloc] initWithFrame:CGRectMake(0, 0, kCellWidth_iPad, kCellHeight_iPad)];
   }
   
   __block NSDictionary *currentVideo = [self.videos objectAtIndex:indexPath.row];
@@ -45,23 +46,24 @@
 
 - (id)initWithFrame:(CGRect)frame
 {
-  if ((self = [super initWithFrame:frame]))
+    if ((self = [super initWithFrame:frame]))
     {
-    self.horizontalTableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, kCellHeight_iPad, kTableLength_iPad)] autorelease];
-    self.horizontalTableView.showsVerticalScrollIndicator = NO;
-    self.horizontalTableView.showsHorizontalScrollIndicator = NO;
-    self.horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
-    [self.horizontalTableView setFrame:CGRectMake(kRowHorizontalPadding_iPad * 0.5, kRowVerticalPadding_iPad * 0.5, kTableLength_iPad - kRowHorizontalPadding_iPad, kCellHeight_iPad)];
+    //self.horizontalTableView = [[[UITableView alloc] initWithFrame:CGRectMake(0, 0, kCellHeight_iPad, kTableLength_iPad)] autorelease];
+        self.horizontalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kCellHeight_iPad, kTableLength_iPad)];
+        self.horizontalTableView.showsVerticalScrollIndicator = NO;
+        self.horizontalTableView.showsHorizontalScrollIndicator = NO;
+        self.horizontalTableView.transform = CGAffineTransformMakeRotation(-M_PI * 0.5);
+        [self.horizontalTableView setFrame:CGRectMake(kRowHorizontalPadding_iPad * 0.5, kRowVerticalPadding_iPad * 0.5, kTableLength_iPad - kRowHorizontalPadding_iPad, kCellHeight_iPad)];
     
-    self.horizontalTableView.rowHeight = kCellWidth_iPad;
-    self.horizontalTableView.backgroundColor = kHorizontalTableBackgroundColor;
+        self.horizontalTableView.rowHeight = kCellWidth_iPad;
+        self.horizontalTableView.backgroundColor = kHorizontalTableBackgroundColor;
     
-    self.horizontalTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.horizontalTableView.separatorColor = [UIColor clearColor];
+        self.horizontalTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.horizontalTableView.separatorColor = [UIColor clearColor];
     
-    self.horizontalTableView.dataSource = self;
-    self.horizontalTableView.delegate = self;
-    [self addSubview:self.horizontalTableView];
+        self.horizontalTableView.dataSource = self;
+        self.horizontalTableView.delegate = self;
+        [self addSubview:self.horizontalTableView];
     }
   
   return self;
