@@ -19,6 +19,10 @@
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
 
+
+#import "SDWebImageManager.h"
+#import "UIImageView+WebCache.h"
+
 //#import "SurvivorNamesViewController.h"
 
 @interface AgesViewController (Private)
@@ -143,16 +147,37 @@
     
     if ( index >= [_ages count]  ) {
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
+        NSLog(@"New Category Created");
     } else {
         Image *tmp = [_ages objectAtIndex:index];
+        
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        UIImage *cachedImage = [manager imageWithURL:tmp.thumbnailURL];
+        
+        if ( cachedImage ) {
+            [cell.imageView setImage:cachedImage];
+        } else
+            [cell.imageView setImageWithURL:tmp.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        
+/*
         if ( tmp.imageData == nil ) {
             if ( tmp.imageView == nil ) {
-                [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
+                NSLog(@"imageView == nil");
+                //cell.imageView setImageWithURL:tmp.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+                 
+                 SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                 UIImage *cachedImage = [manager imageWithURL:tmp.thumbnailURL];
+                 if ( cachedImage ) {
+                     [cell.imageView setImage:cachedImage];
+                 } else
+                     [cell.imageView setImageWithURL:tmp.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+                 
+//                [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
             } else
                 cell.imageView = tmp.imageView;
         } else {
             [cell.imageView setImage:tmp.imageData];
-        }
+        }*/
         cell.title = tmp.name;
     }
     
@@ -205,7 +230,6 @@
 -(void)reloadCurrentGrid
 {
    // NSLog(@"reloadCurrentGrid");
-    
     if ( ([_gridView numberOfItems] != [_ages count] || [_ages count] == 0)
         && [[[self delegate] iYouTube] getFinished] == YES ) {
         
@@ -213,7 +237,9 @@
             _utilities = [Utilities alloc];
         
         [_ages release];
-        _ages = [_utilities getArrayOfSurvivorsFromYoutube:YES];
+        NSLog(@"Getting Array From YouTube");
+        //_ages = [_utilities getArrayOfSurvivorsFromYoutube:YES];
+        _ages = [_utilities getArrayOfSurvivorsFromYoutube:NO];
         [[[self delegate] settings] saveCategoryImages:_ages];
     }
     

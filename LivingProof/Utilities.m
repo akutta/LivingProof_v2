@@ -118,8 +118,10 @@
 
     if ( getCategories == YES )
         _Names = [[[[self delegate] iYouTube] getCategories] copy];
-    else
+    else {
         _Names = [[[[self delegate] iYouTube] getAges] copy];
+    }
+        
     
     
     videos = [[[self delegate] iYouTube] getYouTubeArray:nil];;
@@ -149,9 +151,7 @@
             tmp.imageData = nil;
             tmp.imageView = nil;
         } else {
-            Survivor *surv = [survivors objectAtIndex:index];
-            
-            // Reduces the amount of work that the iPad needs to do
+            Survivor *surv = [survivors objectAtIndex:index];            // Reduces the amount of work that the iPad needs to do
             // Without doing it this way, the application can lag and slightly freeze
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
             UIImage *cachedImage = [manager imageWithURL:surv.url];
@@ -160,6 +160,7 @@
             else
                 [tmp.imageView setImageWithURL:surv.url placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
             
+            tmp.thumbnailURL = surv.url;
         }
         tmp.name = name;
         [_survivorImages addObject:tmp];

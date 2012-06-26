@@ -132,18 +132,19 @@
     
     if ( index >= [_categories count] ) {
         // New Category was added or we havn't stored this category yet
+        NSLog(@"New Category Created");
         [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]];
     } else {
         Image *tmp = [_categories objectAtIndex:index];
-        if ( tmp.imageData == nil ) {
-            if ( tmp.imageView == nil )
-                [cell.imageView setImage:[UIImage imageNamed:@"placeholder.png"]]; 
-            else {
-                cell.imageView = tmp.imageView;
-            }
-        } else {
-            [cell.imageView setImage:tmp.imageData];
-        }
+        
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        UIImage *cachedImage = [manager imageWithURL:tmp.thumbnailURL];
+        
+        if ( cachedImage ) {
+            [cell.imageView setImage:cachedImage];
+        } else
+            [cell.imageView setImageWithURL:tmp.thumbnailURL placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        
         cell.title = tmp.name;
     }
     
