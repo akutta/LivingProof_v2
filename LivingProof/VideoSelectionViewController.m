@@ -319,7 +319,7 @@
                     //withAnimation:UIViewAnimationTransitionFlipFromLeft 
                     newController:nextView];
 
-        [[self delegate] reloadCurrentGrid];
+        //[[self delegate] reloadCurrentGrid];
     } else {
         AgesViewController *nextView = [[AgesViewController alloc] initWithNibName:@"AgesViewController"
                                                                              bundle:nil];
@@ -330,7 +330,7 @@
                    // withAnimation:UIViewAnimationTransitionFlipFromLeft 
                     newController:nextView];
 
-        [[self delegate] reloadCurrentGrid];
+        //[[self delegate] reloadCurrentGrid];
     }
 }
 @end

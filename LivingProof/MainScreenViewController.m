@@ -57,6 +57,7 @@
 
 - (void)finishedLoadingYoutube:(id)sender
 {
+    NSLog(@"Finished Loading Youtube");
   sortAge.hidden = NO;
   sortCategory.hidden = NO;
   
